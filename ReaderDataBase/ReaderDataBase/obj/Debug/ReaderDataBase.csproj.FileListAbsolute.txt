@@ -6,3 +6,6 @@ c:\users\_espitl1\documents\visual studio 2015\Projects\ReaderDataBase\ReaderDat
 c:\users\_espitl1\documents\visual studio 2015\Projects\ReaderDataBase\ReaderDataBase\obj\Debug\ReaderDataBase.csproj.GenerateResource.Cache
 c:\users\_espitl1\documents\visual studio 2015\Projects\ReaderDataBase\ReaderDataBase\obj\Debug\ReaderDataBase.exe
 c:\users\_espitl1\documents\visual studio 2015\Projects\ReaderDataBase\ReaderDataBase\obj\Debug\ReaderDataBase.pdb
+C:\Users\LeoPC\Documents\GitHub\CodesBU\ReaderDataBase\ReaderDataBase\bin\Debug\ReaderDataBase.exe.config
+C:\Users\LeoPC\Documents\GitHub\CodesBU\ReaderDataBase\ReaderDataBase\obj\Debug\ReaderDataBase.exe
+C:\Users\LeoPC\Documents\GitHub\CodesBU\ReaderDataBase\ReaderDataBase\obj\Debug\ReaderDataBase.pdb
