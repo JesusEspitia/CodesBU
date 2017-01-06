@@ -8,9 +8,10 @@ namespace ReaderDataBase
 {
     public class Orden
     {
-        public int id { get; set; }
-        public int id_catalogo { get; set; }
-        public int cantidad { get; set; }
+        public string references { get; set; }
+        public string batch { get; set; }
+        public int qty { get; set; }
+        public DateTime date { get; set; }
 
         public List<Orden> lstOrden = new List<Orden>();
     }
