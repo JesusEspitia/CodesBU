@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Monotoring.Models.WorkOrden>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CatalogId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BatchOrden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateRegistry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateFinish)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantityOrden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ordenCount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CatalogId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BatchOrden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateRegistry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateFinish)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantityOrden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ordenCount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.WorkOrdenId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.WorkOrdenId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.WorkOrdenId })
+        </td>
+    </tr>
+}
+
+</table>

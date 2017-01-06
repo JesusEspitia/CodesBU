@@ -1,0 +1,13 @@
+﻿@model Monotoring.Models.Users
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    string user = Convert.ToString(Session["userName"]);
+}
+
+<h2>Login @user</h2>
+
+

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Monotoring.Models.DelayWork>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DelayCode.DelayName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkOrden.BatchOrden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripDelay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateDelay)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DelayCode.DelayName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkOrden.BatchOrden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripDelay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateDelay)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DelayWorkId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DelayWorkId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DelayWorkId })
+        </td>
+    </tr>
+}
+
+</table>

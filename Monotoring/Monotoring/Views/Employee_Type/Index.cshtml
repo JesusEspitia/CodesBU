@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Monotoring.Models.Employee_type>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.permission)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descrip_type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.permission)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descrip_type)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Employee_typeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Employee_typeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Employee_typeId })
+        </td>
+    </tr>
+}
+
+</table>

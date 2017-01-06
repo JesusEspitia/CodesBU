@@ -1,0 +1,65 @@
+﻿@model Monotoring.Models.DelayWork
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DelayWork</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DelayCode.DelayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelayCode.DelayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkOrden.BatchOrden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkOrden.BatchOrden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripDelay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripDelay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateDelay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateDelay)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

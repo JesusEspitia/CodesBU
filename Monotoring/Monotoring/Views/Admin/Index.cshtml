@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Admin</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 ">
+            @Html.ActionLink("Categorias de empleado", "Index", "Employee_Type")
+        </div>
+         <div class="col-lg-6 ">
+            @Html.ActionLink("Agregar Usuarios", "Index", "Users")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 ">
+            @Html.ActionLink("Areas", "Index", "Area")
+        </div>
+        <div class="col-lg-6 ">
+            @Html.ActionLink("Códigos de atraso", "Index", "DelayCode")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 ">
+            @Html.ActionLink("Catalogo", "Index", "Catalog")
+        </div>
+        <
+    </div>
+</div>
