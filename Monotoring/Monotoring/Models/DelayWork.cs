@@ -16,6 +16,8 @@ namespace Monotoring.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime dateDelay { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? dateFinish { get; set; }
         public int UsersId { get; set; }
 
         [ForeignKey("WorkOrdenId")]

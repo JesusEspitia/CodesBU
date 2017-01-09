@@ -1,7 +1,7 @@
 ﻿@model Monotoring.Models.DelayWork
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar Orden";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -46,6 +46,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.dateDelay, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.dateDelay, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dateFinish, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dateFinish, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dateFinish, "", new { @class = "text-danger" })
             </div>
         </div>
 

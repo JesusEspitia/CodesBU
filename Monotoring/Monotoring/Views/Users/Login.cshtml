@@ -8,6 +8,23 @@
     string user = Convert.ToString(Session["userName"]);
 }
 
-<h2>Login @user</h2>
 
 
+
+<div class="container">
+    <div class="card card-container">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { @class = "form-singin" }))
+        {
+            <div>
+                @Html.TextBoxFor(dl => dl.userEmail, new { @class = "form-control", @placeholder = "Correo electronico" })
+                @Html.ValidationMessageFor(dl => dl.userEmail, "", new { @clas = "txt-danger" })
+            </div>
+            <div>
+                @Html.PasswordFor(dl => dl.userPass, new { @class = "from-control", @placeholder = "Contraseña" })
+                @Html.ValidationMessageFor(dl => dl.userPass, "", new { @class = "txt-danger" })
+            </div>
+            <input type="submit" value="Iniciar" class="btn btn-primary" />
+        }
+    </div>
+</div>

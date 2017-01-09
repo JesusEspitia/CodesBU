@@ -35,20 +35,29 @@
         <div class="container-fluid">
             <div class="navbar-head">
                 <a href="#" class="navbar-brand" id="menu-toggle"><span role="button" class="glyphicon glyphicon-menu-hamburger"></span></a>
+                
+            </div>
+            <div class="navbar-head">
+                <a href="/" class="navbar-brand">Home</a>
             </div>
             <div>
                 <ul class="nav navbar-nav navbar-right">
-                    
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu"> 
-                            <li></li>
-                            <li><a href="#">Notificaciones</a></li>
-                            <li><a href="#">Salir</a></li>
-                            <li></li>
-                        </ul>
-                    </li>
-                    
+                    @if (User == "")
+                    {
+                        <li>@Html.ActionLink("Ingresar", "Login", "Users")</li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User<span class="caret"></span></a>
+                            <ul class="dropdown-menu">                             
+                                <li>@Html.ActionLink("Salir", "Logout", "Users")</li>                            
+                                <li><a href="#">Notificaciones</a></li>
+                                <li><a href="#">Salir</a></li>
+                                <li></li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>        
@@ -62,7 +71,7 @@
                 {
                     <li>@Html.ActionLink("Administrador","Index","Admin")</li>
                 }                                 
-                <li><@Html.ActionLink("Ordenes de trabajo","Index","WorkOrden")</li>                   
+                <li>@Html.ActionLink("Ordenes de trabajo","Index","WorkOrden")</li>                   
                 <li><a>Inicio</a></li>                   
                 <li><a>Inicio</a></li>                   
             </div>

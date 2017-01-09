@@ -1,7 +1,7 @@
 ﻿@model Monotoring.Models.DelayWork
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar Orden";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -50,6 +50,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.dateDelay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateFinish)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateFinish)
         </dd>
 
     </dl>

@@ -17,7 +17,7 @@ namespace Monotoring.Models
         public DateTime dateRegistry { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime dateStart { get; set; }
+        public DateTime? dateStart { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? dateFinish { get; set; }

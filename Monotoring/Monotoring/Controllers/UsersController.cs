@@ -50,17 +50,18 @@ namespace Monotoring.Controllers
                     var datos = query.ToList();
                     foreach(var d in datos)
                     {
+                        Session["userId"] = d.UsersId;
                         Session["userType"] = d.TypeId;
                     }
-                    
-                    return View();
+
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
 
                 }
                 {
-                    return RedirectToAction("Index", "Home");
+                    return View();
                 }
             }
             else
@@ -68,7 +69,13 @@ namespace Monotoring.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session["userName"] = "";
+            Session["userType"] = 0;
+            return RedirectToAction("Index", "Home");
+        }
         [HttpGet]
         // GET: Users/Create
         public ActionResult Create()
@@ -89,7 +96,7 @@ namespace Monotoring.Controllers
                 {
                     context.Users.Add(user);
                     context.SaveChanges();
-                    return RedirectToAction("Index","Home");
+                    return RedirectToAction("Index");
                 }
                 else
                 {

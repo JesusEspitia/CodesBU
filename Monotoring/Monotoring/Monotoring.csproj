@@ -221,6 +221,7 @@
     <Compile Include="Controllers\Employee_TypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WorkOrdenController.cs" />
     <Compile Include="Global.asax.cs">
@@ -352,6 +353,9 @@
     <EmbeddedResource Include="Migrations\201701060426181_migration4.resx">
       <DependentUpon>201701060426181_migration4.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Notification\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
