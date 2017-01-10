@@ -1,0 +1,22 @@
+﻿@using Monotoring.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table>
+    <tr>
+        <th>Batch</th>
+        <th>Cantidad</th>
+        <th>Fecha</th>
+    </tr>
+    @foreach(WorkOrden item in ViewBag.myModel)
+    {
+        <tr>
+            <td>@item.BatchOrden</td>    
+            <td>@item.quantityOrden</td>
+            <td>@item.dateRegistry</td>
+        </tr>
+    }
+</table>

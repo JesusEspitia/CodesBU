@@ -220,8 +220,8 @@
     <Compile Include="Controllers\DelayWorkController.cs" />
     <Compile Include="Controllers\Employee_TypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListOrdensController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WorkOrdenController.cs" />
     <Compile Include="Global.asax.cs">
@@ -340,7 +340,7 @@
     <Content Include="Views\DelayWork\Delete.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Notification\Index.cshtml" />
+    <Content Include="Views\ListOrdens\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
