@@ -8,7 +8,7 @@ using MySql.Data.Entity;
 
 namespace Monotoring.Context
 {
-    //[DbConfigurationType(typeof(MySqlEFConfiguration))]
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class TrackContext:DbContext
     {
         

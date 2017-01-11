@@ -4,19 +4,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<br />
+<br />
+<br />
+<br />
 
-<table>
-    <tr>
-        <th>Batch</th>
-        <th>Cantidad</th>
-        <th>Fecha</th>
-    </tr>
-    @foreach(WorkOrden item in ViewBag.myModel)
-    {
-        <tr>
-            <td>@item.BatchOrden</td>    
-            <td>@item.quantityOrden</td>
-            <td>@item.dateRegistry</td>
-        </tr>
-    }
-</table>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr>
+                <th>Batch</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th></th>
+            </tr>
+            @foreach (WorkOrden item in ViewBag.myModel)
+            {
+                <tr>
+                    <td>@item.BatchOrden</td>
+                    <td>@item.quantityOrden</td>
+                    <td>@item.dateRegistry</td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <td>@Html.ActionLink("Iniciar", "StartOrden", new { id = item.BatchOrden })</td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</div>

@@ -215,6 +215,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AreaController.cs" />
+    <Compile Include="Controllers\Area_OrdenController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\DelayCodeController.cs" />
     <Compile Include="Controllers\DelayWorkController.cs" />
@@ -230,6 +231,10 @@
     <Compile Include="Migrations\201701060426181_migration4.cs" />
     <Compile Include="Migrations\201701060426181_migration4.Designer.cs">
       <DependentUpon>201701060426181_migration4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701110437311_migracion6.cs" />
+    <Compile Include="Migrations\201701110437311_migracion6.Designer.cs">
+      <DependentUpon>201701110437311_migracion6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -354,8 +359,13 @@
     <EmbeddedResource Include="Migrations\201701060426181_migration4.resx">
       <DependentUpon>201701060426181_migration4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701110437311_migracion6.resx">
+      <DependentUpon>201701110437311_migracion6.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Area_Orden\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
