@@ -1,0 +1,31 @@
+﻿@using Monotoring.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Orden</th>
+                    <th>Cantidad</th>
+                    <th>Días transcurridos</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(WorkOrden item in ViewBag.ordens)
+                {
+                    <tr>
+                        <td>@item.BatchOrden</td>
+                        <td>@item.quantityOrden</td>
+                        <td>@(Math.Round((DateTime.Now - (DateTime)item.dateStart).TotalDays,0))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

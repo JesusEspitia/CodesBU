@@ -14,6 +14,14 @@ namespace Monotoring.Controllers
         // GET: Area_Orden
         public ActionResult Index()
         {
+            var id = (int)Session["userId"];
+            var lst = from a in context.Area_Orden
+                      join ar in context.Area on a.AreaId equals ar.AreaId
+                      join u in context.Users on ar.UsersId equals u.UsersId
+                      join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
+                      where u.UsersId == id && a.dateFinish==null
+                      select w;
+            ViewBag.ordens = lst.ToList();
             return View();
         }
 

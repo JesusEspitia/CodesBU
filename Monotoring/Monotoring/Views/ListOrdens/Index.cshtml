@@ -24,13 +24,13 @@
                     <td>@item.BatchOrden</td>
                     <td>@item.quantityOrden</td>
                     <td>@item.dateRegistry</td>
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-                        <td>@Html.ActionLink("Iniciar", "StartOrden", new { id = item.BatchOrden })</td>
-                    }
+                    
+                    @*<td><input type="button" id="btnIniciar" value="Iniciar" class="btn btn-sm btn-default" /></td>*@
+                    <td>@Ajax.ActionLink("Iniciar", "StartOrden","ListOrdens", new { id = item.BatchOrden }, new AjaxOptions() { HttpMethod = "Post" })</td>
                 </tr>
             }
         </table>
     </div>
 </div>
+
+

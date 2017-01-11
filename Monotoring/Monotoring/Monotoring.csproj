@@ -346,6 +346,7 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\ListOrdens\Index.cshtml" />
+    <Content Include="Views\Area_Orden\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -363,9 +364,7 @@
       <DependentUpon>201701110437311_migracion6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Area_Orden\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

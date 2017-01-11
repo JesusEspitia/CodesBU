@@ -41,7 +41,7 @@ namespace Monotoring.Controllers
                                 join ar in context.Area on a.AreaId equals ar.AreaId
                                 join u in context.Users on ar.UsersId equals u.UsersId
                                 join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
-                                where u.UsersId == userId
+                                where u.UsersId == userId && a.dateStart==null
                                 select w;
                     ViewBag.myModel = model.ToList();
                     return View();
@@ -55,7 +55,14 @@ namespace Monotoring.Controllers
             
         }
 
-        [HttpPost]
+        //[HttpGet]
+        //public ActionResult StartOrden(int id = 0)
+        //{
+        //    var orden = context.WorkOrden.Find(id);
+        //    return View(orden);
+        //}
+
+        [HttpGet]
         public ActionResult StartOrden(int id)
         {
             int orden = 0;
