@@ -16,7 +16,7 @@ namespace Monotoring.Controllers
         {
             int areaId = 0;
             int userId = 0;
-            if (Session["userName"].ToString() != "")
+            if (Session["userName"].ToString() != "" || Session["userName"].ToString() != null)
             {
                 userId = (int)Session["userId"];
                 var getID = from u in context.Area

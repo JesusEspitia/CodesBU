@@ -328,3 +328,4 @@ C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotori
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.pdb
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracion6.resources
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracion6.resources
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csprojResolveAssemblyReference.cache

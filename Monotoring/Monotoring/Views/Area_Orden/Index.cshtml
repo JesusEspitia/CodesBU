@@ -13,15 +13,17 @@
                     <th>Orden</th>
                     <th>Cantidad</th>
                     <th>Días transcurridos</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach(WorkOrden item in ViewBag.ordens)
+                @foreach(WorkOrden item in ViewBag.ordens)   
                 {
                     <tr>
                         <td>@item.BatchOrden</td>
                         <td>@item.quantityOrden</td>
                         <td>@(Math.Round((DateTime.Now - (DateTime)item.dateStart).TotalDays,0))</td>
+                        <td>Finalizar</td>
                     </tr>
                 }
             </tbody>

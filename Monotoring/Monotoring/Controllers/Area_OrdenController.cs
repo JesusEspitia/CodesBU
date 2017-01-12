@@ -25,6 +25,19 @@ namespace Monotoring.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult FinishOrden(int id)
+        {
+            var up = from w in context.Area_Orden
+                     where w.WorkOrdenId == id
+                     select w;
+            foreach(Area_Orden a in up)
+            {
+                a.dateFinish = DateTime.Now;
+            }
+            context.SaveChanges();
+            return Redirect("Index");
+        }
         // GET: Area_Orden/Details/5
         public ActionResult Details(int id)
         {
