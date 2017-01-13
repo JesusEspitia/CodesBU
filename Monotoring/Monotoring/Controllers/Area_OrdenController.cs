@@ -36,7 +36,7 @@ namespace Monotoring.Controllers
                 a.dateFinish = DateTime.Now;
             }
             context.SaveChanges();
-            return Redirect("Index");
+            return RedirectToAction("Index");
         }
         // GET: Area_Orden/Details/5
         public ActionResult Details(int id)
@@ -109,5 +109,7 @@ namespace Monotoring.Controllers
                 return View();
             }
         }
+    
     }
+
 }

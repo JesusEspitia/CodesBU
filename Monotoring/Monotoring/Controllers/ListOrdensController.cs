@@ -37,11 +37,11 @@ namespace Monotoring.Controllers
                 }
                 else
                 {
+                    int getArea = getBeforeArea(userId);
                     var model = from a in context.Area_Orden
-                                join ar in context.Area on a.AreaId equals ar.AreaId
-                                join u in context.Users on ar.UsersId equals u.UsersId
                                 join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
-                                where u.UsersId == userId && a.dateStart==null
+                                //join ar in context.Area_Orden on a.AreaId equals ar.AreaId
+                                where a.AreaId == getArea && a.dateFinish != null //&& a.dateStart == null
                                 select w;
                     ViewBag.myModel = model.ToList();
                     return View();
@@ -106,5 +106,39 @@ namespace Monotoring.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+        public int getBeforeArea(int id)
+        {
+            var query = from a in context.Area
+                        where a.UsersId == id
+                        select a;
+            int areaid = 0;
+            int ret = 0;
+            var lst = query.ToList();
+            foreach (var d in lst)
+            {
+                areaid = d.AreaId;
+            }
+            switch (areaid)
+            {
+                case 2:
+                    ret = 1;
+                    break;
+                case 3:
+                    ret = 2;
+                    break;
+                case 4:
+                    ret = 3;
+                    break;
+                case 5:
+                    ret = 4;
+                    break;
+                case 6:
+                    ret = 5;
+                    break;
+            }
+            return ret;
+        }
     }
+
+    
 }

@@ -23,7 +23,7 @@
                         <td>@item.BatchOrden</td>
                         <td>@item.quantityOrden</td>
                         <td>@(Math.Round((DateTime.Now - (DateTime)item.dateStart).TotalDays,0))</td>
-                        <td>Finalizar</td>
+                        <td>@Ajax.ActionLink("Finalizar", "FinishOrden","Area_Orden",new { id = item.WorkOrdenId },new AjaxOptions() { HttpMethod = "POST" })</td>
                     </tr>
                 }
             </tbody>
