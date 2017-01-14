@@ -40,8 +40,7 @@ namespace Monotoring.Controllers
                     int getArea = getBeforeArea(userId);
                     var model = from a in context.Area_Orden
                                 join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
-                                //join ar in context.Area_Orden on a.AreaId equals ar.AreaId
-                                where a.AreaId == getArea && a.dateFinish != null //&& a.dateStart == null
+                                where a.AreaId == getArea && a.runOrden == false
                                 select w;
                     ViewBag.myModel = model.ToList();
                     return View();
@@ -100,7 +99,8 @@ namespace Monotoring.Controllers
             {
                 AreaId = area,
                 WorkOrdenId = orden,
-                dateStart = DateTime.Now
+                dateStart = DateTime.Now,
+                runOrden = true
             };
             context.Area_Orden.Add(ord);
             context.SaveChanges();
