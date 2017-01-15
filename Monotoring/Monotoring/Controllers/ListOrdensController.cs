@@ -40,7 +40,7 @@ namespace Monotoring.Controllers
                     int getArea = getBeforeArea(userId);
                     var model = from a in context.Area_Orden
                                 join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
-                                where a.AreaId == getArea && a.runOrden == false
+                                where a.AreaId == getArea && a.runOrden == true && a.dateFinish != null
                                 select w;
                     ViewBag.myModel = model.ToList();
                     return View();
@@ -64,16 +64,16 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult StartOrden(int id)
         {
-            int orden = 0;
+            int orden = id;
             int area = 0;
-            var getOrden = from w in context.WorkOrden
-                        where w.BatchOrden == id.ToString()
-                        select w;
-            var lstOrden = getOrden.ToList();
-            foreach(var d in lstOrden)
-            {
-                orden = d.WorkOrdenId;
-            }
+            //var getOrden = from w in context.WorkOrden
+            //            where w.BatchOrden == id.ToString()
+            //            select w;
+            //var lstOrden = getOrden.ToList();
+            //foreach(var d in lstOrden)
+            //{
+            //    orden = d.WorkOrdenId;
+            //}
             int user = Convert.ToInt32(Session["userId"]);
             var getArea = from a in context.Area
                           where a.UsersId == user
@@ -87,7 +87,7 @@ namespace Monotoring.Controllers
             if (area == 1)
             {
                 var up = from w in context.WorkOrden
-                         where w.BatchOrden == id.ToString()
+                         where w.WorkOrdenId == id
                          select w;
                 foreach(WorkOrden wo in up)
                 {
@@ -102,6 +102,17 @@ namespace Monotoring.Controllers
                 dateStart = DateTime.Now,
                 runOrden = true
             };
+            if(area != 1)
+            {
+                var slut = from a in context.Area_Orden
+                           where a.WorkOrdenId == id && a.AreaId == (area-1)
+                           select a;
+                var slutlst = slut.ToList();
+                foreach(Area_Orden a in slut)
+                {
+                    a.runOrden = false;
+                }
+            }
             context.Area_Orden.Add(ord);
             context.SaveChanges();
             return RedirectToAction("Index");

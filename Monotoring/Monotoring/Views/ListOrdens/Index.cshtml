@@ -26,7 +26,7 @@
                     <td>@item.dateRegistry</td>
                     
                     @*<td><input type="button" id="btnIniciar" value="Iniciar" class="btn btn-sm btn-default" /></td>*@
-                    <td>@Ajax.ActionLink("Iniciar", "StartOrden","ListOrdens", new { id = item.BatchOrden }, new AjaxOptions() { HttpMethod = "Post" })</td>
+                    <td>@Ajax.ActionLink("Iniciar", "StartOrden","ListOrdens", new { id = item.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
                 </tr>
             }
         </table>
