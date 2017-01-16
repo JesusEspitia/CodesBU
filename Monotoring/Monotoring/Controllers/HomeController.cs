@@ -5,6 +5,7 @@ using System.Dynamic;
 using System.Web;
 using System.Web.Mvc;
 using Monotoring.Context;
+using Monotoring.Models;
 
 namespace Monotoring.Controllers
 {
@@ -19,7 +20,10 @@ namespace Monotoring.Controllers
                         where w.dateStart != null && w.dateFinish == null
                         select w;
             models.WorkOrden = query.ToList();
-            models.Area_Orden = context.Area_Orden.ToList();
+            var qArea = from a in context.Area_Orden
+                        join ar in context.Area on a.AreaId equals ar.AreaId
+                        select new AreaViewModel { Area = ar, Area_Orden = a };
+            models.Area_Orden = qArea.ToList();
             return View(models);
         }
 

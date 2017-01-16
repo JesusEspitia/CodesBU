@@ -3,16 +3,16 @@ namespace Monotoring.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class migracion6 : DbMigration
+    public partial class migracion8 : DbMigration
     {
         public override void Up()
         {
-            AlterColumn("dbo.WorkOrdens", "ordenCount", c => c.Int(nullable: false));
+            AddColumn("dbo.Area_Orden", "runOrden", c => c.Boolean(nullable: false));
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.WorkOrdens", "ordenCount", c => c.Int());
+            DropColumn("dbo.Area_Orden", "runOrden");
         }
     }
 }

@@ -212,8 +212,6 @@ C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\bin\es\Microsoft.Owin.
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\bin\es\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migration4.resources
-C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csproj.GenerateResource.Cache
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.dll
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.pdb
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\bin\ApplicationInsights.config
@@ -327,6 +325,7 @@ C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotori
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.dll
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.pdb
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracion6.resources
-C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracion6.resources
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csprojResolveAssemblyReference.cache
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migration7.resources
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracion8.resources
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csproj.GenerateResource.Cache

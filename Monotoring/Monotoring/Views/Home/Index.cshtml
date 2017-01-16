@@ -10,33 +10,33 @@
 <br />
 <br />
 <br />
-<dvi class="container-fluid">
+@*<dvi class="container-fluid">*@
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
-            <thead>
+            <thead >
                 <tr>
-                    <th>
+                    <th class="text-center">
                         Orden
                     </th>
-                    <th>
+                    <th class="text-center">
                         Ensamble Final
                     </th>
-                    <th>
+                    <th class="text-center">
                         Calidad
                     </th>
-                    <th>
+                    <th class="text-center">
                         Lógistica
                     </th>
-                    <th>
+                    <th class="text-center">
                         Esterilización
                     </th>
-                    <th>
+                    <th class="text-center">
                         Liberación QA Final
                     </th>
-                    <th>
+                    <th class="text-center">
                         Envió P/L
                     </th>
-                    <th>
+                    <th class="text-center">
                         Días transcurridos
                     </th>
                 </tr>
@@ -44,39 +44,107 @@
             <tbody>
                 @foreach (WorkOrden w in Model.WorkOrden)
                 {
+                    var temp = 0;
+                    int dayscount = 0;
+                    var icon = "";
                     <tr>
-                        <td>@w.BatchOrden</td>
-                        @foreach (Area_Orden a in Model.Area_Orden)
+                        <td class="text-center">@w.BatchOrden</td>
+                        @foreach (AreaViewModel a in Model.Area_Orden)
                         {
-                            if (a.AreaId == 1 && a.WorkOrdenId == w.WorkOrdenId)
+                            var classcolor = "";
+                            if (w.WorkOrdenId == a.Area_Orden.WorkOrdenId)
                             {
-                                if(a.dateFinish != null)
-                                <td>@a.dateStart</td>
+                                DateTime lastDate;
+                                if (a.Area_Orden.dateFinish != null)
+                                {
+                                    lastDate = (DateTime)a.Area_Orden.dateFinish;
+                                }
+                                else
+                                {
+                                    lastDate = DateTime.Now;
+                                }
+
+                                if (Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0) < a.Area.daysMax)
+                                {
+                                    classcolor = "success";
+                                    dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
+                                    icon = "glyphicon glyphicon-ok";
+                                }
+                                else
+                                {
+                                    if (Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0) == a.Area.daysMax)
+                                    {
+                                        classcolor = "warning";
+                                        dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
+                                        icon = "glyphicon glyphicon-exclamation-sign";
+                                    }
+                                    else
+                                    {
+                                        if (Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0) >= a.Area.daysMax)
+                                        {
+                                            classcolor = "danger";
+                                            dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
+                                            icon=
+                                        }
+                                    }
+                                }
+
+
+                                switch ((int)a.Area_Orden.AreaId)
+                                {
+                                    case 1:
+                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        temp += 1;
+                                        break;
+                                    case 2:
+                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        temp += 1;
+                                        break;
+                                    case 3:
+                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        temp += 1;
+                                        break;
+                                    case 4:
+                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        temp += 1;
+                                        break;
+                                    case 5:
+                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        temp += 1;
+                                        break;
+                                    case 6:
+                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        temp += 1;
+                                        break;
+                                }
+
                             }
-                            if (a.AreaId == 2 && a.WorkOrdenId == w.WorkOrdenId)
-                            {
-                                <td>@a.dateStart</td>
-                            }
-                            if (a.AreaId == 3 && a.WorkOrdenId == w.WorkOrdenId)
-                            {
-                                <td>@a.dateStart</td>
-                            }
-                            if (a.AreaId == 4 && a.WorkOrdenId == w.WorkOrdenId)
-                            {
-                                <td>@a.dateStart</td>
-                            }
-                            if (a.AreaId == 5 && a.WorkOrdenId == w.WorkOrdenId)
-                            {
-                                <td>@a.dateStart</td>
-                            }
-                            if (a.AreaId == 6 && a.WorkOrdenId == w.WorkOrdenId)
-                            {
-                                <td>@a.dateStart</td>
-                            }
+                        }
+                        @for(int i = 0; i < 6 - temp; i++)
+                        {
+                            <td class="active text-center">Sin Iniciar</td>
                         }
                         @if (w.dateStart != null)
                         {
-                        <td>@(Math.Round((DateTime.Now-(DateTime)w.dateStart).TotalDays,0))</td>
+                            if ((Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0)) < 10)
+                            {
+                                <td class="success">@(Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0))</td>
+                            }
+                            else
+                            {
+                                if ((Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0)) >= 10 && (Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0)) <= 12)
+                                {
+                                    <td class="warning">@(Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0))</td>
+                                }
+                                else
+                                {
+                                    if ((Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0)) > 12)
+                                    {
+                                        <td class="danger">@(Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0))</td>
+                                    }
+                                }
+                            }
+
                         }
                         else
                         {
@@ -87,7 +155,7 @@
             </tbody>
         </table>
     </div>
-</dvi>
+@*</dvi>*@
 
 
 
