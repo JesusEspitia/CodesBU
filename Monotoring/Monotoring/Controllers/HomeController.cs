@@ -15,7 +15,10 @@ namespace Monotoring.Controllers
         {
             dynamic models = new ExpandoObject();
             //List<object> models = new List<object>();
-            models.WorkOrden = context.WorkOrden.ToList();
+            var query = from w in context.WorkOrden
+                        where w.dateStart != null && w.dateFinish == null
+                        select w;
+            models.WorkOrden = query.ToList();
             models.Area_Orden = context.Area_Orden.ToList();
             return View(models);
         }

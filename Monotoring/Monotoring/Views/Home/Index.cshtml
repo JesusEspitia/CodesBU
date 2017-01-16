@@ -13,41 +13,78 @@
 <dvi class="container-fluid">
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
-            <tr>
-                <th>
-                    Orden
-                </th>
-                <th>
-                    Ensamble Final
-                </th>
-                <th>
-                    Calidad
-                </th>
-                <th>
-                    Lógistica
-                </th>
-                <th>
-                    Esterilización
-                </th>
-                <th>
-                    Liberación QA Final
-                </th>
-                <th>
-                    Envió P/L
-                </th>
-            </tr>
-            @foreach(WorkOrden w in Model.WorkOrden)
-            {
+            <thead>
                 <tr>
-                    <td>@w.BatchOrden</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th>
+                        Orden
+                    </th>
+                    <th>
+                        Ensamble Final
+                    </th>
+                    <th>
+                        Calidad
+                    </th>
+                    <th>
+                        Lógistica
+                    </th>
+                    <th>
+                        Esterilización
+                    </th>
+                    <th>
+                        Liberación QA Final
+                    </th>
+                    <th>
+                        Envió P/L
+                    </th>
+                    <th>
+                        Días transcurridos
+                    </th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (WorkOrden w in Model.WorkOrden)
+                {
+                    <tr>
+                        <td>@w.BatchOrden</td>
+                        @foreach (Area_Orden a in Model.Area_Orden)
+                        {
+                            if (a.AreaId == 1 && a.WorkOrdenId == w.WorkOrdenId)
+                            {
+                                if(a.dateFinish != null)
+                                <td>@a.dateStart</td>
+                            }
+                            if (a.AreaId == 2 && a.WorkOrdenId == w.WorkOrdenId)
+                            {
+                                <td>@a.dateStart</td>
+                            }
+                            if (a.AreaId == 3 && a.WorkOrdenId == w.WorkOrdenId)
+                            {
+                                <td>@a.dateStart</td>
+                            }
+                            if (a.AreaId == 4 && a.WorkOrdenId == w.WorkOrdenId)
+                            {
+                                <td>@a.dateStart</td>
+                            }
+                            if (a.AreaId == 5 && a.WorkOrdenId == w.WorkOrdenId)
+                            {
+                                <td>@a.dateStart</td>
+                            }
+                            if (a.AreaId == 6 && a.WorkOrdenId == w.WorkOrdenId)
+                            {
+                                <td>@a.dateStart</td>
+                            }
+                        }
+                        @if (w.dateStart != null)
+                        {
+                        <td>@(Math.Round((DateTime.Now-(DateTime)w.dateStart).TotalDays,0))</td>
+                        }
+                        else
+                        {
+                            <td>Sin iniciar</td>
+                        }
+                    </tr>
+                }
+            </tbody>
         </table>
     </div>
 </dvi>

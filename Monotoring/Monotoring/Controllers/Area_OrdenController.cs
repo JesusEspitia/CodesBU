@@ -28,12 +28,25 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult FinishOrden(int id)
         {
+            int finish = 0;
             var up = from w in context.Area_Orden
                      where w.WorkOrdenId == id
                      select w;
             foreach(Area_Orden a in up)
             {
                 a.dateFinish = DateTime.Now;
+                finish = a.AreaId;
+            }
+            if (finish == 6)
+            {
+                var upOrden = from w in context.WorkOrden
+                              where w.WorkOrdenId == id
+                              select w;
+
+                foreach (WorkOrden w in upOrden)
+                {
+                    w.dateFinish = DateTime.Now;
+                }
             }
             context.SaveChanges();
             return RedirectToAction("Index");
