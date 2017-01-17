@@ -46,12 +46,13 @@
                 {
                     var temp = 0;
                     int dayscount = 0;
-                    var icon = "";
+                    
                     <tr>
                         <td class="text-center">@w.BatchOrden</td>
                         @foreach (AreaViewModel a in Model.Area_Orden)
                         {
                             var classcolor = "";
+                            var icon = "";
                             if (w.WorkOrdenId == a.Area_Orden.WorkOrdenId)
                             {
                                 DateTime lastDate;
@@ -84,7 +85,7 @@
                                         {
                                             classcolor = "danger";
                                             dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
-                                            icon=
+                                            icon = "glyphicon glyphicon-remove";
                                         }
                                     }
                                 }
@@ -93,27 +94,27 @@
                                 switch ((int)a.Area_Orden.AreaId)
                                 {
                                     case 1:
-                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        <td class="@classcolor text-center">@dayscount<span class="@icon" aria-hidden="true"></span></td>
                                         temp += 1;
                                         break;
                                     case 2:
-                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        <td class="@classcolor text-center">@dayscount<span class="@icon" aria-hidden="true"></span></td>
                                         temp += 1;
                                         break;
                                     case 3:
-                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        <td class="@classcolor text-center">@dayscount<span class="@icon" aria-hidden="true"></span></td>
                                         temp += 1;
                                         break;
                                     case 4:
-                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        <td class="@classcolor text-center">@dayscount<span class="@icon" aria-hidden="true"></span></td>
                                         temp += 1;
                                         break;
                                     case 5:
-                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        <td class="@classcolor text-center">@dayscount<span class="@icon" aria-hidden="true"></span></td>
                                         temp += 1;
                                         break;
                                     case 6:
-                                        <td class=@classcolor>@dayscount<span class=""></span></td>
+                                        <td class="@classcolor text-center">@dayscount<span class="@icon" aria-hidden="true"></span></td>
                                         temp += 1;
                                         break;
                                 }
