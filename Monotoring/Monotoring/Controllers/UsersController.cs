@@ -52,6 +52,7 @@ namespace Monotoring.Controllers
                     {
                         Session["userId"] = d.UsersId;
                         Session["userType"] = d.TypeId;
+                        Session["userAreaId"] = d.AreaId;
                     }
 
                     return RedirectToAction("Index", "Home");
@@ -82,6 +83,7 @@ namespace Monotoring.Controllers
         {
             //var type = context.Employee_type.ToList();
             ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId","NameType");
+            ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
             return View(new Users());
         }
 
@@ -111,21 +113,33 @@ namespace Monotoring.Controllers
         }
 
         // GET: Users/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            
-            return View();
+            ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
+            ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
+            Users user = context.Users.Find(id);
+            return View(user);
         }
 
         // POST: Users/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Users user)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    context.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+                
             }
             catch
             {

@@ -29,7 +29,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
+            //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
             return View(new Area());
         }
 
@@ -61,7 +61,7 @@ namespace Monotoring.Controllers
         // GET: Area/Edit/5
         public ActionResult Edit(int id=0)
         {
-            ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
+            //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
             Area a = context.Area.Find(id);
             return View(a);
         }
@@ -97,7 +97,7 @@ namespace Monotoring.Controllers
         public ActionResult Delete(int id=0)
         {
             var area = context.Area.Find(id);
-            ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
+            //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
             return View(area);
         }
 

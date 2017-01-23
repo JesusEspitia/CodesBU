@@ -19,14 +19,7 @@ namespace Monotoring.Controllers
             if (Session["userName"].ToString() != "" || Session["userName"].ToString() != null)
             {
                 userId = (int)Session["userId"];
-                var getID = from u in context.Area
-                            where u.UsersId ==  userId
-                            select u;
-                var result = getID.ToList();
-                foreach(var d in result)
-                {
-                    areaId = d.AreaId;
-                }
+                areaId = (int)Session["userAreaId"];
                 if (areaId == 1)
                 {
                     var model = from w in context.WorkOrden
@@ -75,14 +68,8 @@ namespace Monotoring.Controllers
             //    orden = d.WorkOrdenId;
             //}
             int user = Convert.ToInt32(Session["userId"]);
-            var getArea = from a in context.Area
-                          where a.UsersId == user
-                          select a;
-            var lstArea = getArea.ToList();
-            foreach(var d in lstArea)
-            {
-                area = d.AreaId;
-            }
+            area = (int)Session["userAreaId"];
+
 
             if (area == 1)
             {
@@ -119,16 +106,10 @@ namespace Monotoring.Controllers
         }
         public int getBeforeArea(int id)
         {
-            var query = from a in context.Area
-                        where a.UsersId == id
-                        select a;
-            int areaid = 0;
+            
+            int areaid = (int)Session["userAreaId"];
             int ret = 0;
-            var lst = query.ToList();
-            foreach (var d in lst)
-            {
-                areaid = d.AreaId;
-            }
+            
             switch (areaid)
             {
                 case 2:

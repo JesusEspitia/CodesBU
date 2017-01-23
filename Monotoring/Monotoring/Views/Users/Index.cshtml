@@ -13,6 +13,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Area.AreaName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Type.NameType)
         </th>
         <th>
@@ -21,12 +24,17 @@
         <th>
             @Html.DisplayNameFor(model => model.userEmail)
         </th>
-        
+        <th>
+            @Html.DisplayNameFor(model => model.userPass)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area.AreaName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Type.NameType)
         </td>
@@ -36,7 +44,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.userEmail)
         </td>
-        
+        <td>
+            @Html.DisplayFor(modelItem => item.userPass)
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.UsersId }) |
             @Html.ActionLink("Details", "Details", new { id=item.UsersId }) |

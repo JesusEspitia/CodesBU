@@ -12,11 +12,9 @@ namespace Monotoring.Models
         public string AreaName { get; set; }
         public string descripArea { get; set; }
         public int daysMax { get; set; }
-        public int UsersId { get; set; }
 
-        [ForeignKey("UsersId")]
-        public Users Users { get; set; }
 
+        public ICollection<Users> Users { get; set; }
         public ICollection<Area_Orden> Area_Orden { get; set; }
     }
 }

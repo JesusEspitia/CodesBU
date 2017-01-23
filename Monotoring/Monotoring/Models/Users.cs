@@ -15,11 +15,14 @@ namespace Monotoring.Models
         public string userEmail { get; set; }
         public string userPass { get; set; }
         public int TypeId { get; set; }
+        public int? AreaId { get; set; }
 
         [ForeignKey("TypeId")]
         public Employee_type Type { get; set; }
+        [ForeignKey("AreaId")]
+        public Area Area { get; set; }
 
-        public ICollection<Area> Area { get; set; }
+        //public ICollection<Area> Area { get; set; }
         public ICollection<DelayWork> DelayWork { get; set; }
         public ICollection<Area_Orden> Area_Orden { get; set; }
 

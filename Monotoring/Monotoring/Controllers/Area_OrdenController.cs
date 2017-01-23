@@ -16,8 +16,7 @@ namespace Monotoring.Controllers
         {
             var id = (int)Session["userId"];
             var lst = from a in context.Area_Orden
-                      join ar in context.Area on a.AreaId equals ar.AreaId
-                      join u in context.Users on ar.UsersId equals u.UsersId
+                      join u in context.Users on a.AreaId equals u.AreaId
                       join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
                       where u.UsersId == id && a.dateFinish==null
                       select w;
@@ -28,16 +27,16 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult FinishOrden(int id)
         {
-            int finish = 0;
+            int area = (int)Session["userAreaId"];
             var up = from w in context.Area_Orden
-                     where w.WorkOrdenId == id
+                     where w.WorkOrdenId == id && w.AreaId==area
                      select w;
             foreach(Area_Orden a in up)
             {
                 a.dateFinish = DateTime.Now;
-                finish = a.AreaId;
+                //finish = a.AreaId;
             }
-            if (finish == 6)
+            if (area == 6)
             {
                 var upOrden = from w in context.WorkOrden
                               where w.WorkOrdenId == id
