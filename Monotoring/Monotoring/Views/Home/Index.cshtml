@@ -16,6 +16,9 @@
             <thead >
                 <tr>
                     <th class="text-center">
+                        Producto
+                    </th>
+                    <th class="text-center">
                         Orden
                     </th>
                     <th class="text-center">
@@ -42,18 +45,19 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (WorkOrden w in Model.WorkOrden)
+                @foreach (WorkCatalog w in Model.WorkOrden)
                 {
                     var temp = 0;
                     int dayscount = 0;
                     
                     <tr>
-                        <td class="text-center">@w.BatchOrden</td>
+                        <td class="text-center">@w.Catalog.CatalogDescrip</td>
+                        <td class="text-center">@w.WorkOrden.BatchOrden</td>
                         @foreach (AreaViewModel a in Model.Area_Orden)
                         {
                             var classcolor = "";
                             var icon = "";
-                            if (w.WorkOrdenId == a.Area_Orden.WorkOrdenId)
+                            if (w.WorkOrden.WorkOrdenId == a.Area_Orden.WorkOrdenId)
                             {
                                 DateTime lastDate;
                                 if (a.Area_Orden.dateFinish != null)
@@ -125,23 +129,23 @@
                         {
                             <td class="active text-center">Sin Iniciar</td>
                         }
-                        @if (w.dateStart != null)
+                        @if (w.WorkOrden.dateStart != null)
                         {
-                            if ((Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0)) < 10)
+                            if ((Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) < 10)
                             {
-                                <td class="success">@(Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0))</td>
+                                <td class="success">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
                             }
                             else
                             {
-                                if ((Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0)) >= 10 && (Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0)) <= 12)
+                                if ((Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) >= 10 && (Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) <= 12)
                                 {
-                                    <td class="warning">@(Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0))</td>
+                                    <td class="warning">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
                                 }
                                 else
                                 {
-                                    if ((Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0)) > 12)
+                                    if ((Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) > 12)
                                     {
-                                        <td class="danger">@(Math.Round((DateTime.Now - (DateTime)w.dateStart).TotalDays, 0))</td>
+                                        <td class="danger">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
                                     }
                                 }
                             }
