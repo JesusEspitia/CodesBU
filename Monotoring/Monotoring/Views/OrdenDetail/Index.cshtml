@@ -1,10 +1,11 @@
-﻿@model Monotoring.Models.OrdenDetail
-
-
+﻿@using Monotoring.Models;
+@model dynamic
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@Model.WorkOrden.BatchOrden</h1>
-
+@foreach(WorkOrden w in Model.OrdenDetail)
+{
+    <h1></h1>
+}

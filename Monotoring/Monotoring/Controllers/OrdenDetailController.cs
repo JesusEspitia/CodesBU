@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Dynamic;
 using System.Web;
 using System.Web.Mvc;
 using Monotoring.Models;
@@ -15,6 +16,7 @@ namespace Monotoring.Models
         [HttpGet]
         public ActionResult Index(int id)
         {
+            dynamic model = new ExpandoObject();
             var query = from w in context.WorkOrden
                         join a in context.Area_Orden on w.WorkOrdenId equals a.WorkOrdenId
                         join ar in context.Area on a.AreaId equals ar.AreaId
@@ -22,8 +24,8 @@ namespace Monotoring.Models
                         join c in context.DelayCode on d.DelayCodeId equals c.DelayCodeId
                         where w.WorkOrdenId == id
                         select new OrdenDetail { WorkOrden = w, Area_Orden = a, Area = ar, DelayWork = d, DelayCode = c };
-
-            return View(query);
+            model.OrdenDetail = query.ToList();
+            return View(model);
         }
 
         // GET: OrdenDetail/Details/5

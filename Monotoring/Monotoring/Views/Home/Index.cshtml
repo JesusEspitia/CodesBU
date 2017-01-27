@@ -53,8 +53,7 @@
                     <tr>
                         <td class="text-center">@w.Catalog.CatalogDescrip</td>
                         <td class="text-center">
-                            @Html.ActionLink(w.WorkOrden.BatchOrden,"Index","OrdenDetail",new { id = w.WorkOrden.WorkOrdenId })
-                           
+                            @Html.ActionLink(w.WorkOrden.BatchOrden, "Index", "OrdenDetail", new { id = w.WorkOrden.WorkOrdenId },null)                           
                         </td>
                         @foreach (AreaViewModel a in Model.Area_Orden)
                         {

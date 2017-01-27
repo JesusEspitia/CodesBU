@@ -26,10 +26,11 @@ namespace Monotoring.Controllers
 
         // GET: DelayWork/Create
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
             ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "WorkOrdenId");
+            ViewBag.WorkOrden = id;
             ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
             return View(new DelayWork());
         }
