@@ -48,11 +48,21 @@ namespace Monotoring.Controllers
                                 where c.userEmail == user.userEmail
                                 select c;
                     var datos = query.ToList();
+
                     foreach(var d in datos)
                     {
                         Session["userId"] = d.UsersId;
                         Session["userType"] = d.TypeId;
                         Session["userAreaId"] = d.AreaId;
+                    }
+                    int utype = Convert.ToInt32(Session["userType"]);
+                    var type = from t in context.Employee_type
+                               where t.Employee_typeId == utype
+                               select t;
+                    var dt = type.ToList();
+                    foreach(var d in dt)
+                    {
+                        Session["userType"] = d.permission;
                     }
 
                     return RedirectToAction("Index", "Home");

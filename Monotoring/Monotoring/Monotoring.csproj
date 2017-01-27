@@ -239,6 +239,8 @@
     <Compile Include="Models\Employee_type.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrdenDetail.cs" />
+    <Compile Include="Controllers\OrdenDetailController.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\WorkCatalog.cs" />
     <Compile Include="Models\WorkOrden.cs" />
@@ -342,6 +344,7 @@
     <Content Include="Views\ListOrdens\Index.cshtml" />
     <Content Include="Views\Area_Orden\Index.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\OrdenDetail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -351,6 +354,7 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
