@@ -25,7 +25,8 @@
                         <td>@(Math.Round((DateTime.Now - (DateTime)item.dateStart).TotalDays,0))</td>
                         <td>
                             @Ajax.ActionLink("Finalizar", "FinishOrden","Area_Orden",new { id = item.WorkOrdenId },new AjaxOptions() { HttpMethod = "POST" })|
-                            @Html.ActionLink("Retraso","Create","DelayWork",new { id=item.WorkOrdenId})
+                           @* @Html.ActionLink("Retraso","Create","DelayWork")*@
+                            @Ajax.ActionLink("Retraso","Create","DelayWork",new { id=item.WorkOrdenId}, new AjaxOptions() { HttpMethod="GET"})
                         </td>
                     </tr>
                 }

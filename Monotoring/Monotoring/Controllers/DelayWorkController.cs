@@ -28,11 +28,14 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create(int id)
         {
+            DelayWork model = new DelayWork();
+            model.WorkOrdenId = id;
+            model.UsersId = (int)Session["userId"];
             ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
-            ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "WorkOrdenId");
-            ViewBag.WorkOrden = id;
+            ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
+            //ViewBag.WorkOrden = id;
             ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
-            return View(new DelayWork());
+            return View(model);
         }
 
         // POST: DelayWork/Create
