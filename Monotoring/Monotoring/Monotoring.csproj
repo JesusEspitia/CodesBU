@@ -234,6 +234,7 @@
     <Compile Include="Models\AreaViewModel.cs" />
     <Compile Include="Models\Area_Orden.cs" />
     <Compile Include="Models\Catalog.cs" />
+    <Compile Include="Models\DelayArea.cs" />
     <Compile Include="Models\DelayCode.cs" />
     <Compile Include="Models\DelayWork.cs" />
     <Compile Include="Models\Employee_type.cs" />

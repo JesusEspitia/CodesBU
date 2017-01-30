@@ -16,16 +16,33 @@ namespace Monotoring.Models
         [HttpGet]
         public ActionResult Index(int id)
         {
+            int catalog = 0;
             dynamic model = new ExpandoObject();
-            var query = from w in context.WorkOrden
-                        join a in context.Area_Orden on w.WorkOrdenId equals a.WorkOrdenId
-                        join ar in context.Area on a.AreaId equals ar.AreaId
-                        join d in context.DelayWork on w.WorkOrdenId equals d.WorkOrdenId
-                        join c in context.DelayCode on d.DelayCodeId equals c.DelayCodeId
-                        join ct in context.Catalog on w.CatalogId equals ct.CatalogId
-                        where w.WorkOrdenId == id
-                        select new OrdenDetail { WorkOrden = w, Area_Orden = a, Area = ar, DelayWork = d, DelayCode = c,Catalog=ct };
-            model.OrdenDetail = query.ToList();
+            //var query = from w in context.WorkOrden
+            //            join a in context.Area_Orden on w.WorkOrdenId equals a.WorkOrdenId
+            //            join ar in context.Area on a.AreaId equals ar.AreaId
+            //            join d in context.DelayWork on w.WorkOrdenId equals d.WorkOrdenId
+            //            join c in context.DelayCode on d.DelayCodeId equals c.DelayCodeId
+            //            join ct in context.Catalog on w.CatalogId equals ct.CatalogId
+            //            where w.WorkOrdenId == id
+            //            select new OrdenDetail { WorkOrden = w, Area_Orden = a, Area = ar, DelayWork = d, DelayCode = c,Catalog=ct };
+            //model.OrdenDetail = query.ToList();
+            var queryOrden = from w in context.WorkOrden
+                             join c in context.Catalog on w.CatalogId equals c.CatalogId
+                             where w.WorkOrdenId == id
+                             select new WorkCatalog { WorkOrden = w, Catalog = c };
+            model.WorkCatalog = queryOrden.ToList();
+            var queryArea = from a in context.Area_Orden
+                            join ar in context.Area on a.AreaId equals ar.AreaId
+                            where a.WorkOrdenId==id
+                            select new AreaViewModel { Area = ar, Area_Orden = a };
+            model.Area = queryArea.ToList();
+            var queryDelay = from d in context.DelayWork
+                             join c in context.DelayCode on d.DelayCodeId equals c.DelayCodeId
+                             where d.WorkOrdenId==id
+                             select new DelayArea { DelayWork = d, DelayCode = c };
+            model.Delay = queryDelay.ToList();
+            //var queryArea=
             return View(model);
         }
 
