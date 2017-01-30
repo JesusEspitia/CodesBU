@@ -49,7 +49,7 @@ namespace Monotoring.Controllers
                 {
                     context.DelayWork.Add(delay);
                     context.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Area_Orden");
                 }
                 else
                 {
@@ -67,7 +67,7 @@ namespace Monotoring.Controllers
         public ActionResult Edit(int id=0)
         {
             ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
-            ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "WorkOrdenId");
+            ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
             ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
             var delay = context.DelayWork.Find(id);
             return View(delay);
@@ -79,6 +79,9 @@ namespace Monotoring.Controllers
         {
             try
             {
+                ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
+                ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
+                ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
                 // TODO: Add update logic here
                 if (ModelState.IsValid)
                 {

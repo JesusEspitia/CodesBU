@@ -22,8 +22,9 @@ namespace Monotoring.Models
                         join ar in context.Area on a.AreaId equals ar.AreaId
                         join d in context.DelayWork on w.WorkOrdenId equals d.WorkOrdenId
                         join c in context.DelayCode on d.DelayCodeId equals c.DelayCodeId
+                        join ct in context.Catalog on w.CatalogId equals ct.CatalogId
                         where w.WorkOrdenId == id
-                        select new OrdenDetail { WorkOrden = w, Area_Orden = a, Area = ar, DelayWork = d, DelayCode = c };
+                        select new OrdenDetail { WorkOrden = w, Area_Orden = a, Area = ar, DelayWork = d, DelayCode = c,Catalog=ct };
             model.OrdenDetail = query.ToList();
             return View(model);
         }

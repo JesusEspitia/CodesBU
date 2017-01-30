@@ -27,28 +27,43 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult FinishOrden(int id)
         {
-            int area = (int)Session["userAreaId"];
-            var up = from w in context.Area_Orden
-                     where w.WorkOrdenId == id && w.AreaId==area
-                     select w;
-            foreach(Area_Orden a in up)
+            var delay = from d in context.DelayWork
+                        where d.WorkOrdenId == id && d.dateFinish == null
+                        select d;
+            var lstdelay = delay.ToList();
+            if (lstdelay.Count < 1)
             {
-                a.dateFinish = DateTime.Now;
-                //finish = a.AreaId;
-            }
-            if (area == 6)
-            {
-                var upOrden = from w in context.WorkOrden
-                              where w.WorkOrdenId == id
-                              select w;
-
-                foreach (WorkOrden w in upOrden)
+                Session["stop"] = null;
+                int area = (int)Session["userAreaId"];
+                var up = from w in context.Area_Orden
+                         where w.WorkOrdenId == id && w.AreaId == area
+                         select w;
+                foreach (Area_Orden a in up)
                 {
-                    w.dateFinish = DateTime.Now;
+                    a.dateFinish = DateTime.Now;
+                    //finish = a.AreaId;
                 }
+                if (area == 6)
+                {
+                    var upOrden = from w in context.WorkOrden
+                                  where w.WorkOrdenId == id
+                                  select w;
+
+                    foreach (WorkOrden w in upOrden)
+                    {
+                        w.dateFinish = DateTime.Now;
+                    }
+                }
+                context.SaveChanges();
+                return RedirectToAction("Index");
             }
-            context.SaveChanges();
-            return RedirectToAction("Index");
+            else
+            {
+                ViewBag.Stop = "No puede finalizar la orden ya que cuenta con un retraso abierto, debe ser cerrado antes.";
+                Session["stop"] = "No puede finalizar la orden ya que cuenta con un retraso abierto, debe ser cerrado antes.";
+                return RedirectToAction("Index");
+                //return Content("<script language='javascript' type='text/javascript'>alert('No puede finalizar la orden ya que cuenta con un retraso abierto, debe ser cerrado antes.');</script>");
+            }
         }
         // GET: Area_Orden/Details/5
         public ActionResult Details(int id)
