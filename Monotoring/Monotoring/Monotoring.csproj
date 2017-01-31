@@ -242,6 +242,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrdenDetail.cs" />
     <Compile Include="Controllers\OrdenDetailController.cs" />
+    <Compile Include="Models\OrdensView.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\WorkCatalog.cs" />
     <Compile Include="Models\WorkOrden.cs" />

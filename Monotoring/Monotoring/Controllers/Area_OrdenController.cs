@@ -18,9 +18,25 @@ namespace Monotoring.Controllers
             var lst = from a in context.Area_Orden
                       join u in context.Users on a.AreaId equals u.AreaId
                       join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
-                      where u.UsersId == id && a.dateFinish==null
-                      select w;
-            ViewBag.ordens = lst.ToList();
+                      join d in context.DelayWork on w.WorkOrdenId equals d.WorkOrdenId
+                      where u.UsersId == id && a.dateFinish == null && d.UsersId == id && d.dateFinish == null
+                      select new OrdensView { WorkOrden = w, DelayWork = d};
+            var model = lst.ToList();
+            if (model.Count >= 1)
+            {
+                ViewBag.ordens = model;
+            }
+            else
+            {
+                var lst2 = from a in context.Area_Orden
+                           join u in context.Users on a.AreaId equals u.AreaId
+                           join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
+                           where u.UsersId == id && a.dateFinish == null 
+                           select new OrdensView { WorkOrden = w};
+                ViewBag.ordens = lst2.ToList();
+            }
+            
+            //var delay= from d in context.DelayWork
             return View();
         }
 

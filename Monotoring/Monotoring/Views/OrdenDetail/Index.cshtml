@@ -7,9 +7,9 @@
 <h1>@ViewBag.Batch</h1>
 @foreach (WorkCatalog item in Model.WorkCatalog)
 {
-    <h1 class="page-header">@item.WorkOrden.BatchOrden</h1>
+    <h1 class="page-header">Orden: @item.WorkOrden.BatchOrden</h1>
 }
-//tab panel
+
     <div class="tabbable-panel">
         @*//tab head*@
         <div class="tabbable-line">
@@ -18,10 +18,10 @@
                     <a href="#tb_general" data-toggle="tab">Detalles de la orden</a>
                 </li>
                 <li role="presentation">
-                    <a href="#tb_delay" data-toggle="tab">Descripcion en areas</a>
+                    <a href="#tb_calendar" data-toggle="tab">Descripcion en areas</a>
                 </li>
                 <li role="presentation">
-                    <a href="#tb_calendar" data-toggle="tab">Retrasos</a>
+                    <a href="#tb_delay" data-toggle="tab">Retrasos</a>
                 </li>
             </ul>
         </div>
@@ -29,67 +29,100 @@
         <div class="tab-content">
             @*//content for general*@
             <div class="tab-pane active" id="tb_general">
-                <dl class="dl-horizontal">
-                    @foreach (WorkCatalog item in Model.WorkCatalog)
-                    {
-                        <dt>No. Producto:</dt>
-                        <dd>@item.Catalog.CatalogNo</dd>
-                        <dt>Producto:</dt>
-                        <dd>@item.Catalog.CatalogDescrip</dd>
-                        <dt>Cantidad:</dt>
-                        <dd>@item.WorkOrden.quantityOrden</dd>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-1">
+                        <dl class="dl-horizontal">
+                            @foreach (WorkCatalog item in Model.WorkCatalog)
+                            {
+                                <dt>No. Producto:</dt>
+                                <dd>@item.Catalog.CatalogNo</dd>
+                                <dt>Producto:</dt>
+                                <dd>@item.Catalog.CatalogDescrip</dd>
+                                <dt>Cantidad:</dt>
+                                <dd>@item.WorkOrden.quantityOrden</dd>
 
-                        if (item.WorkOrden.dateFinish != null)
-                        {                             
-                            <dt>Estado:</dt>
-                            <dd>Finalizado</dd>
-                            <dt>Fecha de inicio:</dt>
-                            <dd>@item.WorkOrden.dateStart</dd>
-                            <dt>Fecha de finalización:</dt>
-                            <dd>@item.WorkOrden.dateFinish</dd>
-                        }
-                        else
-                        {
-                            <dt>Estado:</dt>
-                            <dd>Trabajando</dd>
-                        }
-                        <dt>Retrasos:</dt>
-                        <dd>@Model.Area.Count</dd>
-                    }
-                </dl>
+                                if (item.WorkOrden.dateFinish != null)
+                                {
+                                    <dt>Estado:</dt>
+                                    <dd>Finalizado</dd>
+                                    <dt>Fecha de inicio:</dt>
+                                    <dd>@item.WorkOrden.dateStart</dd>
+                                    <dt>Fecha de finalización:</dt>
+                                    <dd>@item.WorkOrden.dateFinish</dd>
+                                }
+                                else
+                                {
+                                    <dt>Estado:</dt>
+                                    <dd>Trabajando</dd>
+                                }
+                                <dt>Retrasos:</dt>
+                                <dd>@Model.Area.Count</dd>
+                            }
+                        </dl>
+                    </div>
+                </div>
             </div>
             @*//content for orden delays*@
             <div class="tab-pane" id="tb_delay">
-                @foreach (DelayArea item in Model.Delay)
-                {
-                    <dl class="dl-horizontal">
-                        <dt>Tipo:</dt>
-                        <dd>@item.DelayCode.DelayName</dd>
-                        <dt>Descripción:</dt>
-                        <dd>@item.DelayWork.descripDelay</dd>
-                        @if (item.DelayWork.dateFinish != null)
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-1">
+                        @foreach (DelayArea item in Model.Delay)
                         {
-                            <dt>Estado:</dt>
-                            <dd>Liberado</dd>
-                            <dt>Fecha de inicio:</dt>
-                            <dd>@item.DelayWork.dateDelay</dd>
-                            <dt>Fecha de liberación:</dt>
-                            <dd>@item.DelayWork.dateFinish</dd>
+                            <dl class="dl-horizontal">
+                                <dt>Tipo:</dt>
+                                <dd>@item.DelayCode.DelayName</dd>
+                                <dt>Descripción:</dt>
+                                <dd>@item.DelayWork.descripDelay</dd>
+                                @if (item.DelayWork.dateFinish != null)
+                                {
+                                    <dt>Estado:</dt>
+                                    <dd>Liberado</dd>
+                                    <dt>Fecha de inicio:</dt>
+                                    <dd>@item.DelayWork.dateDelay</dd>
+                                    <dt>Fecha de liberación:</dt>
+                                    <dd>@item.DelayWork.dateFinish</dd>
+                                    <dt>Duración:</dt>
+                                    <dd>@(((DateTime)item.DelayWork.dateFinish - (DateTime)item.DelayWork.dateDelay).TotalDays)</dd>
+                                }
+                                else
+                                {
+                                    <dt>Estado:</dt>
+                                    <dd>Detenido</dd>
+                                    <dt>Fecha de inicio:</dt>
+                                    <dd>@item.DelayWork.dateDelay</dd>
+                                }
+                            </dl>
                         }
-                        else
-                        {
-                            <dt>Estado:</dt>
-                            <dd>Detenido</dd>
-                            <dt>Fecha de inicio:</dt>
-                            <dd>@item.DelayWork.dateDelay</dd>
-                        }
-                    </dl>
-                }
+                    </div>
+                </div>
                 <p>panel de retrasos</p>
             </div>
             @*//content for areas dates.*@
             <div class="tab-pane" id="tb_calendar">
-                <p>panel de las fechas por áreas</p>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-1">
+                        @foreach (AreaViewModel item in Model.Area)
+                        {
+                            <dl class="dl-horizontal">
+                                <dt>Área:</dt>
+                                <dd>@item.Area.AreaName</dd>
+                                <dt>Duración:</dt>
+                                @if (item.Area_Orden.dateFinish != null)
+                                {
+                                    <dd>@(Math.Round(((DateTime)item.Area_Orden.dateFinish - (DateTime)item.Area_Orden.dateStart).TotalDays, 2))</dd>
+                                    <dt>Estado:</dt>
+                                    <dd>Finalizado</dd>
+                                }
+                                else
+                                {
+                                    <dd>@(Math.Round((DateTime.Now - (DateTime)item.Area_Orden.dateStart).TotalDays, 2))</dd>
+                                    <dt>Estado:</dt>
+                                    <dd>Trabajando</dd>
+                                }
+                            </dl>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>

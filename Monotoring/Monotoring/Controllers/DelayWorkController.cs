@@ -49,7 +49,7 @@ namespace Monotoring.Controllers
                 {
                     context.DelayWork.Add(delay);
                     context.SaveChanges();
-                    return RedirectToAction("Index","Area_Orden");
+                    return RedirectToAction("Index", "Area_Orden");
                 }
                 else
                 {
@@ -64,7 +64,7 @@ namespace Monotoring.Controllers
 
         // GET: DelayWork/Edit/5
         [HttpGet]
-        public ActionResult Edit(int id=0)
+        public ActionResult Edit(int id = 0)
         {
             ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
             ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
@@ -93,7 +93,7 @@ namespace Monotoring.Controllers
                 {
                     return View();
                 }
-                
+
             }
             catch
             {
@@ -103,14 +103,14 @@ namespace Monotoring.Controllers
 
         // GET: DelayWork/Delete/5
         [HttpGet]
-        public ActionResult Delete(int id=0)
+        public ActionResult Delete(int id = 0)
         {
             var delay = context.DelayWork.Find(id);
             return View(delay);
         }
 
         // POST: DelayWork/Delete/5
-        [HttpPost,ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeletedConfirmed(int id)
         {
@@ -132,6 +132,20 @@ namespace Monotoring.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public ActionResult finishDelay(int id)
+        {
+            var query = from d in context.DelayWork
+                        where d.DelayWorkId == id
+                        select d;
+            foreach (DelayWork d in query)
+            {
+                d.dateFinish = DateTime.Now;
+            }
+            context.SaveChanges();
+            return RedirectToAction("Index", "Area_Orden");
         }
     }
 }
