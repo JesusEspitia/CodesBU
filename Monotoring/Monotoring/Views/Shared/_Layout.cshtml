@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - TrackBatch</title>
     
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -34,11 +34,13 @@
     <div class="navbar navbar-inverse navbar-fixed-top">        
         <div class="container-fluid">
             <div class="navbar-head">
+                @if (User != "")
+                {
                 <a href="#" class="navbar-brand" id="menu-toggle"><span role="button" class="glyphicon glyphicon-menu-hamburger"></span></a>
-                
+                }
             </div>
             <div class="navbar-head">
-                <a href="/" class="navbar-brand">Home</a>
+                <a href="/" class="navbar-brand">TrackBatch <span class="label label-primary">Baxter</span></a>
             </div>
             <div>
                 <ul class="nav navbar-nav navbar-right">

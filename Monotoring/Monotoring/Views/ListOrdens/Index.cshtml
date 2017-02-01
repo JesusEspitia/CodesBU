@@ -1,6 +1,6 @@
 ﻿@using Monotoring.Models;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Nuevas ordenes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,6 +10,8 @@
 <br />
 
 <div class="container-fluid">
+    @if (ViewBag.myModel.Count > 0)
+    {
     <div class="table-responsive">
         <table class="table table-bordered">
             <tr>
@@ -26,11 +28,19 @@
                     <td>@item.dateRegistry</td>
                     
                     @*<td><input type="button" id="btnIniciar" value="Iniciar" class="btn btn-sm btn-default" /></td>*@
-                    <td>@Ajax.ActionLink("Iniciar", "StartOrden","ListOrdens", new { id = item.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
+                    <td>@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
                 </tr>
             }
         </table>
     </div>
+    }
+    else
+    {
+        <div class="jumbotron">
+            <h1>No hay nuevas ordenes de trabajo.</h1>
+            <p>Puede existir un retraso en alguna área, o no se han dado de alta nuevas ordenes de trabajo.</p>
+        </div>
+    }
 </div>
 
 

@@ -1,7 +1,7 @@
 ﻿@using Monotoring.Models;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tus ordenes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,8 +19,8 @@
         </div>
     }
 
-    <div class="table-responsive">
-        <table class="table table-condensed">   
+
+        @*<table class="table table-condensed">   
             <thead>
                 <tr>
                     <th>Orden</th>
@@ -39,7 +39,7 @@
                         <td>
                             @Ajax.ActionLink("Finalizar", "FinishOrden","Area_Orden",new { id = item.WorkOrden.WorkOrdenId },new AjaxOptions() { HttpMethod = "POST" })|
                            @* @Html.ActionLink("Retraso","Create","DelayWork")*@
-                            @if (item.DelayWork == null)
+                            @*@if (item.DelayWork == null)
                             {
                                 @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = item.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" })
                             }
@@ -51,10 +51,12 @@
                     </tr>
                 }
             </tbody>
-        </table>
+        </table>*@
 
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-1">
+            @if (ViewBag.ordens.Count > 0)
+            {
+            <div class="col-lg-5 col-lg-offset-2">
                 @foreach (OrdensView item in ViewBag.ordens)
                 {
                     <div class="panel panel-default">
@@ -68,12 +70,29 @@
                                 <dt>Días transcurridos:</dt>
                                 <dd>@(Math.Round((DateTime.Now - (DateTime)item.Area_Orden.dateStart).TotalDays, 0))</dd>
                             </dl>
-                            
+                            @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = item.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left" })
+                            @if (item.DelayWork == null)
+                            {
+                                @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = item.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left" })
+                            }
+                            else
+                            {
+                                @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = item.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left" })
+                            }
                         </div>
                     </div>
                 }
             </div>
+            }
+            else
+            {
+                <div class="jumbotron">
+                    <h1>No existen ordenes pendientes.</h1>
+                    <p>Ya no cuenta con ordenes en proceso.</p>
+                    <p>Puede revisar sus notificaciones para consultar la existencia de nuevas ordenes.@Html.ActionLink("Haga clic aquí para consultar sus notificaciones", "Index", "ListOrdens")</p>
+
+                </div>
+            }
         </div>
     </div>
-</div>
 
