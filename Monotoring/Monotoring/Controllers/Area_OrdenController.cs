@@ -20,7 +20,7 @@ namespace Monotoring.Controllers
                       join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
                       join d in context.DelayWork on w.WorkOrdenId equals d.WorkOrdenId
                       where u.UsersId == id && a.dateFinish == null && d.UsersId == id && d.dateFinish == null
-                      select new OrdensView { WorkOrden = w, DelayWork = d};
+                      select new OrdensView { WorkOrden = w, DelayWork = d,Area_Orden=a};
             var model = lst.ToList();
             if (model.Count >= 1)
             {
@@ -32,7 +32,7 @@ namespace Monotoring.Controllers
                            join u in context.Users on a.AreaId equals u.AreaId
                            join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
                            where u.UsersId == id && a.dateFinish == null 
-                           select new OrdensView { WorkOrden = w};
+                           select new OrdensView { WorkOrden = w,Area_Orden=a};
                 ViewBag.ordens = lst2.ToList();
             }
             

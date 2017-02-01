@@ -35,7 +35,7 @@
                     <tr>
                         <td>@item.WorkOrden.BatchOrden</td>
                         <td>@item.WorkOrden.quantityOrden</td>
-                        <td>@(Math.Round((DateTime.Now - (DateTime)item.WorkOrden.dateStart).TotalDays,0))</td>
+                        <td>@(Math.Round((DateTime.Now - (DateTime)item.Area_Orden.dateStart ).TotalDays,0))</td>
                         <td>
                             @Ajax.ActionLink("Finalizar", "FinishOrden","Area_Orden",new { id = item.WorkOrden.WorkOrdenId },new AjaxOptions() { HttpMethod = "POST" })|
                            @* @Html.ActionLink("Retraso","Create","DelayWork")*@
@@ -52,6 +52,28 @@
                 }
             </tbody>
         </table>
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-1">
+                @foreach (OrdensView item in ViewBag.ordens)
+                {
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Orden: @item.WorkOrden.BatchOrden
+                        </div>
+                        <div class="panel-body">
+                            <dl class="dl-horizontal">
+                                <dt>Cantidad:</dt>
+                                <dd>@item.WorkOrden.quantityOrden</dd>
+                                <dt>Días transcurridos:</dt>
+                                <dd>@(Math.Round((DateTime.Now - (DateTime)item.Area_Orden.dateStart).TotalDays, 0))</dd>
+                            </dl>
+                            
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
 
