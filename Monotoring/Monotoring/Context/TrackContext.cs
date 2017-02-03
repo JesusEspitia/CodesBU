@@ -12,6 +12,7 @@ namespace Monotoring.Context
     public class TrackContext:DbContext
     {
         
+        
         public DbSet<Employee_type> Employee_type { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Catalog> Catalog { get; set; }

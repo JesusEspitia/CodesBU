@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using Monotoring.Models;
 using Monotoring.Context;
 using System.Threading.Tasks;
+using System.Dynamic;
 
 namespace Monotoring.Controllers
 {
@@ -13,13 +15,13 @@ namespace Monotoring.Controllers
     {
         private TrackContext context = new TrackContext();
         private object quot;
-
+        
         public object Employee_typeId { get; private set; }
 
         // GET: Users
         public ActionResult Index()
         {
-            var user = context.Users.ToList();
+            var user = context.Users.Include("Area").Include("Type").ToList();
             return View(user);
         }
 
@@ -32,6 +34,7 @@ namespace Monotoring.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
+            Session["ErrorLog"] = 0;
             return View();
 
         }
@@ -41,20 +44,13 @@ namespace Monotoring.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (user.login() == true)
+                string log = user.login();
+                if (log== "in")
                 {
                     Session["userName"] = user.username;
-                    var query = from c in context.Users
-                                where c.userEmail == user.userEmail
-                                select c;
-                    var datos = query.ToList();
-
-                    foreach(var d in datos)
-                    {
-                        Session["userId"] = d.UsersId;
-                        Session["userType"] = d.TypeId;
-                        Session["userAreaId"] = d.AreaId;
-                    }
+                    Session["userId"] = user.UsersId;
+                    Session["userType"] = user.TypeId;
+                    Session["userAreaId"] = user.AreaId;
                     int utype = Convert.ToInt32(Session["userType"]);
                     var type = from t in context.Employee_type
                                where t.Employee_typeId == utype
@@ -64,14 +60,19 @@ namespace Monotoring.Controllers
                     {
                         Session["userType"] = d.permission;
                     }
-
+                    Session["ErrorLog"] = 0;
                     return RedirectToAction("Index", "Home");
                 }
-                else
+                else                
                 {
-
-                }
-                {
+                    if (log == "pass")
+                    {
+                        Session["ErrorLog"] = 1;
+                    }
+                    else
+                    {
+                        Session["ErrorLog"] = 2;
+                    }
                     return View();
                 }
             }

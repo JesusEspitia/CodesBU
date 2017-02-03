@@ -6,12 +6,16 @@
 }
 @{ 
     string user = Convert.ToString(Session["userName"]);
+    int errorlog = Convert.ToInt32(Session["ErrorLog"]);
+    string pass = "";
+    string name= "";
+    
 }
 
 
 
 
-<div class="container-fluid">  
+<div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
             <div class="page-header">
@@ -19,23 +23,72 @@
             </div>
         </div>
     </div>
+
+    @if (errorlog != 0)
+    {
+        switch (errorlog)
+        {
+            case 1:
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="alert alert-danger alert-dismissible text-center center-block" role="alert">
+                            <button type="button" class="close" data-dissmiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <strong>Inicio de sesión incorrecto: </strong> Contraseña incorrecta, verifiquelo.
+                        </div>
+                    </div>
+                </div>
+                break;
+            case 2:
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="alert alert-danger alert-dismissible text-center center-block" role="alert">
+                            <button type="button" class="close" data-dissmiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <strong>Inicio de sesión incorrecto: </strong> El usuario que indica no existe.
+                        </div>
+                    </div>
+                </div>
+                break;
+        }
+    }
+
+    @switch (errorlog)
+    {
+        case 0:
+            pass = "form-group";
+            name = "form-group";
+            break;
+        case 1:
+            pass = " form-group has-error";
+            break;
+        case 2:
+            pass = "form-group has-error";
+            name = "form-group has-error";
+            break;
+    }
+
     <div class="row">
         <div class="col-lg-12">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { @class = "form-singin" }))
+            @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { @class = "form-singin " }))
             {
-                <div class="form-group">
-                    @Html.TextBoxFor(dl => dl.userEmail, new { @class = "form-control center-block", @placeholder = "Correo electronico" })
+                <div class="@name">
+                    @Html.TextBoxFor(dl => dl.userEmail, new { @class = "form-control center-block", @placeholder = "Correo electrócino" })
                     @Html.ValidationMessageFor(dl => dl.userEmail, "", new { @clas = "txt-danger" })
                 </div>
-                <div class="form-group">
+                <div class="@pass">
                     @Html.PasswordFor(dl => dl.userPass, new { @class = "form-control center-block", @placeholder = "Contraseña" })
                     @Html.ValidationMessageFor(dl => dl.userPass, "", new { @class = "txt-danger" })
                 </div>
-                <div class="form-group">
+                <div class="form-groups">
                     <input type="submit" value="Iniciar" class="btn btn-primary btn-lg btn-block center-block" />
                 </div>
             }
         </div>
     </div>
+    
+
+
+
 </div>

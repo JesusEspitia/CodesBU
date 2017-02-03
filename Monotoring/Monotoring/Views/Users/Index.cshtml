@@ -31,7 +31,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Area.AreaName)
+            @Html.DisplayFor(modelItem => item.Area.AreaName,ViewBag.Area as SelectList)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Type.NameType)

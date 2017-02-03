@@ -5,16 +5,25 @@ using System.Linq;
 using System.Web;
 
 using Monotoring.Context;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Monotoring.Models
 {
     public class Users
     {
+        [DisplayName("Usuario")]
         public int UsersId { get; set; }
+        [DisplayName("Nombre de usuario")]
         public string username { get; set; }
+        //[RegularExpression(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")]
+        [DisplayName("Correo electrónico")]
         public string userEmail { get; set; }
+        [DisplayName("Contraseña")]
         public string userPass { get; set; }
+        [DisplayName("Cargo")]
         public int TypeId { get; set; }
+        [DisplayName("Área")]
         public int? AreaId { get; set; }
 
         [ForeignKey("TypeId")]
@@ -28,26 +37,37 @@ namespace Monotoring.Models
 
         private TrackContext context = new TrackContext();
 
-        public bool login()
+        public string login()
         {
+            
             var query = from u in context.Users
-                        where u.userEmail == userEmail && u.userPass == userPass
+                        where u.userEmail == userEmail 
                         select u;
             if (query.Count() > 0)
             {
-                var query2 = from u in context.Users where u.userEmail == userEmail select u;
-                var datos = query2.ToList();
-                foreach(var d in datos)
+                this.userEmail = userEmail;
+                var query2 = from u in context.Users where u.userEmail == userEmail where u.userPass==userPass select u;
+                var datos= query2.ToList();
+                if (datos.Count > 0)
                 {
-                    username = d.username;
-
+                    foreach (var d in datos)
+                    {
+                        username = d.username;
+                        TypeId = d.TypeId;
+                        AreaId = d.AreaId;
+                    }
+                    return "in";
                 }
-
-                return true;
+                else
+                {
+                    return "pass";
+                }
+                
             }
             else
             {
-                return false;
+                
+                return "user";
             }
         }
     }
