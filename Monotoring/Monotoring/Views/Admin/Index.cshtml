@@ -1,12 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Administrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Admin</h2>
 
-<div class="container-fluid">
+
+@*<div class="container-fluid">
     <div class="row">
         <div class="col-lg-6 ">
             @Html.ActionLink("Categorias de empleado", "Index", "Employee_Type")
@@ -28,5 +28,43 @@
             @Html.ActionLink("Catalogo", "Index", "Catalog")
         </div>
         <
+    </div>
+</div>*@
+
+<div class="container-fluid">
+    <hr />
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="list-group">
+                <a href="/Employee_Type" class="list-group-item ">
+                    <h4 class="list-group-item-heading">Cargos de los empleados</h4>
+                    <p class="list-group-item-text">Crear y editar los cargos existentes. Así como los permisos de cada uno.</p>
+                </a>
+                <a href="/Area" class="list-group-item">
+                    <h4 class="list-group-item-heading">Áreas</h4>
+                    <p class="list-group-item-text">Crear y editar las diferentes áreas existentes.</p>
+                </a>
+                <a href="/Catalog" class="list-group-item ">
+                    <h4 class="list-group-item-heading">Catalogo de productos</h4>
+                    <p class="list-group-item-text">Consultar, crea y edita los diferentes productos o sets.</p>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="list-group">
+                <a href="/Users" class="list-group-item ">
+                    <h4 class="list-group-item-heading">Usuarios</h4>
+                    <p class="list-group-item-text">Crear, editar o eliminar usuarios del sistema. Asignarle cargos y áreas a los diferentes usuarios.</p>
+                </a>
+                <a href="/Employee_Type" class="list-group-item ">
+                    <h4 class="list-group-item-heading">Códigos de atrasos</h4>
+                    <p class="list-group-item-text">Crear y editar los códigos de atraso que se utilizaran en el sistema.</p>
+                </a>
+                <a href="#" class="list-group-item ">
+                    <h4 class="list-group-item-heading"></h4>
+                    <p class="list-group-item-text"></p>
+                </a>
+            </div>
+        </div>
     </div>
 </div>

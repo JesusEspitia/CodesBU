@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Monotoring.Models.DelayCode>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Códigos de retraso";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo Código", "Create")
 </p>
 <table class="table">
     <tr>
@@ -24,9 +24,8 @@
             @Html.DisplayFor(modelItem => item.DelayName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DelayCodeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DelayCodeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DelayCodeId })
+            @Html.ActionLink("Editar", "Edit", new { id=item.DelayCodeId }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.DelayCodeId })
         </td>
     </tr>
 }

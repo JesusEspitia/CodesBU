@@ -1,14 +1,14 @@
 ﻿    @model IEnumerable<Monotoring.Models.Catalog>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Catalogo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo producto", "Create")
 </p>
 <table class="table">
     <tr>
@@ -30,9 +30,8 @@
             @Html.DisplayFor(modelItem => item.CatalogDescrip)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CatalogId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CatalogId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CatalogId })
+            @Html.ActionLink("Editar", "Edit", new { id=item.CatalogId }) |           
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.CatalogId })
         </td>
     </tr>
 }
