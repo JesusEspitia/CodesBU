@@ -53,6 +53,7 @@ namespace Monotoring.Models
                     foreach (var d in datos)
                     {
                         username = d.username;
+                        UsersId = d.UsersId;
                         TypeId = d.TypeId;
                         AreaId = d.AreaId;
                     }
