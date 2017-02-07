@@ -31,6 +31,7 @@ namespace Monotoring.Controllers
             DelayWork model = new DelayWork();
             model.WorkOrdenId = id;
             model.UsersId = (int)Session["userId"];
+            model.dateDelay = DateTime.Now;
             ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
             ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
             //ViewBag.WorkOrden = id;
@@ -47,6 +48,9 @@ namespace Monotoring.Controllers
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
+                    ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
+                    ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
+                    ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
                     context.DelayWork.Add(delay);
                     context.SaveChanges();
                     return RedirectToAction("Index", "Area_Orden");

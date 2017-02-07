@@ -18,10 +18,10 @@ namespace Monotoring.Models
         [DisplayName("Descripción del retraso")]
         public string descripDelay { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")]
         public DateTime dateDelay { get; set; }
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de liberación")]
         public DateTime? dateFinish { get; set; }
         [DisplayName("Usuario")]
