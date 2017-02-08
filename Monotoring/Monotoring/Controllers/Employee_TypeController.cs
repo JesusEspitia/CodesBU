@@ -57,20 +57,31 @@ namespace Monotoring.Controllers
         }
 
         // GET: Employee_Type/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = context.Employee_type.Find(id);
+            return View(model);
         }
 
         // POST: Employee_Type/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Employee_type emp)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    context.Entry(emp).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
+                
             }
             catch
             {
@@ -79,20 +90,33 @@ namespace Monotoring.Controllers
         }
 
         // GET: Employee_Type/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
-            return View();
+            var model = context.Employee_type.Find(id);
+            return View(model);
         }
 
         // POST: Employee_Type/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost,ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
             try
             {
                 // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var model = context.Employee_type.Find(id);
+                    context.Employee_type.Remove(model);
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
+                
             }
             catch
             {

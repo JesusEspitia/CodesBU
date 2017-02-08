@@ -159,20 +159,32 @@ namespace Monotoring.Controllers
         }
 
         // GET: Users/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
-            return View();
+            var model = context.Users.Find(id);
+            return View(model);
         }
 
         // POST: Users/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost,ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
             try
             {
                 // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var model = context.Users.Find(id);
+                    context.Users.Remove(model);
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch
             {

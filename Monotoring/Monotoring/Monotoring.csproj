@@ -440,6 +440,9 @@
     <Content Include="Views\Area_Orden\Index.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\OrdenDetail\Index.cshtml" />
+    <Content Include="Views\Employee_Type\Edit.cshtml" />
+    <Content Include="Views\Employee_Type\Delete.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

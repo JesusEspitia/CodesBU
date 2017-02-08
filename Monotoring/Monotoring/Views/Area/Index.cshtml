@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Monotoring.Models.Area>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Áreas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Áreas</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Área nueva", "Create")
 </p>
 <table class="table">
     <tr>
@@ -36,11 +36,14 @@
             @Html.DisplayFor(modelItem => item.daysMax)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AreaId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AreaId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AreaId })
+            @Html.ActionLink("Editar", "Edit", new { id=item.AreaId }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.AreaId })
         </td>
     </tr>
 }
 
 </table>
+
+<ul class="pager">
+    <li class="previous"><a href="/Admin/"><span aria-hidden="true">&larr;</span>Regresar</a></li>
+</ul>

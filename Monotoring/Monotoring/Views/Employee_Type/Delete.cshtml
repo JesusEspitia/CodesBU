@@ -1,37 +1,38 @@
-﻿@model Monotoring.Models.Area
+﻿@model Monotoring.Models.Employee_type
 
 @{
-    ViewBag.Title = "Eliminar - Área";
+    ViewBag.Title = "Eliminar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 
 <h3>¿Desea continuar con la eliminación?</h3>
 <div>
     
-    <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.AreaName)
+            @Html.DisplayNameFor(model => model.NameType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AreaName)
+            @Html.DisplayFor(model => model.NameType)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.descripArea)
+            @Html.DisplayNameFor(model => model.permission)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.descripArea)
+            @Html.DisplayFor(model => model.permission)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.daysMax)
+            @Html.DisplayNameFor(model => model.descrip_type)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.daysMax)
+            @Html.DisplayFor(model => model.descrip_type)
         </dd>
 
     </dl>
@@ -42,8 +43,7 @@
         <div class="form-actions no-color">
             <input type="submit" value="Eliminar" class="btn btn-default" /> |
             @*@Html.ActionLink("Back to List", "Index")*@
-            <a class="btn btn-default" href="/Area/">Cancelar</a>
+            <a class="btn btn-default" href="/Employee_Type/">Cancelar</a>
         </div>
     }
-   
 </div>

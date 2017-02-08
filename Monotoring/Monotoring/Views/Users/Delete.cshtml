@@ -1,0 +1,44 @@
+﻿@model Monotoring.Models.Users
+
+@{
+    ViewBag.Title = "Eliminar - Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>¿Desea continuar con la eliminación?</h3>
+<div>
+    
+    <dl class="dl-horizontal">
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userEmail)
+        </dd>
+
+        
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @*@Html.ActionLink("Back to List", "Index")*@
+            <a class="btn btn-default" href="/Users/">Cancelar</a>
+        </div>
+    }
+</div>
