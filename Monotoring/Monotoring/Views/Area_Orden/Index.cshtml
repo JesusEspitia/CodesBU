@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "Tus ordenes";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    OrdensView[] arrayOrd = new OrdensView[2];
+    List<OrdensView> lstOrden = new List<OrdensView>();
+
+    int countLoop = 0;
 }
 
 <div class="container-fluid">
@@ -19,41 +23,230 @@
         </div>
     }
 
+    <br />
+    <br />
+    <br />
+    <div class="tabbable-panel">
+        <div class="tabbable-line">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active">
+                    <a href="#tb_open" data-toggle="tab">Ordenes abiertas</a>
+                </li>
+                <li role="presentation">
+                    <a href="#tb_delay" data-toggle="tab">Retrasos abiertos</a>
+                </li>
+            </ul>
+        </div>
 
-        @*<table class="table table-condensed">   
-            <thead>
-                <tr>
-                    <th>Orden</th>
-                    <th>Cantidad</th>
-                    <th>Días transcurridos</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach(OrdensView item in ViewBag.ordens)   
+        <div class="tab-content">
+            <div class="tab-pane active" id="tb_open">
+                <hr />
+                @foreach (OrdensView item in ViewBag.OrdensOpen)
+            {
+                if (countLoop < 2)
                 {
-                    <tr>
-                        <td>@item.WorkOrden.BatchOrden</td>
-                        <td>@item.WorkOrden.quantityOrden</td>
-                        <td>@(Math.Round((DateTime.Now - (DateTime)item.Area_Orden.dateStart ).TotalDays,0))</td>
-                        <td>
-                            @Ajax.ActionLink("Finalizar", "FinishOrden","Area_Orden",new { id = item.WorkOrden.WorkOrdenId },new AjaxOptions() { HttpMethod = "POST" })|
-                           @* @Html.ActionLink("Retraso","Create","DelayWork")*@
-                            @*@if (item.DelayWork == null)
-                            {
-                                @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = item.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" })
-                            }
-                            else
-                            {
-                                @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = item.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" })
-                            }
-                        </td>
-                    </tr>
+                    arrayOrd[countLoop] = item;
+                    countLoop++;
+                    lstOrden.Add(item);
                 }
-            </tbody>
-        </table>*@
+                if (countLoop == 2)
+                {
+                        <div class="row">
+                            @if (arrayOrd[0] != null)
+                    {
+                                <div class="col-lg-5 col-lg-offset-1">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Orden: @arrayOrd[0].WorkOrden.BatchOrden</div>
+                                        <div class="panel-body">
+                                            <dl class="dl-horizontal">
+                                                <dt>Cantidad:</dt>
+                                                <dd>@arrayOrd[0].WorkOrden.quantityOrden</dd>
+                                                <dt>Días transcurridos:</dt>
+                                                <dd>@(Math.Round((DateTime.Now - (DateTime)arrayOrd[0].Area_Orden.dateStart).TotalDays, 0))</dd>
+                                            </dl>
+                                            @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
+                                            @if (arrayOrd[0].DelayWork == null)
+                                            {
+                                                @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                            }
+                                            else
+                                            {
+                                                @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                arrayOrd[0] = null;
+                            }
+                            @if (arrayOrd[1] != null)
+                    {
+                                <div class="col-lg-5 ">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Orden: @arrayOrd[1].WorkOrden.BatchOrden</div>
+                                        <div class="panel-body">
+                                            <dl class="dl-horizontal">
+                                                <dt>Cantidad:</dt>
+                                                <dd>@arrayOrd[1].WorkOrden.quantityOrden</dd>
+                                                <dt>Días transcurridos:</dt>
+                                                <dd>@(Math.Round((DateTime.Now - (DateTime)arrayOrd[1].Area_Orden.dateStart).TotalDays, 0))</dd>
+                                            </dl>
+                                            @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
+                                            @if (arrayOrd[1].DelayWork == null)
+                                            {
+                                                @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                            }
+                                            else
+                                            {
+                                                @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                arrayOrd[1] = null;
+                            }
+                        </div>
+                        countLoop = 0;
+                    }
+                }
 
-        <div class="row">
+                @if (lstOrden.Count % 2 != 0)
+            {
+                OrdensView o = lstOrden.Last();
+
+                    <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Orden: @o.WorkOrden.BatchOrden</div>
+                                <div class="panel-body">
+                                    <dl class="dl-horizontal">
+                                        <dt>Cantidad:</dt>
+                                        <dd>@o.WorkOrden.quantityOrden</dd>
+                                        <dt>Días transcurridos:</dt>
+                                        <dd>@(Math.Round((DateTime.Now - (DateTime)o.Area_Orden.dateStart).TotalDays, 0))</dd>
+                                    </dl>
+                                    @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = o.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
+                                    @if (o.DelayWork == null)
+                                    {
+                                        @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = o.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                    }
+                                    else
+                                    {
+                                        @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    lstOrden.Clear();
+                    countLoop = 0;
+                }
+                
+            </div>
+            <div class="tab-pane" id="tb_delay">
+                <hr />
+                
+                @foreach (OrdensView item in ViewBag.OrdensDelay)
+            {
+                if (countLoop < 2)
+                {
+                    arrayOrd[countLoop] = item;
+                    countLoop++;
+                    lstOrden.Add(item);
+                }
+                if (countLoop == 2)
+                {
+                        <div class="row">
+                            @if (arrayOrd[0] != null)
+                    {
+                                <div class="col-lg-5 col-lg-offset-1">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Orden: @arrayOrd[0].WorkOrden.BatchOrden</div>
+                                        <div class="panel-body">
+                                            <dl class="dl-horizontal">
+                                                <dt>Cantidad:</dt>
+                                                <dd>@arrayOrd[0].WorkOrden.quantityOrden</dd>
+                                                <dt>Días transcurridos:</dt>
+                                                <dd>@(Math.Round((DateTime.Now - (DateTime)arrayOrd[0].Area_Orden.dateStart).TotalDays, 0))</dd>
+                                            </dl>
+                                            
+                                            @if (arrayOrd[0].DelayWork == null)
+                                            {
+                                                @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                            }
+                                            else
+                                            {
+                                                @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                arrayOrd[0] = null;
+                            }
+                            @if (arrayOrd[1] != null)
+                    {
+                                <div class="col-lg-5 ">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Orden: @arrayOrd[1].WorkOrden.BatchOrden</div>
+                                        <div class="panel-body">
+                                            <dl class="dl-horizontal">
+                                                <dt>Cantidad:</dt>
+                                                <dd>@arrayOrd[1].WorkOrden.quantityOrden</dd>
+                                                <dt>Días transcurridos:</dt>
+                                                <dd>@(Math.Round((DateTime.Now - (DateTime)arrayOrd[1].Area_Orden.dateStart).TotalDays, 0))</dd>
+                                            </dl>
+                                            
+                                            @if (arrayOrd[1].DelayWork == null)
+                                            {
+                                                @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                            }
+                                            else
+                                            {
+                                                @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                arrayOrd[1] = null;
+                            }
+                        </div>
+                        countLoop = 0;
+                    }
+                }
+
+                @if (lstOrden.Count % 2 != 0)
+            {
+                OrdensView o = lstOrden.Last();
+
+                    <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Orden: @o.WorkOrden.BatchOrden</div>
+                                <div class="panel-body">
+                                    <dl class="dl-horizontal">
+                                        <dt>Cantidad:</dt>
+                                        <dd>@o.WorkOrden.quantityOrden</dd>
+                                        <dt>Días transcurridos:</dt>
+                                        <dd>@(Math.Round((DateTime.Now - (DateTime)o.Area_Orden.dateStart).TotalDays, 0))</dd>
+                                    </dl>
+                                    
+                                    @if (o.DelayWork == null)
+                                    {
+                                        @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = o.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                    }
+                                    else
+                                    {
+                                        @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    lstOrden.Clear();
+                }
+            </div>
+        </div>
+    </div>   
+        @*<div class="row">
             @if (ViewBag.ordens.Count > 0)
             {
             <div class="col-lg-5 col-lg-offset-2">
@@ -94,5 +287,10 @@
                 </div>
             }
         </div>
-    </div>
+    </div>*@
 
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>

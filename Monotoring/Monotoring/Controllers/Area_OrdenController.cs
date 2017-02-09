@@ -21,22 +21,28 @@ namespace Monotoring.Controllers
                       join d in context.DelayWork on w.WorkOrdenId equals d.WorkOrdenId
                       where u.UsersId == id && a.dateFinish == null && d.UsersId == id && d.dateFinish == null
                       select new OrdensView { WorkOrden = w, DelayWork = d,Area_Orden=a};
-            var model = lst.ToList();
-            if (model.Count >= 1)
+            var modelDelay = lst.ToList();
+            //ViewBag.OrdensDelay = modelOpen;
+
+            var lst2 = from a in context.Area_Orden
+                       join u in context.Users on a.AreaId equals u.AreaId
+                       join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
+                       where u.UsersId == id && a.dateFinish == null
+                       select new OrdensView { WorkOrden = w, Area_Orden = a};
+            var modelOpen = lst2.ToList();
+            //ViewBag.OrdensOpen = modelDelay;     
+            foreach(var item in modelDelay.ToList())
             {
-                ViewBag.ordens = model;
+                foreach(var item2 in modelOpen.ToList())
+                {
+                    if (item.WorkOrden.WorkOrdenId == item2.WorkOrden.WorkOrdenId)
+                    {
+                        modelOpen.Remove(item2);
+                    }
+                }
             }
-            else
-            {
-                var lst2 = from a in context.Area_Orden
-                           join u in context.Users on a.AreaId equals u.AreaId
-                           join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
-                           where u.UsersId == id && a.dateFinish == null 
-                           select new OrdensView { WorkOrden = w,Area_Orden=a};
-                ViewBag.ordens = lst2.ToList();
-            }
-            
-            //var delay= from d in context.DelayWork
+            ViewBag.OrdensDelay = modelDelay;
+            ViewBag.OrdensOpen = modelOpen;
             return View();
         }
 
