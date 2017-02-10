@@ -7,6 +7,7 @@
     List<OrdensView> lstOrden = new List<OrdensView>();
 
     int countLoop = 0;
+    string alert = "";
 }
 
 <div class="container-fluid">
@@ -42,7 +43,7 @@
             <div class="tab-pane active" id="tb_open">
                 <hr />
                 @foreach (OrdensView item in ViewBag.OrdensOpen)
-            {
+                {
                 if (countLoop < 2)
                 {
                     arrayOrd[countLoop] = item;
@@ -53,9 +54,28 @@
                 {
                         <div class="row">
                             @if (arrayOrd[0] != null)
-                    {
+                            {
+                                if((DateTime.Now-(DateTime)arrayOrd[0].Area_Orden.dateStart).TotalDays >= arrayOrd[0].Area.daysMax)
+                                {
+                                    alert = "panel-danger";
+                                }
+                                else
+                                {
+                                    if ((DateTime.Now-(DateTime)arrayOrd[0].Area_Orden.dateStart).TotalDays <= arrayOrd[0].Area.daysMax && ((DateTime)arrayOrd[0].Area_Orden.dateStart - DateTime.Now).TotalDays >= arrayOrd[0].Area.daysMax/2)
+                                    {
+                                        alert = "panel-warning";
+                                    }
+                                    else
+                                    {
+                                        if ((DateTime.Now-(DateTime)arrayOrd[0].Area_Orden.dateStart).TotalDays < arrayOrd[0].Area.daysMax)
+                                        {
+                                            alert = "panel-success";
+                                        }
+                                    }
+
+                                }
                                 <div class="col-lg-5 col-lg-offset-1">
-                                    <div class="panel panel-default">
+                                    <div class="panel @alert ">
                                         <div class="panel-heading">Orden: @arrayOrd[0].WorkOrden.BatchOrden</div>
                                         <div class="panel-body">
                                             <dl class="dl-horizontal">
@@ -81,7 +101,26 @@
                             @if (arrayOrd[1] != null)
                     {
                                 <div class="col-lg-5 ">
-                                    <div class="panel panel-default">
+                                    @if ((DateTime.Now - (DateTime)arrayOrd[1].Area_Orden.dateStart).TotalDays >= arrayOrd[1].Area.daysMax)
+                                    {
+                                        alert = "panel-danger";
+                                    }
+                                    else
+                                    {
+                                        if ((DateTime.Now - (DateTime)arrayOrd[1].Area_Orden.dateStart).TotalDays <= arrayOrd[1].Area.daysMax && ((DateTime)arrayOrd[1].Area_Orden.dateStart - DateTime.Now).TotalDays >= arrayOrd[1].Area.daysMax / 2)
+                                        {
+                                            alert = "panel-warning";
+                                        }
+                                        else
+                                        {
+                                            if ((DateTime.Now - (DateTime)arrayOrd[1].Area_Orden.dateStart).TotalDays < arrayOrd[1].Area.daysMax)
+                                            {
+                                                alert = "panel-success";
+                                            }
+                                        }
+
+                                    }
+                                    <div class="panel @alert">
                                         <div class="panel-heading">Orden: @arrayOrd[1].WorkOrden.BatchOrden</div>
                                         <div class="panel-body">
                                             <dl class="dl-horizontal">
@@ -114,8 +153,27 @@
                 OrdensView o = lstOrden.Last();
 
                     <div class="row">
+                        @if ((DateTime.Now - (DateTime)o.Area_Orden.dateStart).TotalDays >= o.Area.daysMax)
+                        {
+                            alert = "panel-danger";
+                        }
+                        else
+                        {
+                            if ((DateTime.Now - (DateTime)o.Area_Orden.dateStart).TotalDays <= o.Area.daysMax && ((DateTime)o.Area_Orden.dateStart - DateTime.Now).TotalDays >= o.Area.daysMax / 2)
+                            {
+                                alert = "panel-warning";
+                            }
+                            else
+                            {
+                                if ((DateTime.Now - (DateTime)o.Area_Orden.dateStart).TotalDays < o.Area.daysMax)
+                                {
+                                    alert = "panel-success";
+                                }
+                            }
+
+                        }
                         <div class="col-lg-5 col-lg-offset-1">
-                            <div class="panel panel-default">
+                            <div class="panel @alert">
                                 <div class="panel-heading">Orden: @o.WorkOrden.BatchOrden</div>
                                 <div class="panel-body">
                                     <dl class="dl-horizontal">
@@ -178,9 +236,8 @@
                                             {
                                                 @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                             }
-                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalComment">
-                                                Comentario
-                                            </button>
+                                            @Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })
+                                            @Ajax.ActionLink("Consultar", "List", "DelayComment", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
                                         </div>
                                     </div>
                                 </div>
@@ -207,9 +264,8 @@
                                             {
                                                 @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                             }
-                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalComment">
-                                                Comentario
-                                            </button>
+                                            @Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })
+                                            @Ajax.ActionLink("Consultar", "List", "DelayComment", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
                                         </div>
                                     </div>
                                 </div>

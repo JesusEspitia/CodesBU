@@ -53,7 +53,7 @@
                     <tr>
                         <td class="text-center">@w.Catalog.CatalogDescrip</td>
                         <td class="text-center">
-                            @Html.ActionLink(w.WorkOrden.BatchOrden, "Index", "OrdenDetail", new { id = w.WorkOrden.WorkOrdenId },null)                           
+                            @Html.ActionLink(w.WorkOrden.BatchOrden, "Index", "OrdenDetail", new { id = w.WorkOrden.WorkOrdenId },new { @data_toggle = "tooltip", @data_placement = "rigth", @title = "Detalles" })                           
                         </td>
                         @foreach (AreaViewModel a in Model.Area_Orden)
                         {

@@ -5,8 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     int count = 0;
 }
+<div class="page-header">
+    <h1>Comentarios <span class="glyphicon glyphicon-pencil"></span></h1>
+</div>
 
-<hr />
 
     @foreach (var item in Model)
     {
@@ -14,7 +16,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="well well-lg bg-success">
-                    <p>@item.Comment</p>
+                    <p class="text-justify">@item.Comment</p>
                     <p class="text-right"><i>@item.dateComment</i></p>
                 </div>
             </div>
