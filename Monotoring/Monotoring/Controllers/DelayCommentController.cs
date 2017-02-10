@@ -21,11 +21,18 @@ namespace Monotoring.Controllers
         {
             try
             {
-                ViewBag.DelayWork = new SelectList(context.DelayWork, "DelayWorkId", "DelayWorkId");
-                DelayComment model = new DelayComment();
-                model.DelayWorkId = id;
-                model.dateComment = DateTime.Now;
-                return View(model);
+                if (Convert.ToString(Session["userType"]) != "")
+                {
+                    ViewBag.DelayWork = new SelectList(context.DelayWork, "DelayWorkId", "DelayWorkId");
+                    DelayComment model = new DelayComment();
+                    model.DelayWorkId = id;
+                    model.dateComment = DateTime.Now;
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             catch (Exception ex)
             {

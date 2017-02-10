@@ -14,8 +14,15 @@ namespace Monotoring.Controllers
         // GET: Catalog
         public ActionResult Index()
         {
-            var cat = context.Catalog.ToList();
-            return View(cat);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                var cat = context.Catalog.ToList();
+                return View(cat);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Catalog/Details/5
@@ -28,7 +35,14 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new Catalog());
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                return View(new Catalog());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Catalog/Create
@@ -60,8 +74,15 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Edit(int id=0)
         {
-            Catalog c = context.Catalog.Find(id);
-            return View(c);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                Catalog c = context.Catalog.Find(id);
+                return View(c);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Catalog/Edit/5
@@ -91,8 +112,15 @@ namespace Monotoring.Controllers
         // GET: Catalog/Delete/5
         public ActionResult Delete(int id=0)
         {
-            var cat = context.Catalog.Find(id);
-            return View(cat);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                var cat = context.Catalog.Find(id);
+                return View(cat);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Catalog/Delete/5

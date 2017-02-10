@@ -14,9 +14,16 @@ namespace Monotoring.Controllers
         // GET: Area
         public ActionResult Index()
         {
-            var area = context.Area.ToList();
-            
-            return View(area);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                var area = context.Area.ToList();
+
+                return View(area);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Area/Details/5
@@ -29,8 +36,15 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
-            return View(new Area());
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
+                return View(new Area());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Area/Create
@@ -62,8 +76,15 @@ namespace Monotoring.Controllers
         public ActionResult Edit(int id=0)
         {
             //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
-            Area a = context.Area.Find(id);
-            return View(a);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                Area a = context.Area.Find(id);
+                return View(a);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Area/Edit/5
@@ -96,9 +117,16 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Delete(int id=0)
         {
-            var area = context.Area.Find(id);
-            //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
-            return View(area);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                var area = context.Area.Find(id);
+                //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
+                return View(area);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Area/Delete/5

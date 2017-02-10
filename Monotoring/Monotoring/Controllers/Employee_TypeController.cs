@@ -14,8 +14,15 @@ namespace Monotoring.Controllers
         // GET: Employee_Type
         public ActionResult Index()
         {
-            var type = context.Employee_type.ToList();
-            return View(type);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                var type = context.Employee_type.ToList();
+                return View(type);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Employee_Type/Details/5
@@ -28,7 +35,14 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new Employee_type());
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                return View(new Employee_type());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Employee_Type/Create
@@ -60,8 +74,15 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var model = context.Employee_type.Find(id);
-            return View(model);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                var model = context.Employee_type.Find(id);
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Employee_Type/Edit/5
@@ -93,8 +114,15 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var model = context.Employee_type.Find(id);
-            return View(model);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                var model = context.Employee_type.Find(id);
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Employee_Type/Delete/5

@@ -14,8 +14,15 @@ namespace Monotoring.Controllers
         // GET: DelayCode
         public ActionResult Index()
         {
-            var code = context.DelayCode.ToList();
-            return View(code);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                var code = context.DelayCode.ToList();
+                return View(code);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: DelayCode/Details/5
@@ -28,7 +35,14 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new DelayCode());
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                return View(new DelayCode());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: DelayCode/Create
@@ -60,8 +74,15 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Edit(int id=0)
         {
-            var code = context.DelayCode.Find(id);
-            return View(code);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                var code = context.DelayCode.Find(id);
+                return View(code);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: DelayCode/Edit/5
@@ -92,8 +113,15 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Delete(int id=0)
         {
-            var code = context.DelayCode.Find(id);
-            return View(code);
+            if (Convert.ToString(Session["userType"]) == "1")
+            {
+                var code = context.DelayCode.Find(id);
+                return View(code);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: DelayCode/Delete/5

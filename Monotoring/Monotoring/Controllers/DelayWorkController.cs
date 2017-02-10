@@ -28,15 +28,22 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create(int id)
         {
-            DelayWork model = new DelayWork();
-            model.WorkOrdenId = id;
-            model.UsersId = (int)Session["userId"];
-            model.dateDelay = DateTime.Now;
-            ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
-            ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
-            //ViewBag.WorkOrden = id;
-            ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
-            return View(model);
+            if (Convert.ToString(Session["userType"]) != "")
+            {
+                DelayWork model = new DelayWork();
+                model.WorkOrdenId = id;
+                model.UsersId = (int)Session["userId"];
+                model.dateDelay = DateTime.Now;
+                ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
+                ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
+                //ViewBag.WorkOrden = id;
+                ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: DelayWork/Create
@@ -70,11 +77,18 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Edit(int id = 0)
         {
-            ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
-            ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
-            ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
-            var delay = context.DelayWork.Find(id);
-            return View(delay);
+            if (Convert.ToString(Session["userType"]) != "")
+            {
+                ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
+                ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
+                ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
+                var delay = context.DelayWork.Find(id);
+                return View(delay);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: DelayWork/Edit/5
@@ -109,8 +123,15 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Delete(int id = 0)
         {
-            var delay = context.DelayWork.Find(id);
-            return View(delay);
+            if (Convert.ToString(Session["userType"]) != "")
+            {
+                var delay = context.DelayWork.Find(id);
+                return View(delay);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: DelayWork/Delete/5
@@ -141,15 +162,22 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult finishDelay(int id)
         {
-            var query = from d in context.DelayWork
-                        where d.DelayWorkId == id
-                        select d;
-            foreach (DelayWork d in query)
+            if (Convert.ToString(Session["userType"]) != "")
             {
-                d.dateFinish = DateTime.Now;
+                var query = from d in context.DelayWork
+                            where d.DelayWorkId == id
+                            select d;
+                foreach (DelayWork d in query)
+                {
+                    d.dateFinish = DateTime.Now;
+                }
+                context.SaveChanges();
+                return RedirectToAction("Index", "Area_Orden");
             }
-            context.SaveChanges();
-            return RedirectToAction("Index", "Area_Orden");
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }
