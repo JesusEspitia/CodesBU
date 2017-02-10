@@ -97,6 +97,10 @@
             e.preventDefault();
             $("#wrapper").toggleClass("menuDisplayed");
         })
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 
     @Scripts.Render("~/bundles/jquery")

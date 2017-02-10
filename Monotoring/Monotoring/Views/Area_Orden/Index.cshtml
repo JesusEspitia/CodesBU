@@ -27,13 +27,13 @@
     <br />
     <br />
     <div class="tabbable-panel">
-        <div class="tabbable-line">
+        <div class="tabbable-line ">
             <ul class="nav nav-tabs">
                 <li role="presentation" class="active">
-                    <a href="#tb_open" data-toggle="tab">Ordenes abiertas</a>
+                    <a href="#tb_open" data-toggle="tab">Ordenes abiertas <span class="badge">@ViewBag.OrdensOpen.Count</span></a>
                 </li>
                 <li role="presentation">
-                    <a href="#tb_delay" data-toggle="tab">Retrasos abiertos</a>
+                    <a href="#tb_delay" data-toggle="tab">Retrasos abiertos <span class="badge">@ViewBag.OrdensDelay.Count</a>
                 </li>
             </ul>
         </div>
@@ -133,6 +133,7 @@
                                     {
                                         @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                     }
+                                    
                                 </div>
                             </div>
                         </div>
@@ -177,6 +178,9 @@
                                             {
                                                 @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                             }
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalComment">
+                                                Comentario
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -203,6 +207,9 @@
                                             {
                                                 @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                             }
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalComment">
+                                                Comentario
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -237,6 +244,8 @@
                                     {
                                         @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                     }
+                                    @Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })
+                                    @Ajax.ActionLink("Consultar", "List", "DelayComment", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
                                 </div>
                             </div>
                         </div>
@@ -289,6 +298,29 @@
         </div>
     </div>*@
 
+
+    <!--Modal code-->
+    <div class="modal fade" id="modalComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dissmiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Comentario.</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>Información acerca del avance o estado del retraso:</p>
+                    <form class="">
+                        <textarea class="form-control" rows="8"></textarea>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dissmiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end modal-->
     <script>
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()

@@ -36,5 +36,7 @@ namespace Monotoring.Models
         [ForeignKey("UsersId")]
         [DisplayName("Usuario")]
         public Users Users { get; set; }
+
+        public ICollection<DelayComment> DelayComment { get; set; }
     }
 }

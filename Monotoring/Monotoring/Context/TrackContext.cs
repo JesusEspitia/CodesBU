@@ -21,6 +21,7 @@ namespace Monotoring.Context
         public DbSet<Area_Orden> Area_Orden { get; set; }
         public DbSet<DelayCode> DelayCode { get; set; }
         public DbSet<DelayWork> DelayWork { get; set; }
+        public DbSet<DelayComment> DelayComment { get; set; }
 
     }
 }
