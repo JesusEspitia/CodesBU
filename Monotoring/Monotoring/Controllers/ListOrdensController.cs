@@ -47,6 +47,40 @@ namespace Monotoring.Controllers
             
         }
 
+        [HttpGet]
+        public ActionResult CountNews()
+        {
+            int areaId = 0;
+            int userId = 0;
+            if (Session["userName"].ToString() != "" || Session["userName"].ToString() != null)
+            {
+                userId = (int)Session["userId"];
+                areaId = (int)Session["userAreaId"];
+                if (areaId == 1)
+                {
+                    var model = from w in context.WorkOrden
+                                where w.dateStart == null
+                                select w;
+                    var lst = model.ToList();
+                    return Content(lst.Count.ToString());
+                }
+                else
+                {
+                    int getArea = getBeforeArea(userId);
+                    var model = from a in context.Area_Orden
+                                join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
+                                where a.AreaId == getArea && a.runOrden == true && a.dateFinish != null
+                                select w;
+                    var lst = model.ToList();
+                    return View(lst.Count.ToString());
+                }
+            }
+            else
+            {
+                return Content("0");
+            }
+        }
+
         //[HttpGet]
         //public ActionResult StartOrden(int id = 0)
         //{
