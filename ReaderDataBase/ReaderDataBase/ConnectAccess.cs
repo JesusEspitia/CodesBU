@@ -12,13 +12,15 @@ namespace ReaderDataBase
 {
     public class ConnectAccess
     {
-        private string strAccessConn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\_espitl1\Documents\ReadarDB.accdb";
+        //private string strAccessConn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\_espitl1\Documents\ReadarDB.accdb";
+        private string strAccessConn = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\mxtswtjnts\Public\UDI\UDI Labeling Database\UDI Labeling Database.accdb";
         private OleDbConnection conn;
         private DataSet myds;
         private OleDbCommand cmd;
         private OleDbDataReader reader;
         OleDbDataAdapter adp;
         private Orden orden;
+        private Catalog catalog;
         public ConnectAccess()
         {
             try
@@ -32,6 +34,19 @@ namespace ReaderDataBase
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        public void getCatalog()
+        {
+            cmd= new OleDbCommand("select Reference,Product_Name from Product_Data", conn);
+            conn.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                catalog = new Catalog() { NoCatalog = reader[0].ToString(), NameCatalog = reader[1].ToString() };
+                Form1.catalog.lstCatalog.Add(catalog);
+            }
+            reader.Close();
+            conn.Close();
         }
         public void ReadDataBase(DataGridView dt)
         {

@@ -14,7 +14,7 @@ namespace Monotoring.Controllers
         // GET: Employee_Type
         public ActionResult Index()
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 var type = context.Employee_type.ToList();
                 return View(type);
@@ -35,7 +35,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 return View(new Employee_type());
             }
@@ -74,7 +74,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 var model = context.Employee_type.Find(id);
                 return View(model);
@@ -114,7 +114,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 var model = context.Employee_type.Find(id);
                 return View(model);

@@ -13,7 +13,7 @@ namespace ReaderDataBase
     {
         private MySqlConnection conn;
         private MySqlCommand cmd = new MySqlCommand();
-        private string connectionString = "server=localhost;uid=root;pwd=Baxter09.;database=trackbatch";
+        private string connectionString = "server=localhost;uid=root;pwd=stringFoster9324;database=trackbatch";
 
         public MySqlConnect()
         {
@@ -29,13 +29,34 @@ namespace ReaderDataBase
                 MessageBox.Show(ex.Message);
             }
         }
+        public void InsertCatalog(List<Catalog> catalog)
+        {
+            try
+            {
+                foreach (var item in catalog)
+                {
+                    cmd.CommandText =string.Format("INSERT INTO Catalogs(CatalogNo,CatalogDescrip) VALUES ('{0}','{1}')",item.NoCatalog,item.NameCatalog);
+                    //cmd.Parameters.AddWithValue("nocatalog", item.NoCatalog);
+                    //cmd.Parameters.AddWithValue("namecatalog", item.NameCatalog);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         public void InsertValues(List<Orden> orden)
         {
             try
             {
                 foreach (var o in orden)
                 {
-                    cmd.CommandText = "INSERT INTO work_orden(id_catalog,batch_orden,date_registry,quentity_orden) VALUES (@catalogo,@batch,@date,@qty)";
+                    cmd.CommandText = "INSERT INTO work_ordens(CatalogId,BatchOrden,dateRegistry,quantityOrden) VALUES (@catalogo,@batch,@date,@qty)";
                     cmd.Parameters.AddWithValue("catalogo", o.references);
                     cmd.Parameters.AddWithValue("batch", o.batch);
                     cmd.Parameters.AddWithValue("date", o.date.ToString("yyyy-MM-dd H:mm_ss"));

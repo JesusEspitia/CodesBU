@@ -14,7 +14,7 @@ namespace Monotoring.Controllers
         // GET: Catalog
         public ActionResult Index()
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 var cat = context.Catalog.ToList();
                 return View(cat);
@@ -35,7 +35,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 return View(new Catalog());
             }
@@ -74,7 +74,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Edit(int id=0)
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 Catalog c = context.Catalog.Find(id);
                 return View(c);
@@ -112,7 +112,7 @@ namespace Monotoring.Controllers
         // GET: Catalog/Delete/5
         public ActionResult Delete(int id=0)
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 var cat = context.Catalog.Find(id);
                 return View(cat);

@@ -327,4 +327,3 @@ C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.c
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migration16.resources
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migration22.resources
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracion23.resources
-C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csprojResolveAssemblyReference.cache

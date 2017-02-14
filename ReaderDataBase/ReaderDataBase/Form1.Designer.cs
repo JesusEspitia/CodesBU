@@ -28,38 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dtOrden = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dtOrden)).BeginInit();
+            this.btnUpdateCatalog = new System.Windows.Forms.Button();
+            this.btnUpdateOrden = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // dtOrden
+            // btnUpdateCatalog
             // 
-            this.dtOrden.AllowUserToAddRows = false;
-            this.dtOrden.AllowUserToDeleteRows = false;
-            this.dtOrden.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtOrden.Location = new System.Drawing.Point(12, 50);
-            this.dtOrden.Name = "dtOrden";
-            this.dtOrden.ReadOnly = true;
-            this.dtOrden.Size = new System.Drawing.Size(240, 150);
-            this.dtOrden.TabIndex = 0;
+            this.btnUpdateCatalog.Location = new System.Drawing.Point(69, 69);
+            this.btnUpdateCatalog.Name = "btnUpdateCatalog";
+            this.btnUpdateCatalog.Size = new System.Drawing.Size(82, 36);
+            this.btnUpdateCatalog.TabIndex = 0;
+            this.btnUpdateCatalog.Text = "Actualizar Catalogo";
+            this.btnUpdateCatalog.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateOrden
+            // 
+            this.btnUpdateOrden.Location = new System.Drawing.Point(182, 69);
+            this.btnUpdateOrden.Name = "btnUpdateOrden";
+            this.btnUpdateOrden.Size = new System.Drawing.Size(125, 36);
+            this.btnUpdateOrden.TabIndex = 1;
+            this.btnUpdateOrden.Text = "Actualizar ordenes de trabajo";
+            this.btnUpdateOrden.UseVisualStyleBackColor = true;
+            this.btnUpdateOrden.Click += new System.EventHandler(this.btnUpdateOrden_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Controls.Add(this.dtOrden);
+            this.ClientSize = new System.Drawing.Size(376, 195);
+            this.Controls.Add(this.btnUpdateOrden);
+            this.Controls.Add(this.btnUpdateCatalog);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dtOrden)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dtOrden;
+        private System.Windows.Forms.Button btnUpdateCatalog;
+        private System.Windows.Forms.Button btnUpdateOrden;
     }
 }
 

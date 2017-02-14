@@ -15,6 +15,7 @@ namespace ReaderDataBase
         public ConnectAccess con;
         public MySqlConnect mycon;
         public static Orden orden= new Orden();
+        public static Catalog catalog = new Catalog();
         public Form1()
         {
             InitializeComponent();
@@ -24,7 +25,15 @@ namespace ReaderDataBase
         {
             con = new ConnectAccess();
             mycon = new MySqlConnect();
+            con.getCatalog();
             con.ReadDataBase();
+            //mycon.InsertCatalog(Form1.catalog.lstCatalog);
+            //con.ReadDataBase();
+            //mycon.InsertValues(Form1.orden.lstOrden);
+        }
+
+        private void btnUpdateOrden_Click(object sender, EventArgs e)
+        {
             mycon.InsertValues(Form1.orden.lstOrden);
         }
     }

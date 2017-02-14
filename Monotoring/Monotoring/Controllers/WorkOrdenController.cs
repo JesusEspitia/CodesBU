@@ -28,7 +28,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogNo");
+            ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogDescrip");
             return View(new WorkOrden());
         }
 
@@ -38,7 +38,7 @@ namespace Monotoring.Controllers
         {
             try
             {
-                ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogNo");
+                ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogDescrip");
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
@@ -62,7 +62,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Edit(int id=0)
         {
-            ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogNo");
+            ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogDescrip");
             WorkOrden orden = context.WorkOrden.Find(id);
             return View(orden);
         }
@@ -97,7 +97,7 @@ namespace Monotoring.Controllers
         public ActionResult Delete(int id=0)
         {
             var orden = context.WorkOrden.Find(id);
-            ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogNo");
+            ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogDescrip");
             return View(orden);
         }
 
