@@ -89,16 +89,19 @@ namespace Monotoring.Controllers
         {
             Session["userName"] = "";
             Session["userType"] = 0;
+            System.Web.Security.FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
         [HttpGet]
         // GET: Users/Create
-        public ActionResult Create()
+        public ActionResult Create(string username="")
         {
             //var type = context.Employee_type.ToList();
             ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId","NameType");
             ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
-            return View(new Users());
+            Users model = new Users();
+            model.username = username;
+            return View(model);
         }
 
         // POST: Users/Create
@@ -110,7 +113,7 @@ namespace Monotoring.Controllers
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    if (ValidUserExists(user.username) != false)
+                    if (ValidUserExists(user.username) == true && UserIsNotRegister(user.username) == false)
                     {
                         context.Users.Add(user);
                         context.SaveChanges();
@@ -120,7 +123,7 @@ namespace Monotoring.Controllers
                     {
                         ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
                         ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
-                        this.ModelState.AddModelError(string.Empty, "El usuario no existe dentro de los registros.");
+                        this.ModelState.AddModelError(string.Empty, "El usuario no existe dentro de los registros, o ya fue registrado.");
                         return View();
                     }                    
                 }
@@ -230,6 +233,46 @@ namespace Monotoring.Controllers
                     else
                         return false;
                 }
+            }
+        }
+        public bool UserIsNotRegister(string username)
+        {
+            var user = from u in context.Users
+                       where u.username == username
+                       select u;
+            var listUser = user.ToList();
+            if (listUser.Count >= 1)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        [HttpGet]
+        public ActionResult NewUserRequest()
+        {
+            return View(new UserNewRequest());
+        }
+        [HttpPost]
+        public ActionResult NewUserRequest(UserNewRequest model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    context.UserNewRequest.Add(model);
+                    context.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch
+            {
+                return View();
             }
         }
     }

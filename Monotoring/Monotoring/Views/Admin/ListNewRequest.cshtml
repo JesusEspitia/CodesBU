@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Monotoring.Models.UserNewRequest>
+
+@{
+    ViewBag.Title = "Solicitudes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Nuevas solicitudes</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.userNameRequest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.areaRequest)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.userNameRequest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.areaRequest)
+        </td>
+        <td>
+            @Html.ActionLink("Registrar", "Create", "Users", new { username = item.userNameRequest },null) | 
+            @Html.ActionLink("Rechazar solicitud", "DenyRequest", "Admin", new { id = item.UserNewRequestId }, null)
+        </td>
+    </tr>
+}
+
+</table>

@@ -64,6 +64,19 @@ namespace Monotoring.Controllers
         }
 
         //
+        public bool UserIsNotRegister(string username)
+        {
+            var user = from u in context.Users
+                       where u.username == username
+                       select u;
+            var listUser = user.ToList();
+            if (listUser.Count >= 1)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -76,24 +89,32 @@ namespace Monotoring.Controllers
             }
             if (Membership.ValidateUser(model.UserName, model.Password))
             {
+
                 FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                 if(this.Url.IsLocalUrl(returnUrl) && returnUrl.Length>1 && returnUrl.StartsWith("/")&& !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                 {
                     return this.Redirect(returnUrl);
                 }
-                Session["userName"] = model.UserName;
-                var userLst = from u in context.Users
-                              where u.username == model.UserName
-                              select u;
-                var list = userLst.ToList();
-                foreach (var item in list)
+                if (UserIsNotRegister(model.UserName) == true)
                 {
-                    Session["userId"] = item.UsersId;
-                    Session["userType"] = item.TypeId;
-                    Session["userAreaId"] = item.AreaId;
-                }
+                    Session["userName"] = model.UserName;
+                    var userLst = from u in context.Users
+                                  where u.username == model.UserName
+                                  select u;
+                    var list = userLst.ToList();
+                    foreach (var item in list)
+                    {
+                        Session["userId"] = item.UsersId;
+                        Session["userType"] = item.TypeId;
+                        Session["userAreaId"] = item.AreaId;
+                    }
 
-                return this.RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    this.ModelState.AddModelError(string.Empty, "El usuario no se encuentra registrado, solicite el registro con el administrador");
+                }
             }
             this.ModelState.AddModelError(string.Empty, "El usuario y/o la contraseña con incorrectos");
             return this.View(model);
@@ -411,8 +432,8 @@ namespace Monotoring.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpGet]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);

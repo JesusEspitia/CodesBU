@@ -244,6 +244,10 @@
     <Compile Include="Migrations\201702140110228_migration22.Designer.cs">
       <DependentUpon>201702140110228_migration22.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702141839344_migracion23.cs" />
+    <Compile Include="Migrations\201702141839344_migracion23.Designer.cs">
+      <DependentUpon>201702141839344_migracion23.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
@@ -260,6 +264,7 @@
     <Compile Include="Models\OrdenDetail.cs" />
     <Compile Include="Controllers\OrdenDetailController.cs" />
     <Compile Include="Models\OrdensView.cs" />
+    <Compile Include="Models\UserNewRequest.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\WorkCatalog.cs" />
     <Compile Include="Models\WorkOrden.cs" />
@@ -463,6 +468,8 @@
     <Content Include="Views\DelayComment\New.cshtml" />
     <Content Include="Views\DelayComment\List.cshtml" />
     <Content Include="Views\Users\ListNewUsers.cshtml" />
+    <Content Include="Views\Users\NewUserRequest.cshtml" />
+    <Content Include="Views\Admin\ListNewRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -480,6 +487,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702140110228_migration22.resx">
       <DependentUpon>201702140110228_migration22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702141839344_migracion23.resx">
+      <DependentUpon>201702141839344_migracion23.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

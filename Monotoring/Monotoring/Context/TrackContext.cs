@@ -22,6 +22,6 @@ namespace Monotoring.Context
         public DbSet<DelayCode> DelayCode { get; set; }
         public DbSet<DelayWork> DelayWork { get; set; }
         public DbSet<DelayComment> DelayComment { get; set; }
-
+        public DbSet<UserNewRequest> UserNewRequest { get; set; }
     }
 }
