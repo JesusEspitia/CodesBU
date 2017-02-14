@@ -34,56 +34,56 @@ namespace Monotoring.Controllers
             return View();
         }
         //login
-        [AllowAnonymous]
-        public ActionResult Login()
-        {
-            Session["ErrorLog"] = 0;
-            return View();
+        //[AllowAnonymous]
+        //public ActionResult Login()
+        //{
+        //    Session["ErrorLog"] = 0;
+        //    return View();
 
-        }
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<ActionResult> Login(Users user)
-        {
-            if (ModelState.IsValid)
-            {
-                string log = user.login();
-                if (log== "in")
-                {
-                    Session["userName"] = user.username;
-                    Session["userId"] = user.UsersId;
-                    Session["userType"] = user.TypeId;
-                    Session["userAreaId"] = user.AreaId;
-                    int utype = Convert.ToInt32(Session["userType"]);
-                    var type = from t in context.Employee_type
-                               where t.Employee_typeId == utype
-                               select t;
-                    var dt = type.ToList();
-                    foreach(var d in dt)
-                    {
-                        Session["userType"] = d.permission;
-                    }
-                    Session["ErrorLog"] = 0;
-                    return RedirectToAction("Index", "Home");
-                }
-                else                
-                {
-                    if (log == "pass")
-                    {
-                        Session["ErrorLog"] = 1;
-                    }
-                    else
-                    {
-                        Session["ErrorLog"] = 2;
-                    }
-                    return View();
-                }
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
+        //}
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public async Task<ActionResult> Login(Users user)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        string log = user.login();
+        //        if (log== "in")
+        //        {
+        //            Session["userName"] = user.username;
+        //            Session["userId"] = user.UsersId;
+        //            Session["userType"] = user.TypeId;
+        //            Session["userAreaId"] = user.AreaId;
+        //            int utype = Convert.ToInt32(Session["userType"]);
+        //            var type = from t in context.Employee_type
+        //                       where t.Employee_typeId == utype
+        //                       select t;
+        //            var dt = type.ToList();
+        //            foreach(var d in dt)
+        //            {
+        //                Session["userType"] = d.permission;
+        //            }
+        //            Session["ErrorLog"] = 0;
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //        else                
+        //        {
+        //            if (log == "pass")
+        //            {
+        //                Session["ErrorLog"] = 1;
+        //            }
+        //            else
+        //            {
+        //                Session["ErrorLog"] = 2;
+        //            }
+        //            return View();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //}
         [HttpGet]
         public ActionResult Logout()
         {
@@ -118,6 +118,8 @@ namespace Monotoring.Controllers
                     }
                     else
                     {
+                        ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
+                        ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
                         this.ModelState.AddModelError(string.Empty, "El usuario no existe dentro de los registros.");
                         return View();
                     }                    
@@ -221,7 +223,12 @@ namespace Monotoring.Controllers
             {
                 using (var findUser = UserPrincipal.FindByIdentity(domainContext, IdentityType.SamAccountName, username))
                 {
-                    return findUser != null;
+                    if (findUser != null)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
                 }
             }
         }

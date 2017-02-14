@@ -17,10 +17,7 @@ namespace Monotoring.Models
         [DisplayName("Nombre de usuario")]
         public string username { get; set; }
         //[RegularExpression(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")]
-        [DisplayName("Correo electrónico")]
-        public string userEmail { get; set; }
-        [DisplayName("Contraseña")]
-        public string userPass { get; set; }
+        
         [DisplayName("Cargo")]
         public int TypeId { get; set; }
         [DisplayName("Área")]
@@ -37,39 +34,39 @@ namespace Monotoring.Models
 
         private TrackContext context = new TrackContext();
 
-        public string login()
-        {
+        //public string login()
+        //{
             
-            var query = from u in context.Users
-                        where u.userEmail == userEmail 
-                        select u;
-            if (query.Count() > 0)
-            {
-                this.userEmail = userEmail;
-                var query2 = from u in context.Users where u.userEmail == userEmail where u.userPass==userPass select u;
-                var datos= query2.ToList();
-                if (datos.Count > 0)
-                {
-                    foreach (var d in datos)
-                    {
-                        username = d.username;
-                        UsersId = d.UsersId;
-                        TypeId = d.TypeId;
-                        AreaId = d.AreaId;
-                    }
-                    return "in";
-                }
-                else
-                {
-                    return "pass";
-                }
+        //    var query = from u in context.Users
+        //                where u.userEmail == userEmail 
+        //                select u;
+        //    if (query.Count() > 0)
+        //    {
+        //        this.userEmail = userEmail;
+        //        var query2 = from u in context.Users where u.userEmail == userEmail where u.userPass==userPass select u;
+        //        var datos= query2.ToList();
+        //        if (datos.Count > 0)
+        //        {
+        //            foreach (var d in datos)
+        //            {
+        //                username = d.username;
+        //                UsersId = d.UsersId;
+        //                TypeId = d.TypeId;
+        //                AreaId = d.AreaId;
+        //            }
+        //            return "in";
+        //        }
+        //        else
+        //        {
+        //            return "pass";
+        //        }
                 
-            }
-            else
-            {
+        //    }
+        //    else
+        //    {
                 
-                return "user";
-            }
-        }
+        //        return "user";
+        //    }
+        //}
     }
 }
