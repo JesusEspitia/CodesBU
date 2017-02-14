@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Monotoring.Models;
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -35,6 +36,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">        
         <div class="container-fluid">
             <div class="navbar-head">
+               
                 @if (User != "")
                 {
                 <a href="#" class="navbar-brand" id="menu-toggle"><span role="button" class="glyphicon glyphicon-menu-hamburger"></span></a>
@@ -47,14 +49,14 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (User == "")
                     {
-                        <li>@Html.ActionLink("Ingresar", "Login", "Users")</li>
+                        <li>@Html.ActionLink("Ingresar", "Login", "Account")</li>
                     }
                     else
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User<span class="caret"></span></a>
                             <ul class="dropdown-menu">                             
-                                <li>@Html.ActionLink("Salir", "Logout", "Users")</li>                            
+                                <li>@Html.ActionLink("Salir", "LogOff", "Account")</li>                            
                                 <li><a href="#">Notificaciones</a></li>
                                 <li><a href="#">Salir</a></li>
                                 <li></li>
@@ -70,13 +72,12 @@
         <!--sideBar-->
         <div id="sidebar-wrapper">
             <div class="sidebar-nav">
-                @if (userType == 1)
+                @if (userType == 3)
                 {
                     <li>@Html.ActionLink("Administrador","Index","Admin")</li>
                 }                                 
                 <li>@Html.ActionLink("Ordenes de trabajo","Index","Area_Orden") </li>                   
                 <li>@Html.ActionLink("Notificaciones", "Index", "ListOrdens")</li>                   
-                <li><a>Inicio</a></li>                   
             </div>
         </div>
         <!--Page content-->

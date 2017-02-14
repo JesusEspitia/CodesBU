@@ -11,7 +11,7 @@ namespace Monotoring.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 return View();
             }

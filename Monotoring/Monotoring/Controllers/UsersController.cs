@@ -4,10 +4,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using System.DirectoryServices;
 using Monotoring.Models;
 using Monotoring.Context;
 using System.Threading.Tasks;
 using System.Dynamic;
+using System.DirectoryServices.AccountManagement;
 
 namespace Monotoring.Controllers
 {
@@ -107,9 +110,17 @@ namespace Monotoring.Controllers
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    context.Users.Add(user);
-                    context.SaveChanges();
-                    return RedirectToAction("Index");
+                    if (ValidUserExists(user.username) != false)
+                    {
+                        context.Users.Add(user);
+                        context.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        this.ModelState.AddModelError(string.Empty, "El usuario no existe dentro de los registros.");
+                        return View();
+                    }                    
                 }
                 else
                 {
@@ -189,6 +200,29 @@ namespace Monotoring.Controllers
             catch
             {
                 return View();
+            }
+        }
+        public ActionResult ListNewUsers()
+        {
+            using (var ctx = new PrincipalContext(ContextType.Domain, "global.baxter.com"))
+            {
+                using(var searcher = new PrincipalSearcher(new UserPrincipal(ctx)))
+                {
+                    var listUsers = searcher.FindAll();
+                    ViewBag.UsersList = listUsers.ToList();
+                }
+            }
+           
+            return View();
+        }
+        public bool ValidUserExists(string username)
+        {
+            using(var domainContext = new PrincipalContext(ContextType.Domain, "global.baxter.com"))
+            {
+                using (var findUser = UserPrincipal.FindByIdentity(domainContext, IdentityType.SamAccountName, username))
+                {
+                    return findUser != null;
+                }
             }
         }
     }

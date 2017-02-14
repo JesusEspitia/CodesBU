@@ -5,10 +5,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Monotoring.Models;
+using Monotoring.Context;
 
 namespace Monotoring.Controllers
 {
@@ -17,7 +19,7 @@ namespace Monotoring.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private TrackContext context = new TrackContext();
         public AccountController()
         {
         }
@@ -72,23 +74,45 @@ namespace Monotoring.Controllers
             {
                 return View(model);
             }
+            if (Membership.ValidateUser(model.UserName, model.Password))
+            {
+                FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                if(this.Url.IsLocalUrl(returnUrl) && returnUrl.Length>1 && returnUrl.StartsWith("/")&& !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                {
+                    return this.Redirect(returnUrl);
+                }
+                Session["userName"] = model.UserName;
+                var userLst = from u in context.Users
+                              where u.username == model.UserName
+                              select u;
+                var list = userLst.ToList();
+                foreach (var item in list)
+                {
+                    Session["userId"] = item.UsersId;
+                    Session["userType"] = item.TypeId;
+                    Session["userAreaId"] = item.AreaId;
+                }
 
+                return this.RedirectToAction("Index", "Home");
+            }
+            this.ModelState.AddModelError(string.Empty, "El usuario y/o la contraseña con incorrectos");
+            return this.View(model);
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
-                    return View(model);
-            }
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //switch (result)
+            //{
+            //    case SignInStatus.Success:
+            //        return RedirectToLocal(returnUrl);
+            //    case SignInStatus.LockedOut:
+            //        return View("Lockout");
+            //    case SignInStatus.RequiresVerification:
+            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            //    case SignInStatus.Failure:
+            //    default:
+            //        ModelState.AddModelError("", "Intento de inicio de sesión no válido.");
+            //        return View(model);
+            //}
         }
 
         //
@@ -387,11 +411,18 @@ namespace Monotoring.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
+        [HttpGet]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            
+            FormsAuthentication.SignOut();
+            Session["userName"] = "";
+            Session["userId"] = "";
+            Session["userType"] = 0;
+            Session["userAreaId"] = "";
+
             return RedirectToAction("Index", "Home");
         }
 
