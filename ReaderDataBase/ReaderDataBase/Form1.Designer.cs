@@ -34,7 +34,7 @@
             // 
             // btnUpdateCatalog
             // 
-            this.btnUpdateCatalog.Location = new System.Drawing.Point(69, 69);
+            this.btnUpdateCatalog.Location = new System.Drawing.Point(52, 152);
             this.btnUpdateCatalog.Name = "btnUpdateCatalog";
             this.btnUpdateCatalog.Size = new System.Drawing.Size(82, 36);
             this.btnUpdateCatalog.TabIndex = 0;
@@ -43,7 +43,7 @@
             // 
             // btnUpdateOrden
             // 
-            this.btnUpdateOrden.Location = new System.Drawing.Point(182, 69);
+            this.btnUpdateOrden.Location = new System.Drawing.Point(191, 152);
             this.btnUpdateOrden.Name = "btnUpdateOrden";
             this.btnUpdateOrden.Size = new System.Drawing.Size(125, 36);
             this.btnUpdateOrden.TabIndex = 1;
@@ -55,9 +55,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 195);
+            this.ClientSize = new System.Drawing.Size(376, 250);
             this.Controls.Add(this.btnUpdateOrden);
             this.Controls.Add(this.btnUpdateCatalog);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
