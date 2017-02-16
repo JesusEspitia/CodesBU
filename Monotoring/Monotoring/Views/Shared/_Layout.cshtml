@@ -72,12 +72,19 @@
         <!--sideBar-->
         <div id="sidebar-wrapper">
             <div class="sidebar-nav">
-                @if (userType == 3)
+                @switch (userType)
                 {
-                    <li>@Html.ActionLink("Administrador","Index","Admin")</li>
-                }                                 
-                <li>@Html.ActionLink("Ordenes de trabajo","Index","Area_Orden") </li>                   
-                <li>@Html.ActionLink("Notificaciones", "Index", "ListOrdens")</li>                   
+                    case 3:
+                            <li>@Html.ActionLink("Administrador","Index","Admin")</li>
+                        break;
+                    case 2:
+                            <li><a href="#">Dashboard</a></li>
+                        break;
+                    case 1:
+                            <li>@Html.ActionLink("Ordenes de trabajo", "Index", "Area_Orden") </li>
+                            <li>@Html.ActionLink("Notificaciones", "Index", "ListOrdens")</li>
+                        break;
+                }                
             </div>
         </div>
         <!--Page content-->
@@ -90,18 +97,19 @@
                 </footer>
             </div>
         </div>
-       </div>
+    </div>
     
     <!--Script-->
     <script>
         $("#menu-toggle").click(function (e) {
-            e.preventDefault();
+                    e.preventDefault();
             $("#wrapper").toggleClass("menuDisplayed");
-        })
+                })
 
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+        $('.collapse').collapse()
     </script>
 
     @Scripts.Render("~/bundles/jquery")

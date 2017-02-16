@@ -224,6 +224,7 @@
     <Compile Include="Controllers\DelayCommentController.cs" />
     <Compile Include="Controllers\DelayWorkController.cs" />
     <Compile Include="Controllers\Employee_TypeController.cs" />
+    <Compile Include="Controllers\FamilyProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListOrdensController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="Models\DelayComment.cs" />
     <Compile Include="Models\DelayWork.cs" />
     <Compile Include="Models\Employee_type.cs" />
+    <Compile Include="Models\FamilyProduct.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrdenDetail.cs" />
@@ -454,6 +456,10 @@
     <Content Include="Views\Users\ListNewUsers.cshtml" />
     <Content Include="Views\Users\NewUserRequest.cshtml" />
     <Content Include="Views\Admin\ListNewRequest.cshtml" />
+    <Content Include="Views\FamilyProduct\Index.cshtml" />
+    <Content Include="Views\FamilyProduct\Create.cshtml" />
+    <Content Include="Views\FamilyProduct\Edit.cshtml" />
+    <Content Include="Views\FamilyProduct\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -462,6 +468,7 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

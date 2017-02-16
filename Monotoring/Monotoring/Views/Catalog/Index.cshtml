@@ -1,28 +1,33 @@
-﻿    @model IEnumerable<Monotoring.Models.Catalog>
+﻿@model IEnumerable<Monotoring.Models.Catalog>
 
 @{
-    ViewBag.Title = "Catalogo";
+    ViewBag.Title = "Productos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Productos</h2>
+<h2>Porductos</h2>
 
 <p>
     @Html.ActionLink("Nuevo producto", "Create")
 </p>
 <table class="table">
     <tr>
+        
         <th>
             @Html.DisplayNameFor(model => model.CatalogNo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CatalogDescrip)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FamilyProduct.nameFamily)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        
         <td>
             @Html.DisplayFor(modelItem => item.CatalogNo)
         </td>
@@ -30,14 +35,13 @@
             @Html.DisplayFor(modelItem => item.CatalogDescrip)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.CatalogId }) |           
+            @Html.DisplayFor(modelItem => item.FamilyProduct.nameFamily)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.CatalogId }) |
             @Html.ActionLink("Eliminar", "Delete", new { id=item.CatalogId })
         </td>
     </tr>
 }
 
 </table>
-
-<ul class="pager">
-    <li class="previous"><a href="/Admin/"><span aria-hidden="true">&larr;</span>Regresar</a></li>
-</ul>

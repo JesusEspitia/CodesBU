@@ -1,17 +1,24 @@
 ﻿@model Monotoring.Models.Catalog
 
 @{
-    ViewBag.Title = "Eliminar Producto";
+    ViewBag.Title = "Eliminar producto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Eliminar</h2>
+<h2>Eliminar Producto</h2>
 
-<h3>¿Esta seguro que desea eliminar el siguiente producto?</h3>
+<h3>¿Seguro que desa continuar con la elmiminación?</h3>
 <div>
-    
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FamilyProduct.nameFamily)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FamilyProduct.nameFamily)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.CatalogNo)
         </dt>

@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Monotoring.Models;
 using Monotoring.Context;
+using Monotoring.Models;
 
 namespace Monotoring.Controllers
 {
-    public class CatalogController : Controller
+    public class FamilyProductController : Controller
     {
         private TrackContext context = new TrackContext();
-        // GET: Catalog
+        // GET: FamilyProduct
         public ActionResult Index()
         {
             if (Convert.ToString(Session["userType"]) == "3")
             {
-                var cat = context.Catalog.Include("FamilyProduct").ToList();
-                //ViewBag.Family = new SelectList(context.FamilyProduct, "FamilyProductId", "nameFamily");
-                return View(cat);
+                var model = context.FamilyProduct.ToList();
+                return View(model);
             }
             else
             {
@@ -26,20 +25,18 @@ namespace Monotoring.Controllers
             }
         }
 
-        // GET: Catalog/Details/5
+        // GET: FamilyProduct/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Catalog/Create
-        [HttpGet]
+        // GET: FamilyProduct/Create
         public ActionResult Create()
         {
             if (Convert.ToString(Session["userType"]) == "3")
             {
-                ViewBag.Family = new SelectList(context.FamilyProduct, "FamilyProductId", "nameFamily");
-                return View(new Catalog());
+                return View(new FamilyProduct());
             }
             else
             {
@@ -47,26 +44,23 @@ namespace Monotoring.Controllers
             }
         }
 
-        // POST: Catalog/Create
+        // POST: FamilyProduct/Create
         [HttpPost]
-        public ActionResult Create(Catalog catalog)
+        public ActionResult Create(FamilyProduct model)
         {
             try
             {
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    ViewBag.Family = new SelectList(context.FamilyProduct, "FamilyProductId", "nameFamily");
-                    context.Catalog.Add(catalog);
+                    context.FamilyProduct.Add(model);
                     context.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ViewBag.Family = new SelectList(context.FamilyProduct, "FamilyProductId", "nameFamily");
                     return View();
                 }
-                
             }
             catch
             {
@@ -74,15 +68,13 @@ namespace Monotoring.Controllers
             }
         }
 
-        // GET: Catalog/Edit/5
-        [HttpGet]
-        public ActionResult Edit(int id=0)
+        // GET: FamilyProduct/Edit/5
+        public ActionResult Edit(int id)
         {
             if (Convert.ToString(Session["userType"]) == "3")
             {
-                ViewBag.Family = new SelectList(context.FamilyProduct, "FamilyProductId", "nameFamily");
-                Catalog c = context.Catalog.Find(id);
-                return View(c);
+                var model = context.FamilyProduct.Find(id);
+                return View(model);
             }
             else
             {
@@ -90,23 +82,21 @@ namespace Monotoring.Controllers
             }
         }
 
-        // POST: Catalog/Edit/5
+        // POST: FamilyProduct/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Catalog catalog)
+        public ActionResult Edit(int id, FamilyProduct model)
         {
             try
             {
                 // TODO: Add update logic here
                 if (ModelState.IsValid)
                 {
-                    ViewBag.Family = new SelectList(context.FamilyProduct, "FamilyProductId", "nameFamily");
-                    context.Entry(catalog).State = System.Data.Entity.EntityState.Modified;
+                    context.Entry(model).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ViewBag.Family = new SelectList(context.FamilyProduct, "FamilyProductId", "nameFamily");
                     return View();
                 }
             }
@@ -116,14 +106,13 @@ namespace Monotoring.Controllers
             }
         }
 
-        // GET: Catalog/Delete/5
-        public ActionResult Delete(int id=0)
+        // GET: FamilyProduct/Delete/5
+        public ActionResult Delete(int id)
         {
             if (Convert.ToString(Session["userType"]) == "3")
             {
-
-                var cat = context.Catalog.Find(id);
-                return View(cat);
+                var model = context.FamilyProduct.Find(id);
+                return View(model);
             }
             else
             {
@@ -131,19 +120,27 @@ namespace Monotoring.Controllers
             }
         }
 
-        // POST: Catalog/Delete/5
+        // POST: FamilyProduct/Delete/5
         [HttpPost,ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeletedConfirmed(int id)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var cat = context.Catalog.Find(id);
-                context.Catalog.Remove(cat);
-                context.SaveChanges();
-                return RedirectToAction("Index");
+                // TODO: Add delete logic here
+                if (ModelState.IsValid)
+                {
+                    var model = context.FamilyProduct.Find(id);
+                    context.FamilyProduct.Remove(model);
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
             }
-            else
+            catch
             {
                 return View();
             }

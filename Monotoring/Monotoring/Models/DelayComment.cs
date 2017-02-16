@@ -13,6 +13,8 @@ namespace Monotoring.Models
         public int DelayCommentId { get; set; }
         [DisplayName("Retraso")]
         public int DelayWorkId { get; set; }
+        [DisplayName("Título")]
+        public string titleComment { get; set; }
         [DisplayName("Comentario")]
         public string Comment { get; set; }
         [DataType(DataType.Date)]

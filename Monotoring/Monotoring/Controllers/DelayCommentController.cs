@@ -28,7 +28,7 @@ namespace Monotoring.Controllers
                     DelayComment model = new DelayComment();
                     model.DelayWorkId = id;
                     model.dateComment = DateTime.Now;
-                    model.UsersId = (int)Session["userType"];
+                    model.UsersId = (int)Session["userId"];
                     return View(model);
                 }
                 else
@@ -69,7 +69,7 @@ namespace Monotoring.Controllers
         {
             try
             {
-                var comment = context.DelayComment.Where(c => c.DelayWorkId == id).ToList();
+                var comment = context.DelayComment.Include("Users").Where(c => c.DelayWorkId == id).ToList();
 
                 //ViewBag.Comments = commet.ToList();
                 return View(comment);
