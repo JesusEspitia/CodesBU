@@ -232,22 +232,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702092235197_migration15.cs" />
-    <Compile Include="Migrations\201702092235197_migration15.Designer.cs">
-      <DependentUpon>201702092235197_migration15.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702092354203_migration16.cs" />
-    <Compile Include="Migrations\201702092354203_migration16.Designer.cs">
-      <DependentUpon>201702092354203_migration16.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702140110228_migration22.cs" />
-    <Compile Include="Migrations\201702140110228_migration22.Designer.cs">
-      <DependentUpon>201702140110228_migration22.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702141839344_migracion23.cs" />
-    <Compile Include="Migrations\201702141839344_migracion23.Designer.cs">
-      <DependentUpon>201702141839344_migracion23.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
@@ -478,21 +462,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702092235197_migration15.resx">
-      <DependentUpon>201702092235197_migration15.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702092354203_migration16.resx">
-      <DependentUpon>201702092354203_migration16.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702140110228_migration22.resx">
-      <DependentUpon>201702140110228_migration22.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702141839344_migracion23.resx">
-      <DependentUpon>201702141839344_migracion23.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

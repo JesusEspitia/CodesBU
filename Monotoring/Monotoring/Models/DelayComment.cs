@@ -19,8 +19,12 @@ namespace Monotoring.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha")]
         public DateTime dateComment { get; set; }
+        [DisplayName("Autor")]
+        public int UsersId { get; set; }
 
         [ForeignKey("DelayWorkId")]
         public DelayWork DelayWork { get; set; }
+        [ForeignKey("UsersId")]
+        public Users Users { get; set; }
     }
 }

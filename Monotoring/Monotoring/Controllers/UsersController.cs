@@ -24,8 +24,15 @@ namespace Monotoring.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            var user = context.Users.Include("Area").Include("Type").ToList();
-            return View(user);
+            if (Convert.ToString(Session["userType"]) == "3")
+            {
+                var user = context.Users.Include("Area").Include("Type").ToList();
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Users/Details/5
@@ -96,12 +103,19 @@ namespace Monotoring.Controllers
         // GET: Users/Create
         public ActionResult Create(string username="")
         {
-            //var type = context.Employee_type.ToList();
-            ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId","NameType");
-            ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
-            Users model = new Users();
-            model.username = username;
-            return View(model);
+            if (Convert.ToString(Session["userType"]) == "3")
+            {
+                //var type = context.Employee_type.ToList();
+                ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
+                ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
+                Users model = new Users();
+                model.username = username;
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Users/Create
@@ -143,10 +157,17 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
-            ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
-            Users user = context.Users.Find(id);
-            return View(user);
+            if (Convert.ToString(Session["userType"]) == "3")
+            {
+                ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
+                ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
+                Users user = context.Users.Find(id);
+                return View(user);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Users/Edit/5
@@ -178,8 +199,15 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            var model = context.Users.Find(id);
-            return View(model);
+            if (Convert.ToString(Session["userType"]) == "3")
+            {
+                var model = context.Users.Find(id);
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Users/Delete/5
@@ -209,16 +237,23 @@ namespace Monotoring.Controllers
         }
         public ActionResult ListNewUsers()
         {
-            using (var ctx = new PrincipalContext(ContextType.Domain, "global.baxter.com"))
+            if (Convert.ToString(Session["userType"]) == "3")
             {
-                using(var searcher = new PrincipalSearcher(new UserPrincipal(ctx)))
+                using (var ctx = new PrincipalContext(ContextType.Domain, "global.baxter.com"))
                 {
-                    var listUsers = searcher.FindAll();
-                    ViewBag.UsersList = listUsers.ToList();
+                    using (var searcher = new PrincipalSearcher(new UserPrincipal(ctx)))
+                    {
+                        var listUsers = searcher.FindAll();
+                        ViewBag.UsersList = listUsers.ToList();
+                    }
                 }
+
+                return View();
             }
-           
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         public bool ValidUserExists(string username)
         {

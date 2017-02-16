@@ -14,7 +14,7 @@ namespace Monotoring.Controllers
         // GET: Area
         public ActionResult Index()
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 var area = context.Area.ToList();
 
@@ -36,7 +36,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
                 return View(new Area());
@@ -76,7 +76,7 @@ namespace Monotoring.Controllers
         public ActionResult Edit(int id=0)
         {
             //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 Area a = context.Area.Find(id);
                 return View(a);
@@ -117,7 +117,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Delete(int id=0)
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 var area = context.Area.Find(id);
                 //ViewBag.Users = new SelectList(context.Users, "UsersId", "username");

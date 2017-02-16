@@ -40,6 +40,7 @@
             this.btnUpdateCatalog.TabIndex = 0;
             this.btnUpdateCatalog.Text = "Actualizar Catalogo";
             this.btnUpdateCatalog.UseVisualStyleBackColor = true;
+            this.btnUpdateCatalog.Click += new System.EventHandler(this.btnUpdateCatalog_Click);
             // 
             // btnUpdateOrden
             // 

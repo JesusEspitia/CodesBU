@@ -97,16 +97,29 @@ namespace Monotoring.Controllers
                 }
                 if (UserIsNotRegister(model.UserName) == true)
                 {
-                    Session["userName"] = model.UserName;
+                    //Session["userName"] = model.UserName;
                     var userLst = from u in context.Users
                                   where u.username == model.UserName
                                   select u;
                     var list = userLst.ToList();
+                    int type = 0;
                     foreach (var item in list)
                     {
+                        Session["userName"] = item.fullname;
                         Session["userId"] = item.UsersId;
-                        Session["userType"] = item.TypeId;
+                        type = item.TypeId;
                         Session["userAreaId"] = item.AreaId;
+                    }
+                    if (type != 0)
+                    {
+                        var t = from e in context.Employee_type
+                                where e.Employee_typeId == type
+                                select e;
+                        var tl = t.ToList();
+                        foreach(var item in tl)
+                        {
+                            Session["userType"] = item.permission;
+                        }
                     }
 
                     return this.RedirectToAction("Index", "Home");

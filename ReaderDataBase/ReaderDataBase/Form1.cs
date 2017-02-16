@@ -25,7 +25,7 @@ namespace ReaderDataBase
         {
             con = new ConnectAccess();
             mycon = new MySqlConnect();
-            con.getCatalog();
+            //con.getCatalog();
             con.ReadDataBase();
             //mycon.InsertCatalog(Form1.catalog.lstCatalog);
             //con.ReadDataBase();
@@ -35,6 +35,20 @@ namespace ReaderDataBase
         private void btnUpdateOrden_Click(object sender, EventArgs e)
         {
             mycon.InsertValues(Form1.orden.lstOrden);
+        }
+
+        private void btnUpdateCatalog_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                con.getCatalog();
+                mycon.InsertCatalog(Form1.catalog.lstCatalog);
+                MessageBox.Show("Actualización extiosa");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

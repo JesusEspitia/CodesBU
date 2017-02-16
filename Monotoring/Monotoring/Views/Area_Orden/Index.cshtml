@@ -185,7 +185,10 @@
                                     @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = o.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
                                     @if (o.DelayWork == null)
                                     {
-                                        @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = o.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                        @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = o.WorkOrden.WorkOrdenId }, 
+                                       new AjaxOptions() { HttpMethod = "GET" }, 
+                                       new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom"
+                                       , @title = "Indicar algún retraso en el trabajo" })
                                     }
                                     else
                                     {

@@ -14,7 +14,7 @@ namespace Monotoring.Controllers
         // GET: DelayCode
         public ActionResult Index()
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 var code = context.DelayCode.ToList();
                 return View(code);
@@ -35,7 +35,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 return View(new DelayCode());
             }
@@ -74,7 +74,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Edit(int id=0)
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 var code = context.DelayCode.Find(id);
                 return View(code);
@@ -113,7 +113,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Delete(int id=0)
         {
-            if (Convert.ToString(Session["userType"]) == "1")
+            if (Convert.ToString(Session["userType"]) == "3")
             {
                 var code = context.DelayCode.Find(id);
                 return View(code);

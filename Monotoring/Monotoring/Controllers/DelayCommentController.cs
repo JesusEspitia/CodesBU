@@ -24,9 +24,11 @@ namespace Monotoring.Controllers
                 if (Convert.ToString(Session["userType"]) != "")
                 {
                     ViewBag.DelayWork = new SelectList(context.DelayWork, "DelayWorkId", "DelayWorkId");
+                    ViewBag.Users = new SelectList(context.Users, "UsersId", "fullname");
                     DelayComment model = new DelayComment();
                     model.DelayWorkId = id;
                     model.dateComment = DateTime.Now;
+                    model.UsersId = (int)Session["userType"];
                     return View(model);
                 }
                 else

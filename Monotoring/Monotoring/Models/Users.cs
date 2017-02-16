@@ -17,7 +17,8 @@ namespace Monotoring.Models
         [DisplayName("Nombre de usuario")]
         public string username { get; set; }
         //[RegularExpression(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")]
-        
+        [DisplayName("Nombre completo")]
+        public string fullname { get; set; }
         [DisplayName("Cargo")]
         public int TypeId { get; set; }
         [DisplayName("Área")]
@@ -31,6 +32,7 @@ namespace Monotoring.Models
         //public ICollection<Area> Area { get; set; }
         public ICollection<DelayWork> DelayWork { get; set; }
         public ICollection<Area_Orden> Area_Orden { get; set; }
+        public ICollection<DelayComment> DelayComment { get; set; }
 
         private TrackContext context = new TrackContext();
 
