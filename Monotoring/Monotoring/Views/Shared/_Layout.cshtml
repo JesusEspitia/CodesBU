@@ -75,7 +75,11 @@
                 @switch (userType)
                 {
                     case 3:
+                        <li><a href="#">Dashboard</a></li>
                             <li>@Html.ActionLink("Administrador","Index","Admin")</li>
+                            <li>@Html.ActionLink("Usuarios","Index","Users")</li>
+                            <li>@Html.ActionLink("Catalogo","Index","Catalog")</li> 
+                            <li>@Html.ActionLink("Configuraciones","Index","Config")</li>                          
                         break;
                     case 2:
                             <li><a href="#">Dashboard</a></li>

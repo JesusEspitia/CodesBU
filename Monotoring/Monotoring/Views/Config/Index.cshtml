@@ -1,0 +1,167 @@
+﻿@using Monotoring.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h1><span class="glyphicon glyphicon-cog"></span> <small>Configuraciones</small></h1>
+</div>
+
+<div class="container">    
+    <div class="row">
+        <!--áreas-->
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Áreas</h2>
+                </div>
+                <div class="panel-body">
+                    <p>Áreas existentes que se utilizan en la aplicación.</p>
+                    <p class="text-right">@Ajax.ActionLink("Agregar Nuevo","Create","Area",null,new AjaxOptions { HttpMethod = "GET" },new { @class = "label label-primary" })</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    Área
+                                    </thclass="text-center">
+                                <th class="text-center">
+                                    Días máximos
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Area item in ViewBag.Area)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @item.AreaName
+                                    </td>
+                                    <td class="text-center">
+                                        @item.daysMax
+                                    </td>
+                                    <td>
+                                        @Ajax.ActionLink("Editar", "Edit", "Area", new { id=item.AreaId},null) | 
+                                        @Ajax.ActionLink("Elminar","Delete","Area",new { id=item.AreaId},null)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Fin areas-->
+        <!--Familias-->
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Familias de catalogo</h2>
+                </div>
+                <div class="panel-body">
+                    <p>Las diferentes familias (grupos) a los qyue pertenecen los productos del catalogo.</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Familia</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(FamilyProduct item in ViewBag.Family)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        @item.nameFamily
+                                    </td>
+                                    <td>
+                                        @Ajax.ActionLink("Editar","Edit","FamilyProduct", new { id = item.FamilyProductId },null) | 
+                                        @Ajax.ActionLink("Eliminar","Delete","FamilyProduct", new { id = item.FamilyProductId },null)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Fin familia-->
+    </div>   
+    <!--row2-->
+    <div class="row">
+        <!--Permisos de empleado-->
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h class="panel-tittle">Cargos</h>
+                </div>
+                <div class="panel-body">
+                    <p>Los cargos y el nivel de permisos o acceso de cada uno.</p>
+                </div>
+                <div class="table-reponsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Cargo</th>
+                                <th class="text-center">Nivel</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Employee_type item in ViewBag.Employee)
+                            {
+                            <tr>
+                                <td class="text-center">@item.NameType</td>
+                                <td class="text-center">@item.permission</td>
+                                <td>
+                                    @Ajax.ActionLink("Editar","Edit","Employee_type",new { id=item.Employee_typeId},null) | 
+                                    @Ajax.ActionLink("Eliminar","Delete","Employee_type", new { id=item.Employee_typeId},null)
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Códigos-->
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h class="panel-tittle">Motivos de retraso</h>
+                </div>
+                <div class="panel-body">
+                    <p>Los códigos o identificadores para los retrasoso que se generen en las
+                    ordenes de trabajo.</p>
+                </div>
+                <div class="table-reponsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DelayCode item in ViewBag.Code)
+                            {
+                            <tr>
+                                <td>@item.DelayName</td>
+                                <td>
+                                    @Ajax.ActionLink("Editar", "Edit", "DelayCode", new { id = item.DelayCodeId }, null) |
+                                    @Ajax.ActionLink("Eliminar", "Delete", "DelayCode", new { id = item.DelayCodeId }, null)
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
