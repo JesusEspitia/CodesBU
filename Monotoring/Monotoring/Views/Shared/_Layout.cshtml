@@ -75,18 +75,40 @@
                 @switch (userType)
                 {
                     case 3:
-                            <li>@Html.ActionLink("Dashboard","Index","Dashboard")</li>
+                            @*<li>@Html.ActionLink("Dashboard ", "Index","Dashboard")<span class="glyphicon glyphicon-blackboard"></span></li>
                             <li>@Html.ActionLink("Administrador","Index","Admin")</li>
-                            <li>@Html.ActionLink("Usuarios","Index","Users")</li>
-                            <li>@Html.ActionLink("Catalogo","Index","Catalog")</li> 
-                            <li>@Html.ActionLink("Configuraciones","Index","Config")</li>                          
+                            <li>@Html.ActionLink("Usuarios","Index","Users")<span class="glyphicon glyphicon-user"></span></li>
+                            <li>@Html.ActionLink("Catalogo","Index","Catalog")<span class="glyphicon glyphicon-book"></span></li> 
+                            <li>@Html.ActionLink("Configuraciones","Index","Config")<span class="glyphicon glyphicon-cog"</li>*@
+                            <li>
+                                <a href="@Url.Action("Index","Dashboard")">
+                                    <span class="glyphicon glyphicon-blackboard"></span> Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","Users")">
+                                    <span class="glyphicon glyphicon-user"></span> Usuarios
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","Catalog")">
+                                    <span class="glyphicon glyphicon-book"></span> Catalogo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","Config")">
+                                    <span class="glyphicon glyphicon-cog"></span> Configuraciones
+                                </a>
+                            </li>
                         break;
                     case 2:
-                            <li><a href="#">Dashboard</a></li>
+                            <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")<span class="glyphicon glyphicon-blackboard"></span></li>
+                            <li>@Html.ActionLink("Ordenes de trabajo", "Index", "Area_Orden")<span class="glyphicon glyphicon-wrench"></span></li>
+                            <li>@Html.ActionLink("Notificaciones", "Index", "ListOrdens")<span class="glyphicon glyphicon-bell"></span></li>
                         break;
                     case 1:
-                            <li>@Html.ActionLink("Ordenes de trabajo", "Index", "Area_Orden") </li>
-                            <li>@Html.ActionLink("Notificaciones", "Index", "ListOrdens")</li>
+                        <li>@Html.ActionLink("Ordenes de trabajo", "Index", "Area_Orden")<span class="glyphicon glyphicon-wrench"></span></li>
+                            <li>@Html.ActionLink("Notificaciones", "Index", "ListOrdens")<span class="glyphicon glyphicon-bell"></span></li>
                         break;
                 }                
             </div>

@@ -17,6 +17,8 @@ namespace Monotoring.Controllers
             {
                 var orden = context.WorkOrden.Include("Catalog").Where(o => o.dateStart != null).ToList();
                 ViewBag.Orden = orden;
+                var delay = context.DelayWork.Include("WorkOrden").Include("DelayCode").Include("Users").ToList();
+                ViewBag.Delay = delay;
                 return View();
             }
             else
