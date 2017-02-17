@@ -18,7 +18,7 @@
                 </div>
                 <div class="panel-body">
                     <p>Áreas existentes que se utilizan en la aplicación.</p>
-                    <p class="text-right">@Ajax.ActionLink("Agregar Nuevo","Create","Area",null,new AjaxOptions { HttpMethod = "GET" },new { @class = "label label-primary" })</p>
+                    <h4 class="text-right">@Ajax.ActionLink("Agregar Nuevo","Create","Area",null,new AjaxOptions { HttpMethod = "GET" },new { @class = "label label-primary" })</h4>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -63,6 +63,7 @@
                 </div>
                 <div class="panel-body">
                     <p>Las diferentes familias (grupos) a los qyue pertenecen los productos del catalogo.</p>
+                    <h4 class="text-right">@Ajax.ActionLink("Agregar Nuevo", "Create", "FamilyProduct", null, new AjaxOptions { HttpMethod = "GET" }, new { @class = "label label-primary" })</h4>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -102,6 +103,7 @@
                 </div>
                 <div class="panel-body">
                     <p>Los cargos y el nivel de permisos o acceso de cada uno.</p>
+                    <h4 class="text-right">@Ajax.ActionLink("Agregar Nuevo", "Create", "Employee_type", null, new AjaxOptions { HttpMethod = "GET" }, new { @class = "label label-primary" })</h4>
                 </div>
                 <div class="table-reponsive">
                     <table class="table table-striped">
@@ -138,6 +140,7 @@
                 <div class="panel-body">
                     <p>Los códigos o identificadores para los retrasoso que se generen en las
                     ordenes de trabajo.</p>
+                    <h4 class="text-right">@Ajax.ActionLink("Agregar Nuevo", "Create", "DelayCode", null, new AjaxOptions { HttpMethod = "GET" }, new { @class = "label label-primary" })</h4>
                 </div>
                 <div class="table-reponsive">
                     <table class="table table-striped">

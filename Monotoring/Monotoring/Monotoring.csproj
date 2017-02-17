@@ -221,6 +221,7 @@
     <Compile Include="Controllers\Area_OrdenController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\ConfigController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DelayCodeController.cs" />
     <Compile Include="Controllers\DelayCommentController.cs" />
     <Compile Include="Controllers\DelayWorkController.cs" />
@@ -462,6 +463,7 @@
     <Content Include="Views\FamilyProduct\Edit.cshtml" />
     <Content Include="Views\FamilyProduct\Delete.cshtml" />
     <Content Include="Views\Config\Index.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
