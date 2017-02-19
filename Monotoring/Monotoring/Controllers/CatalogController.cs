@@ -49,7 +49,7 @@ namespace Monotoring.Controllers
 
         // POST: Catalog/Create
         [HttpPost]
-        public ActionResult Create(Catalog catalog)
+        public ActionResult Create(Catalog catalog, HttpPostedFileBase image)
         {
             try
             {
@@ -57,6 +57,11 @@ namespace Monotoring.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.Family = new SelectList(context.FamilyProduct, "FamilyProductId", "nameFamily");
+                    if(image != null)
+                    {
+                        catalog.image = new byte[image.ContentLength];
+                        image.InputStream.Read(catalog.image, 0, image.ContentLength);
+                    }
                     context.Catalog.Add(catalog);
                     context.SaveChanges();
                     return RedirectToAction("Index");
