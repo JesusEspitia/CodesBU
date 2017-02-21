@@ -56,7 +56,7 @@ namespace Monotoring.Controllers
                 {
                     context.DelayCode.Add(code);
                     context.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Config");
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace Monotoring.Controllers
                 {
                     context.Entry(code).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Config");
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace Monotoring.Controllers
                     var code = context.DelayCode.Find(id);
                     context.DelayCode.Remove(code);
                     context.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Config");
                 }
                 else
                 {

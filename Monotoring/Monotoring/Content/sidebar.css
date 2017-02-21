@@ -5,7 +5,7 @@
   width:  0;
   height: 100%;
   overflow-y: hidden;
-  background: #2C3E50;
+  background: #051c96;
 
 }
 
@@ -42,5 +42,5 @@
 }
 
 .sidebar-nav li a:hover{
-  background: #16A085;
+  background: #209eb4;
 }

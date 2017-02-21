@@ -1,10 +1,11 @@
 ﻿@model Monotoring.Models.FamilyProduct
 
 @{
-    ViewBag.Title = "Editar";
+    ViewBag.Title = "Editar - Familia";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>Efitar familia de catalogo</h2>
 
 @using (Html.BeginForm())
 {
@@ -32,5 +33,8 @@
 }
 
 <div>
-    @Html.ActionLink("Regresar", "Index")
+    @*@Html.ActionLink("Regresar", "Index")*@
+    <ul class="pager">
+        <li class="previous"><a href="/Config/"><span aria-hidden="true">&larr;</span>Regresar</a></li>
+    </ul>
 </div>

@@ -27,8 +27,15 @@ namespace Monotoring.Controllers
         {
             try
             {
-                var model = context.UserNewRequest.ToList();
-                return View(model);
+                if (Convert.ToString(Session["userType"]) == "3")
+                {
+                    var model = context.UserNewRequest.ToList();
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             catch
             {
@@ -41,10 +48,17 @@ namespace Monotoring.Controllers
         {
             try
             {
-                var model = context.UserNewRequest.Find(id);
-                context.UserNewRequest.Remove(model);
-                context.SaveChanges();
-                return RedirectToAction("ListNewRequest");
+                if (Convert.ToString(Session["userType"]) == "3")
+                {
+                    var model = context.UserNewRequest.Find(id);
+                    context.UserNewRequest.Remove(model);
+                    context.SaveChanges();
+                    return RedirectToAction("ListNewRequest");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             catch
             {

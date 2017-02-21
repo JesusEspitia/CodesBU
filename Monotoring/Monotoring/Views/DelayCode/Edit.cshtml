@@ -1,10 +1,11 @@
 ﻿@model Monotoring.Models.DelayCode
 
 @{
-    ViewBag.Title = "Editar Código";
+    ViewBag.Title = "Editar - Código de retraso";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h1>Editar código de retraso</h1>
 
 
 @using (Html.BeginForm())
@@ -34,5 +35,8 @@
 }
 
 <div>
-    @Html.ActionLink("Regresar a la lista", "Index")
+    @*@Html.ActionLink("Regresar a la lista", "Index")*@
+    <ul class="pager">
+        <li class="previous"><a href="/Config/"><span aria-hidden="true">&larr;</span>Regresar</a></li>
+    </ul>
 </div>

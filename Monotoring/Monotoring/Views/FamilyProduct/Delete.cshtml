@@ -1,7 +1,7 @@
 ﻿@model Monotoring.Models.FamilyProduct
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar - Familia";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -25,7 +25,8 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Eliminar" class="btn btn-default" /> |
-            @Html.ActionLink("Cancelar", "Index")
+            @*@Html.ActionLink("Cancelar", "Index")*@
+            <a class="btn btn-default" href="/Config/">Cancelar</a>
         </div>
     }
 </div>

@@ -4,14 +4,13 @@
     ViewBag.Title = "Editar - Cargo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<h1>Editar cargo</h1>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Employee_type</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Employee_typeId)
@@ -51,6 +50,6 @@
 <div>
    @* @Html.ActionLink("Back to List", "Index")*@
     <ul class="pager">
-        <li class="previous"><a href="/Employee_Type/"><span aria-hidden="true">&larr;</span>Regresar</a></li>
+        <li class="previous"><a href="/Config/"><span aria-hidden="true">&larr;</span>Regresar</a></li>
     </ul>
 </div>

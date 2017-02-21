@@ -58,7 +58,7 @@ namespace Monotoring.Controllers
                 {
                     context.Area.Add(area);
                     context.SaveChanges();
-                    return Redirect("Index");
+                    return RedirectToAction("Index","Config");
                 }
                 else
                 {
@@ -98,7 +98,7 @@ namespace Monotoring.Controllers
                 {
                     context.Entry(area).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Config");
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace Monotoring.Controllers
             var area = context.Area.Find(id);
             context.Area.Remove(area);
             context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Config");
         }
     }
 }

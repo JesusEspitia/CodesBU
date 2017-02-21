@@ -56,7 +56,7 @@ namespace Monotoring.Controllers
                 {
                     context.Employee_type.Add(emp);
                     context.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Config");
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace Monotoring.Controllers
                 {
                     context.Entry(emp).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Config");
                 }
                 else
                 {
@@ -138,7 +138,7 @@ namespace Monotoring.Controllers
                     var model = context.Employee_type.Find(id);
                     context.Employee_type.Remove(model);
                     context.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Config");
                 }
                 else
                 {
