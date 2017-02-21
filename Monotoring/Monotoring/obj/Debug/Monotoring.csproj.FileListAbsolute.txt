@@ -322,6 +322,11 @@ C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\bin\es\Microsoft.O
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.dll
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.pdb
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csprojResolveAssemblyReference.cache
-C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csprojResolveAssemblyReference.cache
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracionE.resources
 C:\Users\LeoPC\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csproj.GenerateResource.Cache
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracionF.resources
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csproj.GenerateResource.Cache
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracionG.resources
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracionH.resources
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracionJ.resources
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csprojResolveAssemblyReference.cache

@@ -15,7 +15,8 @@ namespace Monotoring.Models
         [DisplayName("Porducto")]
         public string CatalogDescrip { get; set; }
         public int? FamilyProductId { get; set; }
-        public byte[] image{get;set;}
+        [DisplayName("Imagen")]
+        public string image { get; set; }
 
         public ICollection<WorkOrden> WorkOrden { get; set; }
 

@@ -5,12 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Porductos</h2>
+<h2>Productos</h2>
 
 <p>
     @Html.ActionLink("Nuevo producto", "Create")
 </p>
-<table class="table">
+@*<table class="table">
     <tr>
         
         <th>
@@ -44,4 +44,28 @@
     </tr>
 }
 
-</table>
+</table>*@
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+        @foreach (var item in Model)
+        {
+            <div class="media">
+                <div class="media-left media-middle">
+                    <img class="media-object" src="~/fonts/images/@item.image" height="64" width="64" />
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">@Html.DisplayFor(modelItem => item.CatalogDescrip)</h4>
+                    <dl class="dl-horizontal">
+                        <dt>Catalogo:</dt>
+                        <dd>@Html.DisplayFor(modelItem => item.CatalogNo)</dd>
+                        <dt>Familia</dt>
+                        <dd>@Html.DisplayFor(modelItem => item.FamilyProduct.nameFamily)</dd>
+                    </dl>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.CatalogId }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.CatalogId })
+                    <hr />
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -57,10 +57,18 @@ namespace Monotoring.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.Family = new SelectList(context.FamilyProduct, "FamilyProductId", "nameFamily");
-                    if(image != null)
+                    string img = "";
+                    if (image != null)
                     {
-                        catalog.image = new byte[image.ContentLength];
-                        image.InputStream.Read(catalog.image, 0, image.ContentLength);
+
+                        //catalog.image = new byte[image.ContentLength];
+                        //image.InputStream.Read(catalog.image, 0, image.ContentLength);
+                        img = System.IO.Path.GetFileName(image.FileName);
+                        string physicalPath = Server.MapPath("~/fonts/images/" + img);
+
+                        image.SaveAs(physicalPath);
+                        catalog.image = img;
+
                     }
                     context.Catalog.Add(catalog);
                     context.SaveChanges();
@@ -97,7 +105,7 @@ namespace Monotoring.Controllers
 
         // POST: Catalog/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Catalog catalog)
+        public ActionResult Edit(int id, Catalog catalog,HttpPostedFileBase image)
         {
             try
             {
@@ -105,6 +113,19 @@ namespace Monotoring.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.Family = new SelectList(context.FamilyProduct, "FamilyProductId", "nameFamily");
+                    string img = "";
+                    if (image != null)
+                    {
+
+                        //catalog.image = new byte[image.ContentLength];
+                        //image.InputStream.Read(catalog.image, 0, image.ContentLength);
+                        img = System.IO.Path.GetFileName(image.FileName);
+                        string physicalPath = Server.MapPath("~/fonts/images/" + img);
+
+                        image.SaveAs(physicalPath);
+                        catalog.image = img;
+
+                    }
                     context.Entry(catalog).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
                     return RedirectToAction("Index");
