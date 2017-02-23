@@ -42,12 +42,22 @@ namespace Monotoring.Controllers
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
-                    context.WorkOrden.Add(orden);
-                    context.SaveChanges();
-                    return RedirectToAction("Index");
+                    if (ValidBatch(orden.BatchOrden) == false)
+                    {
+                        context.WorkOrden.Add(orden);
+                        context.SaveChanges();
+                        return RedirectToAction("Index");   
+                    }
+                    else
+                    {
+                        ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogDescrip");
+                        this.ModelState.AddModelError(string.Empty, "Esta orden ya se encuentra registrada.");
+                        return View();
+                    }
                 }
                 else
                 {
+                    ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogDescrip");
                     return View();
                 }
                 
@@ -76,12 +86,24 @@ namespace Monotoring.Controllers
                 // TODO: Add update logic here
                 if (ModelState.IsValid)
                 {
-                    context.Entry(orden).State = System.Data.Entity.EntityState.Modified;
-                    context.SaveChanges();
-                    return RedirectToAction("Index");
+                    if (ValidBatch(orden.BatchOrden) == false)
+                    {
+                        ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogDescrip");
+                        context.Entry(orden).State = System.Data.Entity.EntityState.Modified;
+                        context.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+
+                    {
+                        ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogDescrip");
+                        this.ModelState.AddModelError(string.Empty, "El número de la orden ya se encuentra registrado");
+                        return View();
+                    }
                 }
                 else
                 {
+                    ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogDescrip");
                     return View();
                 }
                 
@@ -125,6 +147,22 @@ namespace Monotoring.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        private bool ValidBatch(string batch)
+        {
+            var query = from w in context.WorkOrden
+                        where w.BatchOrden == batch
+                        select w;
+            var lst = query.ToList();
+            if (lst.Count >= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
