@@ -72,14 +72,16 @@
         <!--sideBar-->
         <div id="sidebar-wrapper">
             <div class="sidebar-nav">
-                @switch (userType)
-                {
-                    case 3:
+                
+                    @switch (userType)
+                    {
+
+                        case 3:
                             @*<li>@Html.ActionLink("Dashboard ", "Index","Dashboard")<span class="glyphicon glyphicon-blackboard"></span></li>
-                            <li>@Html.ActionLink("Administrador","Index","Admin")</li>
-                            <li>@Html.ActionLink("Usuarios","Index","Users")<span class="glyphicon glyphicon-user"></span></li>
-                            <li>@Html.ActionLink("Catalogo","Index","Catalog")<span class="glyphicon glyphicon-book"></span></li> 
-                            <li>@Html.ActionLink("Configuraciones","Index","Config")<span class="glyphicon glyphicon-cog"</li>*@
+                    <li>@Html.ActionLink("Administrador","Index","Admin")</li>
+                    <li>@Html.ActionLink("Usuarios","Index","Users")<span class="glyphicon glyphicon-user"></span></li>
+                    <li>@Html.ActionLink("Catalogo","Index","Catalog")<span class="glyphicon glyphicon-book"></span></li>
+                    <li>@Html.ActionLink("Configuraciones","Index","Config")<span class="glyphicon glyphicon-cog"</li>*@
                             <li>
                                 <a href="@Url.Action("Index","Dashboard")">
                                     <span class="glyphicon glyphicon-blackboard"></span> Dashboard
@@ -100,17 +102,44 @@
                                     <span class="glyphicon glyphicon-cog"></span> Configuraciones
                                 </a>
                             </li>
-                        break;
-                    case 2:
-                            <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")<span class="glyphicon glyphicon-blackboard"></span></li>
+                            break;
+                        case 2:
+                            @*<li>@Html.ActionLink("Dashboard", "Index", "Dashboard")<span class="glyphicon glyphicon-blackboard"></span></li>
                             <li>@Html.ActionLink("Ordenes de trabajo", "Index", "Area_Orden")<span class="glyphicon glyphicon-wrench"></span></li>
-                            <li>@Html.ActionLink("Notificaciones", "Index", "ListOrdens")<span class="glyphicon glyphicon-bell"></span></li>
-                        break;
-                    case 1:
-                        <li>@Html.ActionLink("Ordenes de trabajo", "Index", "Area_Orden")<span class="glyphicon glyphicon-wrench"></span></li>
-                            <li>@Html.ActionLink("Notificaciones", "Index", "ListOrdens")<span class="glyphicon glyphicon-bell"></span></li>
-                        break;
-                }                
+                            <li>@Html.ActionLink("Notificaciones", "Index", "Area_Orden")<span class="glyphicon glyphicon-bell"></span></li>*@
+                            <li>
+                                <a href="@Url.Action("Index","Dashboard")">
+                                    <span class="glyphicon glyphicon-blackboard"></span> Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","Area_Orden")">
+                                    <span class="glyphicon glyphicon-wrench"></span> Ordenes de trabajo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","ListOrdens")">
+                                    <span class="glyphicon glyphicon-bell"></span> Notificaciones
+                                </a>
+                            </li>
+                            break;
+                        case 1:
+                        @*<li>@Html.ActionLink("Ordenes de trabajo", "Index", "Area_Orden")<span class="glyphicon glyphicon-wrench"></span></li>
+                        <li>@Html.ActionLink("Notificaciones", "Index", "ListOrdens")<span class="glyphicon glyphicon-bell"></span></li>*@
+                            <li>
+                                <a href="@Url.Action("Index","Area_Orden")">
+                                    <span class="glyphicon glyphicon-wrench"></span> Ordenes de trabajo
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","ListOrdenss")">
+                                    <span class="glyphicon glyphicon-bell"></span> Notificaciones
+                                </a>
+                            </li>
+                            break;
+                    }
+               
+            
             </div>
         </div>
         <!--Page content-->

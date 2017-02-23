@@ -15,6 +15,7 @@
     <div class="table-responsive">
         <table class="table table-bordered">
             <tr>
+                <th>Producto</th>
                 <th>Batch</th>
                 <th>Cantidad</th>
                 <th>Fecha</th>
@@ -23,6 +24,8 @@
             @foreach (WorkOrden item in ViewBag.myModel)
             {
                 <tr>
+                    
+                    <td>@item.Catalog.CatalogDescrip</td>
                     <td>@item.BatchOrden</td>
                     <td>@item.quantityOrden</td>
                     <td>@item.dateRegistry</td>
@@ -31,16 +34,48 @@
                     <td>@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
                 </tr>
             }
+           
         </table>
     </div>
     }
     else
     {
-        <div class="jumbotron">
-            <h1>No hay nuevas ordenes de trabajo.</h1>
-            <p>Puede existir un retraso en alguna área, o no se han dado de alta nuevas ordenes de trabajo.</p>
-        </div>
-    }
+        if (ViewBag.myModel2.Count > 0)
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Producto</th>
+                        <th>Batch</th>
+                        <th>Cantidad</th>
+                        <th>Fecha</th>
+                        <th></th>
+                    </tr>
+                   
+                    @foreach (WorkCatalog item in ViewBag.myModel2)
+                    {
+                        <tr>
+
+                            <td>@item.Catalog.CatalogDescrip</td>
+                            <td>@item.WorkOrden.BatchOrden</td>
+                            <td>@item.WorkOrden.quantityOrden</td>
+                            <td>@item.WorkOrden.dateRegistry</td>
+
+                            @*<td><input type="button" id="btnIniciar" value="Iniciar" class="btn btn-sm btn-default" /></td>*@
+                            <td>@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="jumbotron">
+                <h1>No hay nuevas ordenes de trabajo.</h1>
+                <p>Puede existir un retraso en alguna área, o no se han dado de alta nuevas ordenes de trabajo.</p>
+            </div>
+            }
+        }
 </div>
 
 

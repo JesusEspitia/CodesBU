@@ -1375,9 +1375,33 @@ a.text-danger:focus {
   color: #fff;
   background-color: #337ab7;
 }
+
 a.bg-primary:hover,
 a.bg-primary:focus {
   background-color: #286090;
+}
+.bg-Baxter1 {
+    color:#fff;
+  background-color: #0a6608;
+}
+a.bg-Baxter1:hover,
+a.bg-Baxter1:focus {
+  background-color: #289052;
+}
+.bg-Baxter2 {
+  color:#fff;
+  background-color: #e7251e;
+}
+a.bg-Baxter2:hover,
+a.bg-Baxter2:focus {
+  background-color: #d5350b;
+}
+.bg-Baxter3 {
+  background-color: #ecea0f;
+}
+a.bg-Baxter3:hover,
+a.bg-Baxter3:focus {
+  background-color: #ebfb35;
 }
 .bg-success {
   background-color: #dff0d8;

@@ -14,37 +14,48 @@ namespace Monotoring.Controllers
         // GET: ListOrdens
         public ActionResult Index()
         {
-            int areaId = 0;
-            int userId = 0;
-            if (Session["userName"].ToString() != "" || Session["userName"].ToString() != null)
+            try
             {
-                userId = (int)Session["userId"];
-                areaId = (int)Session["userAreaId"];
-                if (areaId == 1)
+                int areaId = 0;
+                int userId = 0;
+                if (Session["userName"].ToString() != "")
                 {
-                    var model = from w in context.WorkOrden
-                                where w.dateStart == null
-                                select w;
-                    ViewBag.myModel = model.ToList();
-                    return View();
+                    userId = (int)Session["userId"];
+                    areaId = (int)Session["userAreaId"];
+                    if (areaId == 1)
+                    {
+                        //var model = from w in context.WorkOrden
+                        //            where w.dateStart == null
+                        //            select w;
+                        var model = context.WorkOrden.Include("Catalog").Where(m => m.dateStart == null);
+                        ViewBag.myModel = model.ToList();
+                        List<int> lst = new List<int>();
+                        ViewBag.myModel2 = lst.ToList();
+                        return View();
+                    }
+                    else
+                    {
+                        int getArea = getBeforeArea(userId);
+                        var model = from a in context.Area_Orden
+                                    join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
+                                    join c in context.Catalog on w.CatalogId equals c.CatalogId
+                                    where a.AreaId == getArea && a.runOrden == true && a.dateFinish != null
+                                    select new WorkCatalog { WorkOrden = w, Catalog = c };
+                        List<int> lst = new List<int>();
+                        ViewBag.myModel = lst.ToList();
+                        ViewBag.myModel2 = model.ToList();
+                        return View();
+                    }
                 }
                 else
                 {
-                    int getArea = getBeforeArea(userId);
-                    var model = from a in context.Area_Orden
-                                join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
-                                where a.AreaId == getArea && a.runOrden == true && a.dateFinish != null
-                                select w;
-                    ViewBag.myModel = model.ToList();
-                    return View();
+                    return RedirectToAction("Index", "Home");
                 }
             }
-            else
+            catch (Exception ex)
             {
                 return RedirectToAction("Index", "Home");
-            }
-
-            
+            }           
         }
 
         [HttpGet]
