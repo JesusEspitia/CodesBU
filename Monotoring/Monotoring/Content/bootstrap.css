@@ -1403,6 +1403,14 @@ a.bg-Baxter3:hover,
 a.bg-Baxter3:focus {
   background-color: #ebfb35;
 }
+.bg-Baxter4 {
+    color:#fff;
+  background-color: #689691;
+}
+a.bg-Baxter4:hover,
+a.bg-Baxter4:focus {
+  background-color: #ebfb35;
+}
 .bg-success {
   background-color: #dff0d8;
 }
@@ -4515,6 +4523,26 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-right ~ .navbar-right {
     margin-right: 0;
   }
+}
+.navbar-Bax {
+  background-color: #045f81;
+  border-color: #e7e7e7;
+}
+.navbar-Bax .navbar-brand {
+  color: #fff;
+}
+.navbar-Bax .navbar-brand:hover,
+.navbar-Bax .navbar-brand:focus {
+  color: #b5dfe0;
+  background-color: transparent;
+}
+.navbar-Bax .navbar-nav > li > a {
+  color: #fff;
+}
+.navbar-Bax .navbar-nav > li > a:hover,
+.navbar-Bax .navbar-nav > li > a:focus {
+  color: #fff;
+  background-color: #209eb4;
 }
 .navbar-default {
   background-color: #f8f8f8;
