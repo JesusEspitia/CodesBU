@@ -43,22 +43,51 @@
         </div>
     </div>*@
     <!--Donas-->
+    
     <div class="row">
-        <div class="col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-body ">
-                    <canvas id="donaChart" width="100" height="100"></canvas>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Resumen mensual</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body ">
+                                <canvas id="donaChart" width="100" height="100"></canvas>
+                            </div>
+                            <div class="panel-footer">
+                                <h2 class="panel-title">Retrasos generados</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body ">
+                                <canvas id="donaChart2" width="100" height="100"></canvas>
+                            </div>
+                            <div class="panel-footer">
+                                <h2 class="panel-title">Ordenes de trabajo finalizadas</h2>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="panel-footer">
-                    <h2 class="panel-title">Retrasos generados</h2>
-                </div>
-            </div>            
+            </div>
         </div>
     </div>
     <!--graficas-->
-    <div class="row ">
-        <div class="col-lg-12">
-            <canvas id="myChart" width="300" height="100"></canvas>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Resumen genera</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row ">
+                    <div class="col-lg-12">
+                        <canvas id="myChart" width="300" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!--Ordenes en ejecución-->
@@ -249,12 +278,35 @@
                     backgroundColor: [
                         "#a922cb",
                         "#12b1b1",
-                        "#089696"
+                        "#a87f26"
                     ],
                     hoverBackgroundColor: [
                         "#8b09ac",
                         "#089696",
-                        "#936a12"
+                        "#966905"
+                    ]
+                }]
+        }
+    });
+
+    var dchart2 = document.getElementById("donaChart2");
+    var myDona2 = new Chart(dchart2, {
+        type: 'doughnut',
+        data: {
+            labels: [
+        "Dentro de tiempo",
+        "Fuera de tiempo"
+            ],
+            datasets: [
+                {
+                    data: [@ViewBag.c7, @ViewBag.c8],
+                    backgroundColor: [
+                        "#429819",
+                        "#d72525"
+                    ],
+                    hoverBackgroundColor: [
+                        "#2c730a",
+                        "#bb0b0b"
                     ]
                 }]
         }

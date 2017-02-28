@@ -16,6 +16,7 @@ namespace Monotoring.Controllers
         private int[,] infoTime = new int[7, 2];
         private string[] tittles = new string[3];
         private int[] countDelay = new int[3];
+        private int[,] resumeInOut = new int[2,1];
         // GET: Dashboard
         public ActionResult Index()
         {
@@ -33,7 +34,12 @@ namespace Monotoring.Controllers
                 ViewBag.c4 = countDelay[0];
                 ViewBag.c5 = countDelay[1];
                 ViewBag.c6 = countDelay[2];
-                for(int i = 0; i < 7; i++)
+
+                OrdensInfo();
+                ViewBag.c7 = resumeInOut[0,0];
+                ViewBag.c8 = resumeInOut[1, 0];
+
+                for (int i = 0; i < 7; i++)
                 {
                     setDatas(new DateTime(DateTime.Now.Year, i + 1, 1), new DateTime(DateTime.Now.Year, i + 1, 1).AddMonths(1).AddDays(-1), i);
                 }
@@ -116,14 +122,16 @@ namespace Monotoring.Controllers
             }
         }
 
-        private void OrdensInfo(DateTime start, DateTime finish)
+        private void OrdensInfo()
         {
             inTime = 0;
             outTime = 0;
+            DateTime now = DateTime.Now;
+            DateTime start = now.AddMonths(-1);
             //var count= context.WorkOrden.Where(c => ((DateTime)c.dateFinish - (DateTime)c.dateStart).TotalDays <= 12).Where(c => ((DateTime)c.dateFinish).Day >= ((DateTime)start).Day && ((DateTime)c.dateFinish).Day <= ((DateTime)finish).Day ).Count();
             //int x = (int)count;
             var count = (from w in context.WorkOrden
-                         where w.dateFinish != null && w.dateFinish >= start && w.dateFinish <= finish
+                         where w.dateFinish != null && w.dateFinish >= start && w.dateFinish <= now
                          select w);
             var query = from a in context.Area
                         select a;
@@ -139,8 +147,8 @@ namespace Monotoring.Controllers
                     outTime++;
                 }
             }
-            infoTime[x, 0] = inTime;
-            infoTime[x, 1] = outTime;
+            resumeInOut[0, 0] = inTime;
+            resumeInOut[1, 0] = outTime;
         }
     }
 

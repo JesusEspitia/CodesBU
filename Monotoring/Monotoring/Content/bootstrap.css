@@ -1411,6 +1411,14 @@ a.bg-Baxter4:hover,
 a.bg-Baxter4:focus {
   background-color: #ebfb35;
 }
+.bg-Baxter-default {
+    color:#000000;
+  background-color: #c6bfbf;
+}
+a.bg-Baxter4:hover,
+a.bg-Baxter4:focus {
+  background-color: #ebfb35;
+}
 .bg-success {
   background-color: #dff0d8;
 }
