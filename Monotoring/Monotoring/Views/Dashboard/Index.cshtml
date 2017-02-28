@@ -10,7 +10,7 @@
 
 <div class="container">
     <!--paneles de resumen-->
-    <div class="row">
+    @*<div class="row">
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-body bg-Baxter1">
@@ -41,6 +41,19 @@
                 </div>
             </div>
         </div>
+    </div>*@
+    <!--Donas-->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body ">
+                    <canvas id="donaChart" width="100" height="100"></canvas>
+                </div>
+                <div class="panel-footer">
+                    <h2 class="panel-title">Retrasos generados</h2>
+                </div>
+            </div>            
+        </div>
     </div>
     <!--graficas-->
     <div class="row ">
@@ -53,7 +66,7 @@
         <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h2 class="panel-title">Ordenes en ejecucíon <span class="badge">@ViewBag.Orden.Count</span></h2>
+                    <h2 class="panel-title">Ordenes en ejecución <span class="badge">@ViewBag.Orden.Count</span></h2>
                 </div>   
                 <div class="panel-body">
                     <p></p>
@@ -149,7 +162,7 @@
     var mychart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO"],
+            labels: ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"],
             datasets: [
                 {
                     label: "Ordenes liberadas dentro de tiempo",
@@ -221,5 +234,30 @@
         },
     });
 
+    var dchart = document.getElementById("donaChart");
+    var myDona = new Chart(dchart, {
+        type: 'doughnut',
+        data: {
+            labels: [
+        "@ViewBag.c1",
+        "@ViewBag.c2",
+        "@ViewBag.c3"
+            ],
+            datasets: [
+                {
+                    data: [@ViewBag.c4, @ViewBag.c5, @ViewBag.c6],
+                    backgroundColor: [
+                        "#a922cb",
+                        "#12b1b1",
+                        "#089696"
+                    ],
+                    hoverBackgroundColor: [
+                        "#8b09ac",
+                        "#089696",
+                        "#936a12"
+                    ]
+                }]
+        }
+    });
 
 </script>

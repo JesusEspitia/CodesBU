@@ -14,6 +14,8 @@ namespace Monotoring.Controllers
         private int inTime = 0;
         private int outTime = 0;
         private int[,] infoTime = new int[7, 2];
+        private string[] tittles = new string[3];
+        private int[] countDelay = new int[3];
         // GET: Dashboard
         public ActionResult Index()
         {
@@ -23,6 +25,14 @@ namespace Monotoring.Controllers
                 ViewBag.Orden = orden;
                 var delay = context.DelayWork.Include("WorkOrden").Include("DelayCode").Include("Users").ToList();
                 ViewBag.Delay = delay;
+
+                getDistinctDelays();
+                ViewBag.c1 = tittles[0];
+                ViewBag.c2 = tittles[1];
+                ViewBag.c3 = tittles[2];
+                ViewBag.c4 = countDelay[0];
+                ViewBag.c5 = countDelay[1];
+                ViewBag.c6 = countDelay[2];
                 for(int i = 0; i < 7; i++)
                 {
                     setDatas(new DateTime(DateTime.Now.Year, i + 1, 1), new DateTime(DateTime.Now.Year, i + 1, 1).AddMonths(1).AddDays(-1), i);
@@ -89,6 +99,48 @@ namespace Monotoring.Controllers
             var count = context.DelayWork.Where(c => c.dateFinish != null && c.dateDelay >= start && c.dateFinish <= finish).Count();
 
             return count;
+        }
+        private void getDistinctDelays()
+        {
+            DateTime now = DateTime.Now;
+            DateTime start = now.AddMonths(-1);
+            var qlist = context.DelayCode.Distinct();
+            var codes = qlist.ToList();
+            int i = 0;
+            foreach(var item in codes)
+            {
+                tittles[i]=item.DelayName;
+                var count = context.DelayWork.Where(c => c.dateFinish != null && c.dateFinish >= start && c.dateFinish <= now && c.DelayCodeId== item.DelayCodeId).Count();
+                countDelay[i]=count;
+                i++;
+            }
+        }
+
+        private void OrdensInfo(DateTime start, DateTime finish)
+        {
+            inTime = 0;
+            outTime = 0;
+            //var count= context.WorkOrden.Where(c => ((DateTime)c.dateFinish - (DateTime)c.dateStart).TotalDays <= 12).Where(c => ((DateTime)c.dateFinish).Day >= ((DateTime)start).Day && ((DateTime)c.dateFinish).Day <= ((DateTime)finish).Day ).Count();
+            //int x = (int)count;
+            var count = (from w in context.WorkOrden
+                         where w.dateFinish != null && w.dateFinish >= start && w.dateFinish <= finish
+                         select w);
+            var query = from a in context.Area
+                        select a;
+            var sum = query.Sum(q => q.daysMax);
+            foreach (var item in count.ToList())
+            {
+                if (((DateTime)item.dateFinish - (DateTime)item.dateStart).TotalDays <= (int)sum)
+                {
+                    inTime++;
+                }
+                else
+                {
+                    outTime++;
+                }
+            }
+            infoTime[x, 0] = inTime;
+            infoTime[x, 1] = outTime;
         }
     }
 

@@ -1382,7 +1382,7 @@ a.bg-primary:focus {
 }
 .bg-Baxter1 {
     color:#fff;
-  background-color: #0a6608;
+  background-color: rgba(55, 207, 52, 0.66);
 }
 a.bg-Baxter1:hover,
 a.bg-Baxter1:focus {

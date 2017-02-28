@@ -235,21 +235,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702201727515_migracionF.cs" />
-    <Compile Include="Migrations\201702201727515_migracionF.Designer.cs">
-      <DependentUpon>201702201727515_migracionF.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702201852156_migracionG.cs" />
-    <Compile Include="Migrations\201702201852156_migracionG.Designer.cs">
-      <DependentUpon>201702201852156_migracionG.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702201859261_migracionH.cs" />
-    <Compile Include="Migrations\201702201859261_migracionH.Designer.cs">
-      <DependentUpon>201702201859261_migracionH.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702202351018_migracionJ.cs" />
-    <Compile Include="Migrations\201702202351018_migracionJ.Designer.cs">
-      <DependentUpon>201702202351018_migracionJ.cs</DependentUpon>
+    <Compile Include="Migrations\201702281718485_Migracion28.cs" />
+    <Compile Include="Migrations\201702281718485_Migracion28.Designer.cs">
+      <DependentUpon>201702281718485_Migracion28.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -473,7 +461,6 @@
     <Content Include="Views\DelayComment\New.cshtml" />
     <Content Include="Views\DelayComment\List.cshtml" />
     <Content Include="Views\Users\ListNewUsers.cshtml" />
-    <Content Include="Views\Users\NewUserRequest.cshtml" />
     <Content Include="Views\Admin\ListNewRequest.cshtml" />
     <Content Include="Views\FamilyProduct\Index.cshtml" />
     <Content Include="Views\FamilyProduct\Create.cshtml" />
@@ -481,6 +468,7 @@
     <Content Include="Views\FamilyProduct\Delete.cshtml" />
     <Content Include="Views\Config\Index.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Users\NewUserRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -490,20 +478,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702201727515_migracionF.resx">
-      <DependentUpon>201702201727515_migracionF.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702201852156_migracionG.resx">
-      <DependentUpon>201702201852156_migracionG.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702201859261_migracionH.resx">
-      <DependentUpon>201702201859261_migracionH.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702202351018_migracionJ.resx">
-      <DependentUpon>201702202351018_migracionJ.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702281718485_Migracion28.resx">
+      <DependentUpon>201702281718485_Migracion28.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

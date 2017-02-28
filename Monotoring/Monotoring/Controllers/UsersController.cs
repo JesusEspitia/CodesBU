@@ -235,26 +235,7 @@ namespace Monotoring.Controllers
                 return View();
             }
         }
-        public ActionResult ListNewUsers()
-        {
-            if (Convert.ToString(Session["userType"]) == "3")
-            {
-                using (var ctx = new PrincipalContext(ContextType.Domain, "global.baxter.com"))
-                {
-                    using (var searcher = new PrincipalSearcher(new UserPrincipal(ctx)))
-                    {
-                        var listUsers = searcher.FindAll();
-                        ViewBag.UsersList = listUsers.ToList();
-                    }
-                }
-
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
+     
         public bool ValidUserExists(string username)
         {
             using(var domainContext = new PrincipalContext(ContextType.Domain, "global.baxter.com"))
@@ -287,6 +268,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult NewUserRequest()
         {
+            ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
             return View(new UserNewRequest());
         }
         [HttpPost]
@@ -296,12 +278,14 @@ namespace Monotoring.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
                     context.UserNewRequest.Add(model);
                     context.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
+                    ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
                     return View();
                 }
             }

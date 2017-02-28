@@ -21,6 +21,6 @@ namespace Monotoring.Models
 
         public ICollection<Users> Users { get; set; }
         public ICollection<Area_Orden> Area_Orden { get; set; }
-        
+        public ICollection<UserNewRequest> UserNewRequest { get; set; }
     }
 }
