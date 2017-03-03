@@ -16,5 +16,16 @@ namespace PlasticReport
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Conciliacion c = new Conciliacion();
+            c.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show(DateTime.Now.DayOfYear.ToString());
+        }
     }
 }
