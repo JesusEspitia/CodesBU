@@ -8,13 +8,40 @@
 
 <br />
 <br />
-<br />
-<br />
+
+
+<div class="row">
+    <div class="col-lg-4 col-lg-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">Descripción de colores</div>
+            <div class="panel-body">
+                <p class="bg-info text-center">Trabajo <strong>finalizado</strong></p>
+                <p class="bg-success text-center">Trabajando, <strong>dentro de tiempo</strong></p>
+                <p class="bg-warning text-center">Trabajando, <strong>tiempo máximo por alcanzar</strong></p>
+                <p class="bg-danger text-center">Trabajando, <strong>fuera de tiempo</strong></p>
+            </div>            
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">Descripción de simbolos</div>
+            <div class="panel-body">
+                <p class="text-center"><span class="glyphicon glyphicon-ok"></span> Dentro de tiempo</p>
+                <p class="text-center"><span class="glyphicon glyphicon-exclamation-sign"></span> En el tiempo máximo</p>
+                <p class="text-center"><span class="glyphicon glyphicon-remove"></span> Fuera de tiempo</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 @*<dvi class="container-fluid">*@
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead >
                 <tr>
+                    <th class="text-center">
+                        No. catalogo
+                    </th>
                     <th class="text-center">
                         Producto
                     </th>
@@ -51,6 +78,7 @@
                     int dayscount = 0;
                     
                     <tr>
+                        <td class="text-center">@w.Catalog.CatalogNo</td>
                         <td class="text-center">@w.Catalog.CatalogDescrip</td>
                         <td class="text-center">
                             @Html.ActionLink(w.WorkOrden.BatchOrden, "Index", "OrdenDetail", new { id = w.WorkOrden.WorkOrdenId },new { @data_toggle = "tooltip", @data_placement = "rigth", @title = "Detalles" })                           
@@ -182,25 +210,7 @@
 @*</dvi>*@
 
 
-<div class="row">
-    <div class="col-lg-4 col-lg-offset-8">
-        <div class="panel panel-default">
-            <div class="panel-heading">Descripción de colores</div>
-            <div class="panel-body">
-                <p class="bg-info text-center">Trabajo <strong>finalizado</strong></p>
-                <p class="bg-success text-center">Trabajando, <strong>dentro de tiempo</strong></p>
-                <p class="bg-warning text-center">Trabajando, <strong>tiempo máximo por alcanzar</strong></p>
-                <p class="bg-danger text-center">Trabajando, <strong>fuera de tiempo</strong></p>
-            </div>
-            <div class="panel-heading">Descripción de simbolos</div>
-            <div class="panel-body">
-                <p class="text-center"><span class="glyphicon glyphicon-ok"></span> Dentro de tiempo</p>
-                <p class="text-center"><span class="glyphicon glyphicon-exclamation-sign"></span> En el tiempo máximo</p>
-                <p class="text-center"><span class="glyphicon glyphicon-remove"></span> Fuera de tiempo</p>
-            </div>
-        </div>
-    </div>    
-</div>
+
 
 
 

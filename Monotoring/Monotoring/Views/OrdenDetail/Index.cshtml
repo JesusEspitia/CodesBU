@@ -7,7 +7,7 @@
 <h1>@ViewBag.Batch</h1>
 @foreach (WorkCatalog item in Model.WorkCatalog)
 {
-    <h1 class="page-header">Orden: @item.WorkOrden.BatchOrden</h1>
+    <h1 class="page-header">Catalogo:@item.Catalog.CatalogNo / Orden: @item.WorkOrden.BatchOrden</h1>
 }
 
     <div class="tabbable-panel">
@@ -129,6 +129,10 @@
                                     <dd>@(Math.Round(((DateTime)item.Area_Orden.dateFinish - (DateTime)item.Area_Orden.dateStart).TotalDays, 2))</dd>
                                     <dt>Estado:</dt>
                                     <dd>Finalizado</dd>
+                                    <dt>Fecha de inicio:</dt>
+                                    <dd>@item.Area_Orden.dateStart</dd>
+                                    <dt>Fecha de terminación:</dt>
+                                    <dd>@item.Area_Orden.dateFinish</dd>
                                 }
                                 else
                                 {
