@@ -14,5 +14,6 @@ namespace Monotoring.Models
         public string DelayName { get; set; }
 
         public ICollection<DelayWork> DelayWork { get; set; }
+        public ICollection<SubCodes> SubCodes { get; set; }
     }
 }

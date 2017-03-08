@@ -16,7 +16,8 @@ namespace Monotoring.Models
         [DisplayName("Tipo de retraso")]
         public int DelayCodeId { get; set; }
         [DisplayName("Descripción del retraso")]
-        public string descripDelay { get; set; }
+        public int SubCodesId { get; set; }
+        //public string descripDelay { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")]
@@ -36,6 +37,8 @@ namespace Monotoring.Models
         [ForeignKey("UsersId")]
         [DisplayName("Usuario")]
         public Users Users { get; set; }
+        [ForeignKey("SubCodesId")]
+        public SubCodes SubCodes { get; set; }
 
         public ICollection<DelayComment> DelayComment { get; set; }
     }

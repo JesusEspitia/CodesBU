@@ -256,6 +256,7 @@
     <Compile Include="Models\OrdenDetail.cs" />
     <Compile Include="Controllers\OrdenDetailController.cs" />
     <Compile Include="Models\OrdensView.cs" />
+    <Compile Include="Models\SubCodes.cs" />
     <Compile Include="Models\UserNewRequest.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\WorkCatalog.cs" />
