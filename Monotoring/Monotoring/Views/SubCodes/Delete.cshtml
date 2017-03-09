@@ -1,0 +1,40 @@
+﻿@model Monotoring.Models.SubCodes
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<div>
+    <h4>SubCodes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DelayCode.DelayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DelayCode.DelayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripCode)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

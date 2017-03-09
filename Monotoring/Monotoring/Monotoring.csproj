@@ -230,14 +230,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListOrdensController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SubCodesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WorkOrdenController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702281718485_Migracion28.cs" />
-    <Compile Include="Migrations\201702281718485_Migracion28.Designer.cs">
-      <DependentUpon>201702281718485_Migracion28.cs</DependentUpon>
+    <Compile Include="Migrations\201703081716560_migracionK.cs" />
+    <Compile Include="Migrations\201703081716560_migracionK.Designer.cs">
+      <DependentUpon>201703081716560_migracionK.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -470,6 +471,9 @@
     <Content Include="Views\Config\Index.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Users\NewUserRequest.cshtml" />
+    <Content Include="Views\SubCodes\Create.cshtml" />
+    <Content Include="Views\SubCodes\Edit.cshtml" />
+    <Content Include="Views\SubCodes\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -479,10 +483,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702281718485_Migracion28.resx">
-      <DependentUpon>201702281718485_Migracion28.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703081716560_migracionK.resx">
+      <DependentUpon>201703081716560_migracionK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

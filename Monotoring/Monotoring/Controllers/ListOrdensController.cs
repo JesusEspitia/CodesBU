@@ -126,7 +126,14 @@ namespace Monotoring.Controllers
                     wo.dateStart = DateTime.Now;
                 }
             }
-
+            var ar=from u in context.Users
+                  where u.UsersId==user
+                  select u;
+            
+            foreach(var item in ar.ToList())
+            {
+                area = (int)item.AreaId;
+            }
             Area_Orden ord = new Area_Orden()
             {
                 AreaId = area,

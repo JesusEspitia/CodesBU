@@ -24,6 +24,8 @@ namespace Monotoring.Controllers
                 ViewBag.Family = family;
                 var code = context.DelayCode.ToList();
                 ViewBag.Code = code;
+                var sub = context.SubCodes.ToList();
+                ViewBag.Sub = sub;
                 return View();
             }
             else

@@ -24,5 +24,6 @@ namespace Monotoring.Context
         public DbSet<DelayComment> DelayComment { get; set; }
         public DbSet<UserNewRequest> UserNewRequest { get; set; }
         public DbSet<FamilyProduct> FamilyProduct { get; set; }
+        public DbSet<SubCodes> SubCodes { get; set; }
     }
 }

@@ -103,12 +103,13 @@ namespace Monotoring.Controllers
                                   select u;
                     var list = userLst.ToList();
                     int type = 0;
+                    int idarea = 0;
                     foreach (var item in list)
                     {
                         Session["userName"] = item.fullname;
                         Session["userId"] = item.UsersId;
                         type = item.TypeId;
-                        Session["userAreaId"] = item.AreaId;
+                        idarea = (int)item.AreaId;
                     }
                     if (type != 0)
                     {
@@ -119,6 +120,17 @@ namespace Monotoring.Controllers
                         foreach(var item in tl)
                         {
                             Session["userType"] = item.permission;
+                        }
+                    }
+                    if (idarea != 0)
+                    {
+                        var a = from r in context.Area
+                                where r.AreaId == idarea
+                                select r;
+                        var al = a.ToList();
+                        foreach(var item in al)
+                        {
+                            Session["userAreaId"] = item.orden;
                         }
                     }
 

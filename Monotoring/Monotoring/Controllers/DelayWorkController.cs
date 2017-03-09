@@ -34,8 +34,10 @@ namespace Monotoring.Controllers
                 model.WorkOrdenId = id;
                 model.UsersId = (int)Session["userId"];
                 model.dateDelay = DateTime.Now;
+                //model.DelayCodeId = code;
                 ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
                 ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
+                //ViewBag.Sub = new SelectList(context.SubCodes.Where(c => c.DelayCodeId == code),"SubCodesId","DescripCode");
                 //ViewBag.WorkOrden = id;
                 ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
                 return View(model);
@@ -178,6 +180,12 @@ namespace Monotoring.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+        } 
+
+        public ActionResult FillDescp(int code)
+        {
+            var codes = context.SubCodes.Where(c => c.DelayCodeId == code);
+            return Json(codes, JsonRequestBehavior.AllowGet);
         }
     }
 }

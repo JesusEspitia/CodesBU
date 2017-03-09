@@ -31,16 +31,16 @@
         <div class="form-group">
             @Html.Label("Tipo de retraso", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("DelayCodeId", ViewBag.DelayCode as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("DelayCodeId", ViewBag.DelayCode as SelectList, htmlAttributes: new { @class = "form-control", @onchange = "FillDescp()" })
                 @Html.ValidationMessageFor(model => model.DelayCodeId, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>       
 
         <div class="form-group">
-            @Html.LabelFor(model => model.descripDelay, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-lg-10 ">
-                @Html.TextAreaFor(model => model.descripDelay,  new { @class = "form-control", @rows="4", @col="40" } )
-                @Html.ValidationMessageFor(model => model.descripDelay, "", new { @class = "text-danger" })
+            @Html.Label("Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m=>m.SubCodesId,new SelectList(Enumerable.Empty<SelectListItem>(),"SubCodesId","DescripCode"),"Descripción", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SubCodesId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -84,4 +84,22 @@
     $(function(){
       $('.datetimepicker1').datepicker();
     });
+
+
+    function FillDescp() {
+        var codeId = $('#code').val();
+        $.ajax({
+            url: '/DelayWork/FillDescp',
+            type: "POST",
+            dataType: "JSON",
+            data: { SubCodes: codeId },
+            success: function (codes) {
+                $("#SubCodesId").html("");
+                $.each(codes, function (i, code) {
+                    $("#SubCodesId").append(
+                        $('<option></option>').val(code.SubCodesId).html(code.DescripCode));
+                });
+            }
+        });
+    }
 </script>

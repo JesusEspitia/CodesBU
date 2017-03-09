@@ -17,7 +17,6 @@ namespace Monotoring.Models
         public int DelayCodeId { get; set; }
         [DisplayName("Descripción del retraso")]
         public int SubCodesId { get; set; }
-        //public string descripDelay { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")]

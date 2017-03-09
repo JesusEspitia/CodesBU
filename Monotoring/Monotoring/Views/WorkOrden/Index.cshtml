@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Ordenes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nueva Orden", "Create")
 </p>
 <table class="table">
     <tr>
@@ -39,7 +39,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CatalogId)
+            @Html.DisplayFor(modelItem => item.Catalog.CatalogNo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BatchOrden)

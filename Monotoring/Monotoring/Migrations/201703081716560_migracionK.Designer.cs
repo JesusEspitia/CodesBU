@@ -7,13 +7,13 @@ namespace Monotoring.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Migracion28 : IMigrationMetadata
+    public sealed partial class migracionK : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Migracion28));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(migracionK));
         
         string IMigrationMetadata.Id
         {
-            get { return "201702281718485_Migracion28"; }
+            get { return "201703081716560_migracionK"; }
         }
         
         string IMigrationMetadata.Source

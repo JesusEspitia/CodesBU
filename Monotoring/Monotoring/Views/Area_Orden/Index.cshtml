@@ -132,6 +132,7 @@
                                             @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
                                             @if (arrayOrd[1].DelayWork == null)
                                             {
+                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalRetraso">Retraso</button>
                                                 @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
                                             }
                                             else
@@ -359,19 +360,16 @@
 
 
     <!--Modal code-->
-    <div class="modal fade" id="modalComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="modalRetraso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dissmiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Comentario.</h4>
+                    <h4 class="modal-title" id="myModalLabel">Seleccione el tipo de retraso.</h4>
                 </div>
-
                 <div class="modal-body">
-                    <p>Información acerca del avance o estado del retraso:</p>
-                    <form class="">
-                        <textarea class="form-control" rows="8"></textarea>
-                    </form>
+                    <button class="btn btn-default">Calidad</button>
+                   <button class="btn btn-default">Operación/Producción</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dissmiss="modal">Cancelar</button>

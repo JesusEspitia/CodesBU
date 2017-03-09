@@ -14,7 +14,7 @@ namespace Monotoring.Controllers
         // GET: WorkOrden
         public ActionResult Index()
         {
-            var orden = context.WorkOrden.ToList();
+            var orden = context.WorkOrden.Include("Catalog").ToList();
             return View(orden);
         }
 
@@ -28,7 +28,7 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogDescrip");
+            ViewBag.Catalog = new SelectList(context.Catalog, "CatalogId", "CatalogNo");
             return View(new WorkOrden());
         }
 

@@ -17,6 +17,7 @@ namespace Monotoring.Models
         public string descripArea { get; set; }
         [DisplayName("Días Máximos")]
         public int daysMax { get; set; }
+        public int orden { get; set; }
 
 
         public ICollection<Users> Users { get; set; }

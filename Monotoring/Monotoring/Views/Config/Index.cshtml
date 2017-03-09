@@ -167,4 +167,41 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Detalles</h2>
+                </div>
+                <div class="panel-body">
+                    <p>Descripción de los posibles retrasos que se generan en la orden</p>
+                    <h4 class="text-right">@Ajax.ActionLink("Agregar Nuevo", "Create", "SubCodes", null, new AjaxOptions { HttpMethod = "GET" }, new { @class = "label label-primary" })</h4>
+                </div>
+                <div class="table-reponsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Descripción</th>
+                                <th></th>
+                            </tr>
+                          
+                        </thead>
+                        <tbody>
+                            @foreach (SubCodes item in ViewBag.Sub)
+                            {
+                                <tr>
+                                    <td>@item.DescripCode</td>
+                                    <td>
+                                        @Ajax.ActionLink("Editar", "Edit", "SubCodes", new { id = item.SubCodesId }, null) |
+                                        @Ajax.ActionLink("Eliminar", "Delete", "SubCodes", new { id = item.SubCodesId }, null)
+                                    </td>
+                                </tr>
+                                
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

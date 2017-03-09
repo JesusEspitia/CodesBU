@@ -14,27 +14,31 @@
     {
     <div class="table-responsive">
         <table class="table table-bordered">
-            <tr>
-                <th>Producto</th>
-                <th>Batch</th>
-                <th>Cantidad</th>
-                <th>Fecha</th>
-                <th></th>
-            </tr>
-            @foreach (WorkOrden item in ViewBag.myModel)
-            {
+            <thead>
                 <tr>
-                    
+                    <th>No. Catalogo</th>
+                    <th>Producto</th>
+                    <th>Batch</th>
+                    <th>Cantidad</th>
+                    <th>Fecha</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (WorkOrden item in ViewBag.myModel)
+                {
+                    <tr>
+                        <td>@item.Catalog.CatalogNo</td>
                     <td>@item.Catalog.CatalogDescrip</td>
                     <td>@item.BatchOrden</td>
                     <td>@item.quantityOrden</td>
                     <td>@item.dateRegistry</td>
-                    
+
                     @*<td><input type="button" id="btnIniciar" value="Iniciar" class="btn btn-sm btn-default" /></td>*@
                     <td>@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
                 </tr>
-            }
-           
+                }
+            </tbody>
         </table>
     </div>
     }
