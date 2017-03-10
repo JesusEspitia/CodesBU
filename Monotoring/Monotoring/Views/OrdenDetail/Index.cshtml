@@ -84,7 +84,7 @@
                                 <dt>Tipo:</dt>
                                 <dd>@item.DelayCode.DelayName</dd>
                                 <dt>Descripción:</dt>
-                                <dd>@item.DelayWork.descripDelay</dd>
+                                <dd>@item.SubCodes.DescripCode</dd>
                                 @if (item.DelayWork.dateFinish != null)
                                 {
                                     <dt>Estado:</dt>
@@ -102,6 +102,8 @@
                                     <dd>Detenido</dd>
                                     <dt>Fecha de inicio:</dt>
                                     <dd>@item.DelayWork.dateDelay</dd>
+                                    <dt>Área:</dt>
+                                    <dd>@item.Area.AreaName</dd>
                                 }
                                 <dt>
                                     @Ajax.ActionLink("Comentarios", "List", "DelayComment", new { id = item.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "text-rigth", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })

@@ -185,7 +185,8 @@ namespace Monotoring.Controllers
         public ActionResult FillDescp(int code)
         {
             var codes = context.SubCodes.Where(c => c.DelayCodeId == code);
-            return Json(codes, JsonRequestBehavior.AllowGet);
+            var cd = codes.ToList();
+            return Json(cd, JsonRequestBehavior.AllowGet);
         }
     }
 }

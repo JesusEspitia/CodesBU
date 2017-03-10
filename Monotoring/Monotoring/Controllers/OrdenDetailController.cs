@@ -39,8 +39,11 @@ namespace Monotoring.Models
             model.Area = queryArea.ToList();
             var queryDelay = from d in context.DelayWork
                              join c in context.DelayCode on d.DelayCodeId equals c.DelayCodeId
+                             join s in context.SubCodes on  d.SubCodesId equals s.SubCodesId
+                             join u in context.Users on d.UsersId equals u.UsersId
+                             join a in context.Area on u.AreaId equals a.AreaId
                              where d.WorkOrdenId==id
-                             select new DelayArea { DelayWork = d, DelayCode = c };
+                             select new DelayArea { DelayWork = d, DelayCode = c,SubCodes=s, Area=a };
             model.Delay = queryDelay.ToList();
             //var queryArea=
             return View(model);

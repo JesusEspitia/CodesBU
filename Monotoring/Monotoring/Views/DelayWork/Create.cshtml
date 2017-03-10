@@ -31,7 +31,7 @@
         <div class="form-group">
             @Html.Label("Tipo de retraso", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("DelayCodeId", ViewBag.DelayCode as SelectList, htmlAttributes: new { @class = "form-control", @onchange = "FillDescp()" })
+                @Html.DropDownList("DelayCodeId", ViewBag.DelayCode as SelectList,"Seleccione uno", htmlAttributes: new { @class = "form-control", @id="DelayCode", @onchange = "FillDescp()" })
                 @Html.ValidationMessageFor(model => model.DelayCodeId, "", new { @class = "text-danger" })
             </div>
         </div>       
@@ -87,12 +87,14 @@
 
 
     function FillDescp() {
-        var codeId = $('#code').val();
+        var codeId = document.getElementById("DelayCode");
+        var e = codeId.options[codeId.selectedIndex].value;
+        //alert(e);
         $.ajax({
             url: '/DelayWork/FillDescp',
-            type: "POST",
+            type: "GET",
             dataType: "JSON",
-            data: { SubCodes: codeId },
+            data: { 'code': e },
             success: function (codes) {
                 $("#SubCodesId").html("");
                 $.each(codes, function (i, code) {
@@ -102,4 +104,4 @@
             }
         });
     }
-</script>
+</script>   
