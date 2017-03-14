@@ -66,6 +66,13 @@ namespace Monotoring.Controllers
             {
                 Session["stop"] = null;
                 int area = (int)Session["userAreaId"];
+                var ar = from u in context.Area
+                         where u.orden == area
+                         select u;
+                foreach (var item in ar.ToList())
+                {
+                    area = (int)item.AreaId;
+                }
                 var up = from w in context.Area_Orden
                          where w.WorkOrdenId == id && w.AreaId == area
                          select w;

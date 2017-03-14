@@ -37,9 +37,10 @@ namespace Monotoring.Controllers
                     {
                         int getArea = getBeforeArea(userId);
                         var model = from a in context.Area_Orden
+                                    join ar in context.Area on a.AreaId equals ar.AreaId
                                     join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
                                     join c in context.Catalog on w.CatalogId equals c.CatalogId
-                                    where a.AreaId == getArea && a.runOrden == true && a.dateFinish != null
+                                    where ar.orden == getArea && a.runOrden == true && a.dateFinish != null
                                     select new WorkCatalog { WorkOrden = w, Catalog = c };
                         List<int> lst = new List<int>();
                         ViewBag.myModel = lst.ToList();
@@ -79,8 +80,9 @@ namespace Monotoring.Controllers
                 {
                     int getArea = getBeforeArea(userId);
                     var model = from a in context.Area_Orden
+                                join ar in context.Area on a.AreaId equals ar.AreaId
                                 join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
-                                where a.AreaId == getArea && a.runOrden == true && a.dateFinish != null
+                                where ar.orden == getArea && a.runOrden == true && a.dateFinish != null
                                 select w;
                     var lst = model.ToList();
                     return View(lst.Count.ToString());
@@ -129,8 +131,8 @@ namespace Monotoring.Controllers
             var ar=from u in context.Users
                   where u.UsersId==user
                   select u;
-            
-            foreach(var item in ar.ToList())
+
+            foreach (var item in ar.ToList())
             {
                 area = (int)item.AreaId;
             }
@@ -141,10 +143,12 @@ namespace Monotoring.Controllers
                 dateStart = DateTime.Now,
                 runOrden = true
             };
-            if(area != 1)
+            area = (int)Session["userAreaId"];
+            if (area != 1)
             {
                 var slut = from a in context.Area_Orden
-                           where a.WorkOrdenId == id && a.AreaId == (area-1)
+                           join b in context.Area on a.AreaId equals b.AreaId
+                           where a.WorkOrdenId == id && b.orden == (area-1)
                            select a;
                 var slutlst = slut.ToList();
                 foreach(Area_Orden a in slut)

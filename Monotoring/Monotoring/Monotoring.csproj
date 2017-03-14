@@ -240,6 +240,10 @@
     <Compile Include="Migrations\201703081716560_migracionK.Designer.cs">
       <DependentUpon>201703081716560_migracionK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703140053339_magracionT.cs" />
+    <Compile Include="Migrations\201703140053339_magracionT.Designer.cs">
+      <DependentUpon>201703140053339_magracionT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
@@ -372,6 +376,7 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -485,6 +490,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703081716560_migracionK.resx">
       <DependentUpon>201703081716560_migracionK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703140053339_magracionT.resx">
+      <DependentUpon>201703140053339_magracionT.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
