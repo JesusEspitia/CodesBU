@@ -29,6 +29,11 @@ namespace Monotoring.Controllers
                     model.DelayWorkId = id;
                     model.dateComment = DateTime.Now;
                     model.UsersId = (int)Session["userId"];
+                    var commnt = context.DelayWork.Include("SubCodes").Where(c => c.DelayWorkId == id).ToList();
+                    foreach(var item in commnt)
+                    {
+                        model.titleComment =item.SubCodes.DescripCode;
+                    }
                     return View(model);
                 }
                 else

@@ -45,3 +45,32 @@
   background: #209eb4;
   color:#0d0d0c;
 }
+
+.navbar-Bax {
+  background-color: #045f81;
+  border-color: #e7e7e7;
+}
+.navbar-Bax .navbar-brand {
+  color: #fff;
+}
+.navbar-Bax .navbar-brand:hover,
+.navbar-Bax .navbar-brand:focus {
+  color: #b5dfe0;
+  background-color: transparent;
+}
+.navbar-Bax .navbar-nav > li > a {
+  color: #fff;
+}
+.navbar-Bax .navbar-nav > li > a:hover,
+.navbar-Bax .navbar-nav > li > a:focus {
+  color: #fff;
+  background-color: #209eb4;
+}
+
+.bg-BaxColor {
+  background-color: #045f81;
+}
+a.bg-BaxColor:hover,
+a.bg-BaxColor:focus {
+  background-color: #ebfb35;
+}

@@ -4532,7 +4532,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     margin-right: 0;
   }
 }
-.navbar-Bax {
+/*.navbar-Bax {
   background-color: #045f81;
   border-color: #e7e7e7;
 }
@@ -4551,7 +4551,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-Bax .navbar-nav > li > a:focus {
   color: #fff;
   background-color: #209eb4;
-}
+}*/
 .navbar-default {
   background-color: #f8f8f8;
   border-color: #e7e7e7;

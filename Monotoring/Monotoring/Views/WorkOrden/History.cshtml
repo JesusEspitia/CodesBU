@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Monotoring.Models.WorkOrden>
+
+@{
+    ViewBag.Title = "Historial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ordenes finalizadas</h2>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Catalog.CatalogNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchOrden)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateRegistry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateFinish)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantityOrden)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Catalog.CatalogNo)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.BatchOrden)*@
+                    @Ajax.ActionLink(item.BatchOrden, "Index", "OrdenDetail", new { id = item.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateRegistry)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dateFinish)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantityOrden)
+                </td>
+
+
+            </tr>
+
+        }
+    </tbody>
+
+</table>

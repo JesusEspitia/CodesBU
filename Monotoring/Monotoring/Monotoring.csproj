@@ -377,6 +377,8 @@
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\Track.pubxml" />
+    <None Include="Properties\PublishProfiles\track2.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -479,6 +481,7 @@
     <Content Include="Views\SubCodes\Create.cshtml" />
     <Content Include="Views\SubCodes\Edit.cshtml" />
     <Content Include="Views\SubCodes\Delete.cshtml" />
+    <Content Include="Views\WorkOrden\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

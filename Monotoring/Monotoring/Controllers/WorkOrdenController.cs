@@ -150,6 +150,19 @@ namespace Monotoring.Controllers
             }
         }
 
+        public ActionResult History()
+        {
+            try
+            {
+                var model = context.WorkOrden.Include("Catalog").Where(w => w.dateFinish != null).OrderBy(w=>w.dateFinish).ToList();
+                return View(model);
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
         private bool ValidBatch(string batch)
         {
             var query = from w in context.WorkOrden
