@@ -38,6 +38,7 @@ namespace Monotoring.Controllers
                 OrdensInfo();
                 ViewBag.c7 = resumeInOut[0,0];
                 ViewBag.c8 = resumeInOut[1, 0];
+                ViewBag.C9 = resumeInOut[0, 0] / (resumeInOut[0, 0] + resumeInOut[1, 0]);
 
                 for (int i = 0; i < 7; i++)
                 {

@@ -19,6 +19,8 @@ namespace Monotoring.Models
         public int SubCodesId { get; set; }
         [DisplayName("Responsable de las acciones")]
         public string Responsable { get; set; }
+        [DisplayName("Número de reporte que se genero")]
+        public int? ReportNo { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")]

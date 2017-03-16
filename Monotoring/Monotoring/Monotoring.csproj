@@ -244,6 +244,14 @@
     <Compile Include="Migrations\201703140053339_magracionT.Designer.cs">
       <DependentUpon>201703140053339_magracionT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703161832175_migracionU.cs" />
+    <Compile Include="Migrations\201703161832175_migracionU.Designer.cs">
+      <DependentUpon>201703161832175_migracionU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703161856209_migracionN.cs" />
+    <Compile Include="Migrations\201703161856209_migracionN.Designer.cs">
+      <DependentUpon>201703161856209_migracionN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
@@ -496,6 +504,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703140053339_magracionT.resx">
       <DependentUpon>201703140053339_magracionT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703161832175_migracionU.resx">
+      <DependentUpon>201703161832175_migracionU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703161856209_migracionN.resx">
+      <DependentUpon>201703161856209_migracionN.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
