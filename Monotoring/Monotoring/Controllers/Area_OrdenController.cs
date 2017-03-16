@@ -22,8 +22,9 @@ namespace Monotoring.Controllers
                           join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
                           join d in context.DelayWork on w.WorkOrdenId equals d.WorkOrdenId
                           join ar in context.Area on a.AreaId equals ar.AreaId
+                          join c in context.Catalog on w.CatalogId equals c.CatalogId
                           where u.UsersId == id && a.dateFinish == null && d.UsersId == id && d.dateFinish == null
-                          select new OrdensView { WorkOrden = w, DelayWork = d, Area_Orden = a, Area = ar };
+                          select new OrdensView { WorkOrden = w, DelayWork = d, Area_Orden = a, Area = ar, Catalog = c };
                 var modelDelay = lst.ToList();
                 //ViewBag.OrdensDelay = modelOpen;
 
@@ -31,8 +32,9 @@ namespace Monotoring.Controllers
                            join u in context.Users on a.AreaId equals u.AreaId
                            join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
                            join ar in context.Area on a.AreaId equals ar.AreaId
+                           join c in context.Catalog on w.CatalogId equals c.CatalogId
                            where u.UsersId == id && a.dateFinish == null
-                           select new OrdensView { WorkOrden = w, Area_Orden = a, Area = ar };
+                           select new OrdensView { WorkOrden = w, Area_Orden = a, Area = ar, Catalog = c };
                 var modelOpen = lst2.ToList();
                 //ViewBag.OrdensOpen = modelDelay;     
                 foreach (var item in modelDelay.ToList())

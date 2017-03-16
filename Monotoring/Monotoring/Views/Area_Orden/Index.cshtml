@@ -76,9 +76,11 @@
                                 }
                                 <div class="col-lg-5 col-lg-offset-1">
                                     <div class="panel @alert ">
-                                        <div class="panel-heading">Orden: @arrayOrd[0].WorkOrden.BatchOrden</div>
+                                        <div class="panel-heading">Orden/Batch: @arrayOrd[0].WorkOrden.BatchOrden</div>
                                         <div class="panel-body">
                                             <dl class="dl-horizontal">
+                                                <dt>Producto:</dt>
+                                                <dd>@arrayOrd[0].Catalog.CatalogNo</dd>
                                                 <dt>Cantidad:</dt>
                                                 <dd>@arrayOrd[0].WorkOrden.quantityOrden</dd>
                                                 <dt>Días transcurridos:</dt>
@@ -121,9 +123,11 @@
 
                                     }
                                     <div class="panel @alert">
-                                        <div class="panel-heading">Orden: @arrayOrd[1].WorkOrden.BatchOrden</div>
+                                        <div class="panel-heading">Orden/Batch: @arrayOrd[1].WorkOrden.BatchOrden</div>
                                         <div class="panel-body">
                                             <dl class="dl-horizontal">
+                                                <dt>Producto:</dt>
+                                                <dd>@arrayOrd[1].Catalog.CatalogNo</dd>
                                                 <dt>Cantidad:</dt>
                                                 <dd>@arrayOrd[1].WorkOrden.quantityOrden</dd>
                                                 <dt>Días transcurridos:</dt>
@@ -132,7 +136,7 @@
                                             @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
                                             @if (arrayOrd[1].DelayWork == null)
                                             {
-                                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalRetraso">Retraso</button>
+                                                
                                                 @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
                                             }
                                             else
@@ -175,9 +179,11 @@
                         }
                         <div class="col-lg-5 col-lg-offset-1">
                             <div class="panel @alert">
-                                <div class="panel-heading">Orden: @o.WorkOrden.BatchOrden</div>
+                                <div class="panel-heading">Orden/Batch: @o.WorkOrden.BatchOrden</div>
                                 <div class="panel-body">
                                     <dl class="dl-horizontal">
+                                        <dt>Producto:</dt>
+                                        <dd>@o.Catalog.CatalogNo</dd>
                                         <dt>Cantidad:</dt>
                                         <dd>@o.WorkOrden.quantityOrden</dd>
                                         <dt>Días transcurridos:</dt>
@@ -223,9 +229,11 @@
                     {
                                 <div class="col-lg-5 col-lg-offset-1">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">Orden: @arrayOrd[0].WorkOrden.BatchOrden</div>
+                                        <div class="panel-heading">Orden/Batch: @arrayOrd[0].WorkOrden.BatchOrden</div>
                                         <div class="panel-body">
                                             <dl class="dl-horizontal">
+                                                <dt>Producto:</dt>
+                                                <dd>@arrayOrd[0].Catalog.CatalogNo</dd>
                                                 <dt>Cantidad:</dt>
                                                 <dd>@arrayOrd[0].WorkOrden.quantityOrden</dd>
                                                 <dt>Días transcurridos:</dt>
@@ -251,9 +259,11 @@
                     {
                                 <div class="col-lg-5 ">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">Orden: @arrayOrd[1].WorkOrden.BatchOrden</div>
+                                        <div class="panel-heading">Orden/Batch: @arrayOrd[1].WorkOrden.BatchOrden</div>
                                         <div class="panel-body">
                                             <dl class="dl-horizontal">
+                                                <dt>Producto:</dt>
+                                                <dd>@arrayOrd[1].Catalog.CatalogNo</dd>
                                                 <dt>Cantidad:</dt>
                                                 <dd>@arrayOrd[1].WorkOrden.quantityOrden</dd>
                                                 <dt>Días transcurridos:</dt>
@@ -287,9 +297,11 @@
                     <div class="row">
                         <div class="col-lg-5 col-lg-offset-1">
                             <div class="panel panel-default">
-                                <div class="panel-heading">Orden: @o.WorkOrden.BatchOrden</div>
+                                <div class="panel-heading">Orden/Batch: @o.WorkOrden.BatchOrden</div>
                                 <div class="panel-body">
                                     <dl class="dl-horizontal">
+                                        <dt>Producto:</dt>
+                                        <dd>@o.Catalog.CatalogNo</dd>
                                         <dt>Cantidad:</dt>
                                         <dd>@o.WorkOrden.quantityOrden</dd>
                                         <dt>Días transcurridos:</dt>

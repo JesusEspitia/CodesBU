@@ -11,5 +11,6 @@ namespace Monotoring.Models
         public DelayWork DelayWork { get; set; }
         public Area_Orden Area_Orden { get; set; }
         public Area Area { get; set; }
+        public Catalog Catalog { get; set; }
     }
 }

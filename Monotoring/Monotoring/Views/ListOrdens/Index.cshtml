@@ -20,7 +20,7 @@
                     <th>Producto</th>
                     <th>Batch</th>
                     <th>Cantidad</th>
-                    <th>Fecha</th>
+                    <th>Fecha de registro</th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,15 +28,14 @@
                 @foreach (WorkOrden item in ViewBag.myModel)
                 {
                     <tr>
-                        <td>@item.Catalog.CatalogNo</td>
-                    <td>@item.Catalog.CatalogDescrip</td>
-                    <td>@item.BatchOrden</td>
-                    <td>@item.quantityOrden</td>
-                    <td>@item.dateRegistry</td>
-
-                    @*<td><input type="button" id="btnIniciar" value="Iniciar" class="btn btn-sm btn-default" /></td>*@
-                    <td>@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
-                </tr>
+                        <td>@item.Catalog.CatalogNo/@item.Catalog.CatalogNo</td>
+                        <td>@item.Catalog.CatalogDescrip</td>
+                        <td>@item.BatchOrden</td>
+                        <td>@item.quantityOrden</td>
+                        <td>@item.dateRegistry</td>
+                        @*<td><input type="button" id="btnIniciar" value="Iniciar" class="btn btn-sm btn-default" /></td>*@
+                        <td>@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
+                    </tr>
                 }
             </tbody>
         </table>
