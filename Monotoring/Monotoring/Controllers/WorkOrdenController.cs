@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Monotoring.Models;
 using Monotoring.Context;
+using System.IO;
+using OfficeOpenXml;
+using Microsoft.Office.Interop.Excel;
 
 namespace Monotoring.Controllers
 {
@@ -178,5 +181,90 @@ namespace Monotoring.Controllers
                 return false;
             }
         }
+
+
+        public ActionResult Generate()
+        {
+            var model = context.WorkOrden.Include("Catalog").Where(o => o.dateStart == null).ToList();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Update(FormCollection formCollection)
+        {
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["fileUp"];
+                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                    //using(var package= new ExcelPackage(file.InputStream))
+                    //{
+                    //    var currentSheet = package.Workbook.Worksheets;
+                    //    var workSheet = currentSheet.First();
+                    //    var noOfCol = workSheet.Dimension.End.Column;
+                    //    var noOfRow = workSheet.Dimension.End.Row;
+                    //    for(int rowIterator = 2; rowIterator == noOfRow; rowIterator++)
+                    //    {
+                    //        string x = workSheet.Cells[rowIterator, 2].Value.ToString();
+                    //    }
+                    //}
+                    Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+                    Microsoft.Office.Interop.Excel.Workbook xlWorkBook = xlApp.Workbooks.Open(fileName);
+                    Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                    Microsoft.Office.Interop.Excel.Range range;
+                    range = xlWorkSheet.Range["A:A"];
+                    int catId=0;
+                    int itera = 0;
+                    foreach (Microsoft.Office.Interop.Excel.Range r in range)
+                    {
+                        if (Convert.ToString(r.Cells[1, 1].Value) == "" || Convert.ToString(r.Cells[1, 1].Value)==null)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if (itera > 0)
+                            {
+                                if (ValidBatch(Convert.ToString(r.Cells[1, 3].Value)) == false)
+                                {
+                                    string catNo = Convert.ToString(r.Cells[1, 2].Value);
+
+                                    var q = from c in context.Catalog
+                                            where c.CatalogNo == catNo
+                                            select c;
+
+                                    var lst = q.ToList();
+                                    foreach (var item in lst)
+                                    {
+                                        catId = (int)item.CatalogId;
+                                    }
+                                    WorkOrden orden = new WorkOrden()
+                                    {
+                                        BatchOrden = Convert.ToString(r.Cells[1, 3].Value),
+                                        CatalogId = catId,
+                                        quantityOrden = Convert.ToInt32(r.Cells[1, 8].Value),
+                                        dateRegistry = DateTime.Now
+                                    };
+                                    context.WorkOrden.Add(orden);
+                                }
+
+                            }
+                            itera = 1;
+                        }
+                    }
+                    context.SaveChanges();
+                }
+                return RedirectToAction("Generate");
+            }
+            else
+            {
+                return RedirectToAction("Generate");
+            }
+        }
+
     }
 }

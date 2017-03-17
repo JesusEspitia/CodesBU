@@ -329,4 +329,6 @@ C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.c
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.magracionT.resources
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracionU.resources
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracionN.resources
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\bin\EPPlus.dll
+C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\bin\EPPlus.xml
 C:\Users\_espitl1\Documents\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csprojResolveAssemblyReference.cache
