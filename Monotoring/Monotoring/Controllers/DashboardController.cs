@@ -38,11 +38,12 @@ namespace Monotoring.Controllers
                 OrdensInfo();
                 ViewBag.c7 = resumeInOut[0,0];
                 ViewBag.c8 = resumeInOut[1, 0];
-                ViewBag.C9 = resumeInOut[0, 0] / (resumeInOut[0, 0] + resumeInOut[1, 0]);
+                ViewBag.C9 = Math.Round((double)resumeInOut[0, 0] / (resumeInOut[0, 0] + resumeInOut[1, 0]),2);
 
                 for (int i = 0; i < 7; i++)
                 {
-                    setDatas(new DateTime(DateTime.Now.Year, i + 1, 1), new DateTime(DateTime.Now.Year, i + 1, 1).AddMonths(1).AddDays(-1), i);
+                    setDatas(new DateTime(DateTime.Now.Year, i + 1, 1),
+                        new DateTime(DateTime.Now.Year, i + 1, 1).AddMonths(1).AddDays(-1), i);
                 }
                 ViewBag.d1 = infoTime[0,0];
                 ViewBag.d2 = infoTime[1,0];

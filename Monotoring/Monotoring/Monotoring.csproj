@@ -227,6 +227,7 @@
     <Compile Include="Controllers\DelayWorkController.cs" />
     <Compile Include="Controllers\Employee_TypeController.cs" />
     <Compile Include="Controllers\FamilyProductController.cs" />
+    <Compile Include="Controllers\GenerateOrdenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListOrdensController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -490,6 +491,7 @@
     <Content Include="Views\SubCodes\Edit.cshtml" />
     <Content Include="Views\SubCodes\Delete.cshtml" />
     <Content Include="Views\WorkOrden\History.cshtml" />
+    <Content Include="Views\GenerateOrden\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -512,7 +514,9 @@
       <DependentUpon>201703161856209_migracionN.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\GenereteOrden\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
