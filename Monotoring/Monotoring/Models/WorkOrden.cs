@@ -14,7 +14,7 @@ namespace Monotoring.Models
         public int WorkOrdenId { get; set; }
         [DisplayName("Producto")]
         public int  CatalogId { get; set; }
-        [DisplayName("No. de orden")]
+        [DisplayName("No. de orden / Batch")]
         public string BatchOrden { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]

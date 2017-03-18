@@ -4,10 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br />
-<br />
-<br />
-<br />
+<div class="page-header">
+    <h1>Nuevas ordenes</h1>
+</div>
 
 <div class="container-fluid">
     @if (ViewBag.myModel.Count > 0)
@@ -16,25 +15,25 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>No. Catalogo</th>
-                    <th>Producto</th>
-                    <th>Batch</th>
-                    <th>Cantidad</th>
-                    <th>Fecha de registro</th>
-                    <th></th>
+                    <th class="text-center">No. Catalogo</th>
+                    <th class="text-center">Producto</th>
+                    <th class="text-center">Batch</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Fecha de registro</th>
+                    <th class="text-center"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (WorkOrden item in ViewBag.myModel)
                 {
                     <tr>
-                        <td>@item.Catalog.CatalogNo/@item.Catalog.CatalogNo</td>
-                        <td>@item.Catalog.CatalogDescrip</td>
-                        <td>@item.BatchOrden</td>
-                        <td>@item.quantityOrden</td>
-                        <td>@item.dateRegistry</td>
+                        <td class="text-center">@item.Catalog.CatalogNo</td>
+                        <td class="text-center">@item.Catalog.CatalogDescrip</td>
+                        <td class="text-center">@item.BatchOrden</td>
+                        <td class="text-center">@item.quantityOrden</td>
+                        <td class="text-center">@item.dateRegistry</td>
                         @*<td><input type="button" id="btnIniciar" value="Iniciar" class="btn btn-sm btn-default" /></td>*@
-                        <td>@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
+                        <td class="text-center">@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" }) <span class="glyphicon glyphicon-send"></span></td>
                     </tr>
                 }
             </tbody>
@@ -48,24 +47,25 @@
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <tr>
-                        <th>Producto</th>
-                        <th>Batch</th>
-                        <th>Cantidad</th>
-                        <th>Fecha</th>
-                        <th></th>
+                        <th class="text-center">No. Catalogo</th>
+                        <th class="text-center">Producto</th>
+                        <th class="text-center">Batch</th>
+                        <th class="text-center">Cantidad</th>
+                        <th class="text-center">Fecha</th>
+                        <th class="text-center"></th>
                     </tr>
                    
                     @foreach (WorkCatalog item in ViewBag.myModel2)
                     {
                         <tr>
-
-                            <td>@item.Catalog.CatalogDescrip</td>
-                            <td>@item.WorkOrden.BatchOrden</td>
-                            <td>@item.WorkOrden.quantityOrden</td>
-                            <td>@item.WorkOrden.dateRegistry</td>
+                            <td class="text-center">@item.Catalog.CatalogNo</td>
+                            <td class="text-center">@item.Catalog.CatalogDescrip</td>
+                            <td class="text-center">@item.WorkOrden.BatchOrden</td>
+                            <td class="text-center">@item.WorkOrden.quantityOrden</td>
+                            <td class="text-center">@item.WorkOrden.dateRegistry</td>
 
                             @*<td><input type="button" id="btnIniciar" value="Iniciar" class="btn btn-sm btn-default" /></td>*@
-                            <td>@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
+                            <td class="text-center">@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "Post" })</td>
                         </tr>
                     }
                 </table>

@@ -12,47 +12,50 @@
     @Html.ActionLink("Solicitudes de acceso", "ListNewRequest", "Admin")
 </p>
 <table class="table table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fullname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.username)
-        </th> 
-        <th>
-            @Html.DisplayNameFor(model => model.Area.AreaName)
-        </th>        
-        <th>
-            @Html.DisplayNameFor(model => model.Type.NameType)
-        </th>
-         
-        
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fullname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Area.AreaName,ViewBag.Area as SelectList)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type.NameType)
-        </td>
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.fullname)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.username)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Area.AreaName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Type.NameType)
+            </th>
 
 
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.UsersId }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.UsersId })
-        </td>
-    </tr>
-}
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.fullname)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Area.AreaName, ViewBag.Area as SelectList)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Type.NameType)
+                </td>
 
+
+                <td class="text-center">
+                    @Html.ActionLink("Editar", "Edit", new { id = item.UsersId }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.UsersId })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
 @*<ul class="pager">

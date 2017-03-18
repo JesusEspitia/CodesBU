@@ -54,7 +54,7 @@
                         Producto
                     </th>
                     <th class="text-center">
-                        Orden
+                        Orden/Batch
                     </th>
                     <th class="text-center">
                         Ensamble Final
@@ -188,19 +188,19 @@
                         {
                             if ((Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) < 10)
                             {
-                                <td class="success">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
+                                <td class="success text-center">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
                             }
                             else
                             {
                                 if ((Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) >= 10 && (Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) <= 12)
                                 {
-                                    <td class="warning">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
+                                    <td class="warning text-center">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
                                 }
                                 else
                                 {
                                     if ((Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) > 12)
                                     {
-                                        <td class="danger">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
+                                        <td class="danger text-center">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
                                     }
                                 }
                             }
@@ -208,7 +208,7 @@
                         }
                         else
                         {
-                            <td>Sin iniciar</td>
+                            <td text-center>Sin iniciar</td>
                         }
                     </tr>
                 }
@@ -317,7 +317,7 @@
         max = $(document).height() - $(window).height();
         posY = 50;
         //alert(posY);
-        myTime = setInterval(Automatico, 3000);
+        myTime = setInterval(Automatico, 2000);
     }
 
     function scrollStop() {
