@@ -26,7 +26,7 @@ namespace Monotoring.Controllers
                         select new AreaViewModel { Area = ar, Area_Orden = a };
             models.Area_Orden = qArea.ToList();
             //make graphic
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 12; i++)
             {
                 setDatas(new DateTime(DateTime.Now.Year, i + 1, 1), new DateTime(DateTime.Now.Year, i + 1, 1).AddMonths(1).AddDays(-1), i);
             }
@@ -37,22 +37,37 @@ namespace Monotoring.Controllers
             ViewBag.d5 = infoTime[4, 0];
             ViewBag.d6 = infoTime[5, 0];
             ViewBag.d7 = infoTime[6, 0];
+            ViewBag.d8 = infoTime[7, 0];
+            ViewBag.d9 = infoTime[8, 0];
+            ViewBag.d10 = infoTime[9, 0];
+            ViewBag.d11 = infoTime[10, 0];
+            ViewBag.d12 = infoTime[11, 0];
 
-            ViewBag.d8 = infoTime[0, 1];
-            ViewBag.d9 = infoTime[1, 1];
-            ViewBag.d10 = infoTime[2, 1];
-            ViewBag.d11 = infoTime[3, 1];
-            ViewBag.d12 = infoTime[4, 1];
-            ViewBag.d13 = infoTime[5, 1];
-            ViewBag.d14 = infoTime[6, 1];
+            ViewBag.d13 = infoTime[0, 1];
+            ViewBag.d14= infoTime[1, 1];
+            ViewBag.d15 = infoTime[2, 1];
+            ViewBag.d16 = infoTime[3, 1];
+            ViewBag.d17 = infoTime[4, 1];
+            ViewBag.d18 = infoTime[5, 1];
+            ViewBag.d19 = infoTime[6, 1];
+            ViewBag.d20 = infoTime[7, 1];
+            ViewBag.d21 = infoTime[8, 1];
+            ViewBag.d22 = infoTime[9, 1];
+            ViewBag.d23 = infoTime[10, 1];
+            ViewBag.d24 = infoTime[11, 1];
 
-            ViewBag.d15 = setDelayAll(new DateTime(DateTime.Now.Year, 1, 1), new DateTime(DateTime.Now.Year, 1, 1).AddMonths(1).AddDays(-1));
-            ViewBag.d16 = setDelayAll(new DateTime(DateTime.Now.Year, 2, 1), new DateTime(DateTime.Now.Year, 2, 1).AddMonths(1).AddDays(-1));
-            ViewBag.d17 = setDelayAll(new DateTime(DateTime.Now.Year, 3, 1), new DateTime(DateTime.Now.Year, 3, 1).AddMonths(1).AddDays(-1));
-            ViewBag.d18 = setDelayAll(new DateTime(DateTime.Now.Year, 4, 1), new DateTime(DateTime.Now.Year, 4, 1).AddMonths(1).AddDays(-1));
-            ViewBag.d19 = setDelayAll(new DateTime(DateTime.Now.Year, 5, 1), new DateTime(DateTime.Now.Year, 5, 1).AddMonths(1).AddDays(-1));
-            ViewBag.d20 = setDelayAll(new DateTime(DateTime.Now.Year, 6, 1), new DateTime(DateTime.Now.Year, 6, 1).AddMonths(1).AddDays(-1));
-            ViewBag.d21 = setDelayAll(new DateTime(DateTime.Now.Year, 7, 1), new DateTime(DateTime.Now.Year, 7, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d25 = setDelayAll(new DateTime(DateTime.Now.Year, 1, 1), new DateTime(DateTime.Now.Year, 1, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d26 = setDelayAll(new DateTime(DateTime.Now.Year, 2, 1), new DateTime(DateTime.Now.Year, 2, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d27 = setDelayAll(new DateTime(DateTime.Now.Year, 3, 1), new DateTime(DateTime.Now.Year, 3, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d28 = setDelayAll(new DateTime(DateTime.Now.Year, 4, 1), new DateTime(DateTime.Now.Year, 4, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d29 = setDelayAll(new DateTime(DateTime.Now.Year, 5, 1), new DateTime(DateTime.Now.Year, 5, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d30 = setDelayAll(new DateTime(DateTime.Now.Year, 6, 1), new DateTime(DateTime.Now.Year, 6, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d31 = setDelayAll(new DateTime(DateTime.Now.Year, 7, 1), new DateTime(DateTime.Now.Year, 7, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d31 = setDelayAll(new DateTime(DateTime.Now.Year, 8, 1), new DateTime(DateTime.Now.Year, 7, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d31 = setDelayAll(new DateTime(DateTime.Now.Year, 9, 1), new DateTime(DateTime.Now.Year, 7, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d31 = setDelayAll(new DateTime(DateTime.Now.Year, 10, 1), new DateTime(DateTime.Now.Year, 7, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d31 = setDelayAll(new DateTime(DateTime.Now.Year, 11, 1), new DateTime(DateTime.Now.Year, 7, 1).AddMonths(1).AddDays(-1));
+            ViewBag.d31 = setDelayAll(new DateTime(DateTime.Now.Year, 12, 1), new DateTime(DateTime.Now.Year, 7, 1).AddMonths(1).AddDays(-1));
             return View(models);
         }
 
@@ -72,7 +87,7 @@ namespace Monotoring.Controllers
 
         private int inTime = 0;
         private int outTime = 0;
-        private int[,] infoTime = new int[7, 2];
+        private int[,] infoTime = new int[12, 2];
 
         private void setDatas(DateTime start, DateTime finish, int x)
         {

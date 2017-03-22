@@ -132,6 +132,14 @@
                                     <span class="glyphicon glyphicon-folder-open"></span> Historial de ordenes
                                 </a>
                             </li>
+                            if ((int)Session["userAreaId"] == 3)
+                            {
+                                <li>
+                                    <a href="@Url.Action("Generate","WorkOrden")">
+                                        <span class="glyphicon glyphicon-barcode"></span> Ordenes nuevas
+                                    </a>
+                                </li>
+                            }
                             break;
                         case 1:
                         @*<li>@Html.ActionLink("Ordenes de trabajo", "Index", "Area_Orden")<span class="glyphicon glyphicon-wrench"></span></li>

@@ -165,6 +165,7 @@
                                 <th class="text-center">Tipo</th>
                                 <th class="text-center">Usuario</th>
                                 <th class="text-center">Fecha generado</th>
+                                <th class="text-center">Días transcurridos</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -185,6 +186,9 @@
                                     </td>
                                     <td class="text-center">
                                         @item.dateDelay
+                                    </td>
+                                    <td class="text-center">
+                                        @Math.Round((DateTime.Now - (DateTime)item.dateDelay).TotalDays, 0)
                                     </td>
                                 </tr>
                             }

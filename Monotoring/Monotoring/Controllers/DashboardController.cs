@@ -24,7 +24,7 @@ namespace Monotoring.Controllers
             {
                 var orden = context.WorkOrden.Include("Catalog").Where(o => o.dateStart != null && o.dateFinish == null).ToList();
                 ViewBag.Orden = orden;
-                var delay = context.DelayWork.Include("WorkOrden").Include("DelayCode").Include("Users").ToList();
+                var delay = context.DelayWork.Include("WorkOrden").Include("DelayCode").Include("Users").Where(c => c.dateFinish == null).ToList();
                 ViewBag.Delay = delay;
 
                 getDistinctDelays();
@@ -38,7 +38,7 @@ namespace Monotoring.Controllers
                 OrdensInfo();
                 ViewBag.c7 = resumeInOut[0,0];
                 ViewBag.c8 = resumeInOut[1, 0];
-                ViewBag.C9 = Math.Round((double)resumeInOut[0, 0] / (resumeInOut[0, 0] + resumeInOut[1, 0]),2);
+                ViewBag.c9 = Math.Round((double)resumeInOut[0, 0] / (resumeInOut[0, 0] + resumeInOut[1, 0]),2);
 
                 for (int i = 0; i < 7; i++)
                 {
