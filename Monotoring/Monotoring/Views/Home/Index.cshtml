@@ -84,7 +84,7 @@
                 {
                     var temp = 0;
                     int dayscount = 0;
-                    
+                    int daysweekend = 0;
                     <tr>
                         <td class="text-center">@w.Catalog.CatalogNo</td>
                         <td class="text-center">@w.Catalog.CatalogDescrip</td>
@@ -101,20 +101,39 @@
                                 if (a.Area_Orden.dateFinish != null)
                                 {
                                     lastDate = (DateTime)a.Area_Orden.dateFinish;
+
                                     if (Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0) <= a.Area.daysMax)
                                     {
+                                        daysweekend = 0;
                                         classcolor = "info";
                                         dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
+                                        for(DateTime d= (DateTime)a.Area_Orden.dateStart; d <= lastDate; d = d.AddDays(1))
+                                        {
+                                            if(d.DayOfWeek==DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday)
+                                            {
+                                                daysweekend++;
+                                            }
+                                        }
+                                        dayscount = dayscount - daysweekend;
                                         icon = "glyphicon glyphicon-ok";
                                     }
                                     else
-                                    {                                        
+                                    {
                                         if (Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0) > a.Area.daysMax)
                                         {
+                                            daysweekend = 0;
                                             classcolor = "info";
                                             dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
+                                            for (DateTime d = (DateTime)a.Area_Orden.dateStart; d <= lastDate; d = d.AddDays(1))
+                                            {
+                                                if (d.DayOfWeek == DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday)
+                                                {
+                                                    daysweekend++;
+                                                }
+                                            }
+                                            dayscount = dayscount - daysweekend;
                                             icon = "glyphicon glyphicon-remove";
-                                        }                                        
+                                        }
                                     }
 
                                 }
@@ -123,24 +142,51 @@
                                     lastDate = DateTime.Now;
                                     if (Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0) < a.Area.daysMax)
                                     {
+                                        daysweekend = 0;
                                         classcolor = "success";
                                         dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
+                                        for (DateTime d = (DateTime)a.Area_Orden.dateStart; d <= lastDate; d = d.AddDays(1))
+                                        {
+                                            if (d.DayOfWeek == DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday)
+                                            {
+                                                daysweekend++;
+                                            }
+                                        }
+                                        dayscount = dayscount - daysweekend;
                                         icon = "glyphicon glyphicon-ok";
                                     }
                                     else
                                     {
                                         if (Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0) == a.Area.daysMax)
                                         {
+                                            daysweekend = 0;
                                             classcolor = "warning";
                                             dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
+                                            for (DateTime d = (DateTime)a.Area_Orden.dateStart; d <= lastDate; d = d.AddDays(1))
+                                            {
+                                                if (d.DayOfWeek == DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday)
+                                                {
+                                                    daysweekend++;
+                                                }
+                                            }
+                                            dayscount = dayscount - daysweekend;
                                             icon = "glyphicon glyphicon-exclamation-sign";
                                         }
                                         else
                                         {
                                             if (Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0) >= a.Area.daysMax)
                                             {
+                                                daysweekend = 0;
                                                 classcolor = "danger";
                                                 dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
+                                                for (DateTime d = (DateTime)a.Area_Orden.dateStart; d <= lastDate; d = d.AddDays(1))
+                                                {
+                                                    if (d.DayOfWeek == DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday)
+                                                    {
+                                                        daysweekend++;
+                                                    }
+                                                }
+                                                dayscount = dayscount - daysweekend;
                                                 icon = "glyphicon glyphicon-remove";
                                             }
                                         }
@@ -186,21 +232,33 @@
                         }
                         @if (w.WorkOrden.dateStart != null)
                         {
-                            if ((Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) < 10)
+                            int days = (int)(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0));
+                            int weeks = 0;
+                            for(DateTime d= (DateTime)w.WorkOrden.dateStart;d<=DateTime.Now;d=d.AddDays(1))
                             {
-                                <td class="success text-center">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
+                                if(d.DayOfWeek==DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday)
+                                {
+                                    weeks++;
+                                }
+                            }
+                            days = days - weeks;
+                            if (days < 10)
+                            {
+                                <td class="success text-center">@days</td>
                             }
                             else
                             {
-                                if ((Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) >= 10 && (Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) <= 12)
+
+                                if (days >= 10 && days <= 12)
                                 {
-                                    <td class="warning text-center">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
+
+                                    <td class="warning text-center">@days</td>
                                 }
                                 else
                                 {
-                                    if ((Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0)) > 12)
+                                    if (days > 12)
                                     {
-                                        <td class="danger text-center">@(Math.Round((DateTime.Now - (DateTime)w.WorkOrden.dateStart).TotalDays, 0))</td>
+                                        <td class="danger text-center">@days</td>
                                     }
                                 }
                             }
@@ -232,7 +290,25 @@
     </div>
 </div>
 
-
+<!--Modal-->
+<div class="modal fade" id="modalRetraso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dissmiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Seleccione el tipo de retraso.</h4>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-default">Calidad</button>
+                <button class="btn btn-default">Operación/Producción</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dissmiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End modal-->
 <script>
     var ctx = document.getElementById("myChart");
     var mychart = new Chart(ctx, {
