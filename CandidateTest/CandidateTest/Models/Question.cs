@@ -12,7 +12,7 @@ namespace CandidateTest.Models
         public int QuestionId { get; set; }
         [DisplayName("Pregunta:")]
         public string ContenQuestion { get; set; }
-        public int CandidateId { get; set; }
 
+        public ICollection<Answer> Answer { get; set; }
     }
 }
