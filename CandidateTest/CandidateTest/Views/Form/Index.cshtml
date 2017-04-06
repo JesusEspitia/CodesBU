@@ -1,0 +1,496 @@
+﻿@model CandidateTest.Models.Form
+
+@{
+    ViewBag.Title = "Interview Result";
+}
+
+@*<h2>Behavioral Success Factors Scorecard</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <!--Candidate Info-->
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Candidate, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Candidate, new { htmlAttributes = new { @class = "form-control " } })
+                    @Html.ValidationMessageFor(model => model.Candidate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Positiion, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Positiion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Positiion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.InterviewDate, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.InterviewDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InterviewDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.HR_rep, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.HR_rep, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HR_rep, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-2 col-sm-offset-1">
+                <div class="form-group">
+                    <label for="type"></label>
+                    @Html.EditorFor(model => model.candidate_type, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.candidate_type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.manager_email, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.manager_email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.manager_email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <!--end info-->
+   
+        <div class="row">
+            <div class="col-md-5 col-md-offset-3">
+                <p>To complete the scorecard, please simply do the following:</p>
+                <ol>
+                    <li>Read the success definition for each factor.</li>
+                    <li>Select the most appropriate description for the factor based on your assessment of the employee during the interview process.</li>
+                    <li>Please be prepared to substantiate you evaluations with examples from your interviews</li>
+                </ol>
+            </div>
+        </div>
+         <!--star questions-->
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.question1, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.question1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.question1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.question2, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.question2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.question2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.question3, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.question3, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.question3, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.question4, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.question4, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.question4, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.question5, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.question5, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.question5, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.question6, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.question6, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.question6, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.question7, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.question7, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.question7, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.question8, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.question8, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.question8, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.question9, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.question9, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.question9, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.question10, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.question10, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.question10, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+         <!--end questions-->
+    <!--last info-->
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Strengths, htmlAttributes: new { @class = "control-label " })>
+                    @Html.EditorFor(model => model.Strengths, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Strengths, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Weaknesses, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.Weaknesses, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Weaknesses, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Recommendations, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.Recommendations, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Recommendations, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Interviewer, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.Interviewer, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Interviewer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Continue, htmlAttributes: new { @class = "control-label " })
+                    @Html.EditorFor(model => model.Continue, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Continue, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+       
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+   
+}*@
+
+
+
+@using (Html.BeginForm("Create", "Form", null, FormMethod.Post,new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="page-header">
+        <h1>Behavioral Success Factors Scorecard</h1>
+    </div>
+    <hr>
+    <div class="container-fluid">
+        <!--Candidate information-->
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="candidatename">Candidate´s Name</label>
+                    <input type="text" id="candidatename" class="form-control" name="Candidate">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="position">Position</label>
+                    <input type="text" id="position" class="form-control" name="Positiion">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="interview">Interview</label>
+                    <input type="text" id="interview" class="form-control" name="Interview">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="hr">HR Rep.</label>
+                    <select name="HR_rep" id="hr" class="form-control">
+                        <option value="Martinez,Cristian">Martinez,Cristian</option>
+                        <option value="Otro Nombre">Otro Nombre</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-2 col-sm-offset-1">
+                <div class="form-group">
+                    <label for="type"></label>
+                    <select name="candidate_type" id="type" class="form-control">
+                        <option value="Internal Candidate">Internal Candidate</option>
+                        <option value="External Candidate">External Candidate</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="manager">Hiring Manager(e-mail)</label>
+                    <input type="text" id="manager" class="form-control" name="manager_email">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-3">
+                <p>To complete the scorecard, please simply do the following:</p>
+                <ol>
+                    <li>Read the success definition for each factor.</li>
+                    <li>Select the most appropriate description for the factor based on your assessment of the employee during the interview process.</li>
+                    <li>Please be prepared to substantiate you evaluations with examples from your interviews</li>
+                </ol>
+            </div>
+        </div>
+        <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+        <!--Questions begin-->
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="q1">Technical Skills</label>
+                    <select name="question1" id="q1" class="form-control">
+                        <option value="1">uno</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="q2">Motivated to do the work"</label>
+                    <select name="question2" id="q2" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="q3">Team Skills in Similar Gruops</label>
+                    <select name="question3" id="q3" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="q4">Problem Solving and Quality of Things</label>
+                    <select name="question4" id="q4" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="q5">Achieved Similar Results</label>
+                    <select name="question5" id="q5" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="q6">Planning and Executing</label>
+                    <select name="question6" id="q6" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="q7">Continuous Improvement</label>
+                    <select name="question7" id="q7" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="q8">Environment and Motivational Fit</label>
+                    <select name="question8" id="q8" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="q9">Trend for Growth</label>
+                    <select name="question9" id="q9" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="form-group">
+                    <label for="q10">Character and Values</label>
+                    <select name="question10" id="q10" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--Questions edn-->
+        <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="form-group">
+                    <label for="s">Candidate´s Strengths</label>
+                    <input type="text" id="s" class="form-control input-lg" name="Strengths">
+                    <label for="s" class="col-sm-7 col-sm-offset-3">(Please add at least 3 Candidates´s strengths for the position)</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="form-group">
+                    <label for="w">Candidate´s Weaknesses</label>
+                    <input type="text" id="sw" class="form-control input-lg" name="Weaknesses">
+                    <label for="w" class="col-sm-7 col-sm-offset-3">(Please add at least 3 Candidates´s weaknesses for the position)</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="form-group">
+                    <label for="r">Recommendations</label>
+                    <input type="text" id="r" class="form-control" name="Recommendations">
+                    <label for="r" class="col-sm-7 col-sm-offset-4">(Internal Candidates Only)</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="form-group">
+                    <label for="i">Interviewer</label>
+                    <input type="text" id="i" class="form-control" name="Interviewer">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <div class="form-group">
+                    <label for="do">Do your recommend this Candidate for the next step?</label>
+                    <select name="Continue" id="do" class="form-control">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -12,19 +12,13 @@ namespace CandidateTest.Models
     {
         public int CandidateId { get; set; }
         [DisplayName("Candidate´s Name")]
-        public string CandidateName { get; set; }
-        [DisplayName("Position")]
-        public string CandidatePosition { get; set; }
-        [DisplayName("HR Rep.")]
-        public string HR { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        [DisplayName("Interview")]
-        public DateTime InterviewDate { get; set; }
-        [DisplayName("Hiring Manager (e-mail)")]
-        public string Manager { get; set; }
-        public string CandidateType { get; set; }
+        public string CandidateName { get; set; }        
         [DisplayName("Score")]
-        public int CandidateScore { get; set; }
+        public int? CandidateScore { get; set; }
+        [DisplayName("Review")]
+        public bool Review { get; set; }
+        [DisplayName("Accepted")]
+        public bool Accepted { get; set; }
+        public int FormId { get; set; }
     }
 }
