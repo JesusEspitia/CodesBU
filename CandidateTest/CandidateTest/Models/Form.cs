@@ -12,6 +12,7 @@ namespace CandidateTest.Models
     {
         public int FormId { get; set; }
         [DisplayName("Candidate´s Name")]
+        [Required(ErrorMessage ="Missing field")]
         public string Candidate { get; set; }
         [DisplayName("Positition")]
         public string Positiion { get; set; }

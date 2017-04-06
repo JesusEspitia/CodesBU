@@ -231,31 +231,35 @@
 @using (Html.BeginForm("Create", "Form", null, FormMethod.Post,new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+
     <div class="page-header">
         <h1>Behavioral Success Factors Scorecard</h1>
     </div>
     <hr>
-    <div class="container-fluid">
+    <div class="">
         <!--Candidate information-->
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="candidatename">Candidate´s Name</label>
-                    <input type="text" id="candidatename" class="form-control" name="Candidate">
+                    <input type="text" id="candidatename" class="form-control" name="Candidate" style="max-width:none;" required="required">
+                    
                 </div>
             </div>
         </div>
+        @Html.ValidationMessage("Candidate")
         <div class="row">
             <div class="col-sm-5 col-sm-offset-2">
                 <div class="form-group">
                     <label for="position">Position</label>
-                    <input type="text" id="position" class="form-control" name="Positiion">
+                    <input type="text" id="position" class="form-control" name="Positiion" style="max-width:none;" required="required">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="interview">Interview</label>
-                    <input type="text" id="interview" class="form-control" name="Interview">
+                    <input type="text" id="interview" class="form-control" name="Interview" style="max-width:none;" required="required">
                 </div>
             </div>
         </div>
@@ -263,7 +267,7 @@
             <div class="col-sm-5 col-sm-offset-2">
                 <div class="form-group">
                     <label for="hr">HR Rep.</label>
-                    <select name="HR_rep" id="hr" class="form-control">
+                    <select name="HR_rep" id="hr" class="form-control" style="max-width:none;" required="required">
                         <option value="Martinez,Cristian">Martinez,Cristian</option>
                         <option value="Otro Nombre">Otro Nombre</option>
                     </select>
@@ -272,7 +276,7 @@
             <div class="col-sm-2 col-sm-offset-1">
                 <div class="form-group">
                     <label for="type"></label>
-                    <select name="candidate_type" id="type" class="form-control">
+                    <select name="candidate_type" id="type" class="form-control" style="max-width:none;" required="required">
                         <option value="Internal Candidate">Internal Candidate</option>
                         <option value="External Candidate">External Candidate</option>
                     </select>
@@ -283,7 +287,7 @@
             <div class="col-sm-7 col-sm-offset-2">
                 <div class="form-group">
                     <label for="manager">Hiring Manager(e-mail)</label>
-                    <input type="text" id="manager" class="form-control" name="manager_email">
+                    <input type="text" id="manager" class="form-control" name="manager_email" style="max-width:none;" required="required">
                 </div>
             </div>
         </div>
@@ -303,7 +307,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="q1">Technical Skills</label>
-                    <select name="question1" id="q1" class="form-control">
+                    <select name="question1" id="q1" class="form-control" style="max-width:none;">
                         <option value="1">uno</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -316,7 +320,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="q2">Motivated to do the work"</label>
-                    <select name="question2" id="q2" class="form-control">
+                    <select name="question2" id="q2" class="form-control" style="max-width:none;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -329,7 +333,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="q3">Team Skills in Similar Gruops</label>
-                    <select name="question3" id="q3" class="form-control">
+                    <select name="question3" id="q3" class="form-control" style="max-width:none;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -342,7 +346,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="q4">Problem Solving and Quality of Things</label>
-                    <select name="question4" id="q4" class="form-control">
+                    <select name="question4" id="q4" class="form-control" style="max-width:none;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -355,7 +359,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="q5">Achieved Similar Results</label>
-                    <select name="question5" id="q5" class="form-control">
+                    <select name="question5" id="q5" class="form-control" style="max-width:none;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -368,7 +372,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="q6">Planning and Executing</label>
-                    <select name="question6" id="q6" class="form-control">
+                    <select name="question6" id="q6" class="form-control" style="max-width:none;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -381,7 +385,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="q7">Continuous Improvement</label>
-                    <select name="question7" id="q7" class="form-control">
+                    <select name="question7" id="q7" class="form-control" style="max-width:none;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -394,7 +398,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="q8">Environment and Motivational Fit</label>
-                    <select name="question8" id="q8" class="form-control">
+                    <select name="question8" id="q8" class="form-control" style="max-width:none;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -407,7 +411,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="q9">Trend for Growth</label>
-                    <select name="question9" id="q9" class="form-control">
+                    <select name="question9" id="q9" class="form-control" style="max-width:none;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -420,7 +424,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="q10">Character and Values</label>
-                    <select name="question10" id="q10" class="form-control">
+                    <select name="question10" id="q10" class="form-control" style="max-width:none;">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -435,7 +439,7 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="form-group">
                     <label for="s">Candidate´s Strengths</label>
-                    <input type="text" id="s" class="form-control input-lg" name="Strengths">
+                    <input type="text" id="s" class="form-control input-lg" name="Strengths" style="max-width:none;" required="required">
                     <label for="s" class="col-sm-7 col-sm-offset-3">(Please add at least 3 Candidates´s strengths for the position)</label>
                 </div>
             </div>
@@ -444,7 +448,7 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="form-group">
                     <label for="w">Candidate´s Weaknesses</label>
-                    <input type="text" id="sw" class="form-control input-lg" name="Weaknesses">
+                    <input type="text" id="sw" class="form-control input-lg" name="Weaknesses" style="max-width:none;" required="required">
                     <label for="w" class="col-sm-7 col-sm-offset-3">(Please add at least 3 Candidates´s weaknesses for the position)</label>
                 </div>
             </div>
@@ -453,7 +457,7 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="form-group">
                     <label for="r">Recommendations</label>
-                    <input type="text" id="r" class="form-control" name="Recommendations">
+                    <input type="text" id="r" class="form-control" name="Recommendations" style="max-width:none;">
                     <label for="r" class="col-sm-7 col-sm-offset-4">(Internal Candidates Only)</label>
                 </div>
             </div>
@@ -462,7 +466,7 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="form-group">
                     <label for="i">Interviewer</label>
-                    <input type="text" id="i" class="form-control" name="Interviewer">
+                    <input type="text" id="i" class="form-control" name="Interviewer" style="max-width:none;" required="required">
                 </div>
             </div>
         </div>
@@ -470,7 +474,7 @@
             <div class="col-sm-4 col-sm-offset-4">
                 <div class="form-group">
                     <label for="do">Do your recommend this Candidate for the next step?</label>
-                    <select name="Continue" id="do" class="form-control">
+                    <select name="Continue" id="do" class="form-control" style="max-width:none;">
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
