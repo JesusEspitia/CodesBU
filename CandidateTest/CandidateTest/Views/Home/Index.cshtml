@@ -10,35 +10,46 @@
 <hr />
 
 <div class="row">
+    <div class="col-lg-2 col-lg-offset-8">
+        <div class="input-group">
+            <input type="text" id="holdtext" class="form-control" readonly value="http://localhost:55074/Form" />
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" onclick="clickBtn(this);"><span class="glyphicon glyphicon glyphicon-copy"></span></button>
+            </span>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
     <div class="col-lg-4 col-lg-offset-2">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h3>Candidates Accepted</h3>
             </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Candidate´s Name</th>
-                        <th>Position</th>
-                        <th>Score</th>
-                        <th>Date</th>
+                        <th class="text-center">Candidate´s Name</th>
+                        <th class="text-center">Position</th>
+                        <th class="text-center">Score</th>
+                        <th class="text-center">Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (Candidate item in ViewBag.candidateList)
                     {
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 
                                 @Ajax.ActionLink(item.CandidateName, "Detail", "Form", new { id=item.FormId},new AjaxOptions() { HttpMethod = "POST" }, new { @class=""})
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @item.Form.Positiion
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @item.CandidateScore
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @item.Form.InterviewDate
                             </td>
                         </tr>
@@ -48,34 +59,34 @@
         </div>        
     </div>
     <div class="col-lg-4 ">
-        <div class="panel panel-default">
+        <div class="panel panel-warning">
             <div class="panel-heading">
                 <h3>Candidates Rejected</h3>
             </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Candidate´s Name</th>
-                        <th>Position</th>
-                        <th>Score</th>
-                        <th>Date</th>
+                        <th class="text-center">Candidate´s Name</th>
+                        <th class="text-center">Position</th>
+                        <th class="text-center">Score</th>
+                        <th class="text-center">Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (Candidate item in ViewBag.candidate2)
                     {
                         <tr>
-                            <td>
+                            <td class="text-center">
 
                                 @Ajax.ActionLink(item.CandidateName, "Detail", "Form", new { id = item.FormId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "" })
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @item.Form.Positiion
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @item.CandidateScore
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @item.Form.InterviewDate
                             </td>
                         </tr>
@@ -95,24 +106,24 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Candidate´s Name</th>
-                        <th>Position</th>
-                        <th>Score</th>
-                        <th>Date</th>
+                        <th class="text-center">Candidate´s Name</th>
+                        <th class="text-center">Position</th>
+                        <th class="text-center">Score</th>
+                        <th class="text-center">Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (Candidate item in ViewBag.history)
                     {
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 
-                                @Html.ActionLink(item.CandidateName, "Detail", "Form", new { id=item.FormId})
+                                @Ajax.ActionLink(item.CandidateName, "Detail", "Form", new { id = item.FormId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "" })
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @item.Form.Positiion
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @item.CandidateScore
                             </td>
                             <td>
@@ -126,3 +137,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    function clickBtn(text) {
+        Copied = holdtext.createTextRange();
+        Copied.execCommand("Copy");
+    }
+</script>

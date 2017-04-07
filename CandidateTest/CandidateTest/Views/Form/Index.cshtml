@@ -227,15 +227,15 @@
 }*@
 
 
-
-@using (Html.BeginForm("Create", "Form", null, FormMethod.Post,new { @enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="page-header">
-        <h1>Behavioral Success Factors Scorecard</h1>
+    <div class="page-header ">
+        <h1 class="text-center text-primary">Behavioral Success Factors Scorecard</h1>
     </div>
     <hr>
+
+@using (Html.BeginForm("Create", "Form", null, FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
     <div class="">
         <!--Candidate information-->
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -243,7 +243,7 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="form-group">
                     <label for="candidatename">Candidate´s Name</label>
-                    <input type="text" id="candidatename" class="form-control" name="Candidate" style="max-width:none;" required="required">
+                    <input type="text" id="candidatename" class="form-control" name="Candidate" style="max-width:none;" required="required" placeholder="Lastname,Name">
                     
                 </div>
             </div>
@@ -259,7 +259,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="interview">Interview</label>
-                    <input type="text" id="interview" class="form-control" name="Interview" style="max-width:none;" required="required">
+                    <input type="text" id="interview" class="form-control" name="Interview" style="max-width:none;" required="required" value="@DateTime.Now">
                 </div>
             </div>
         </div>
@@ -285,7 +285,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-7 col-sm-offset-2">
+            <div class="col-sm-4 col-sm-offset-2">
                 <div class="form-group">
                     <label for="manager">Hiring Manager(e-mail)</label>
                     <input type="text" id="manager" class="form-control" name="manager_email" style="max-width:none;" required="required">
@@ -294,12 +294,14 @@
         </div>
         <div class="row">
             <div class="col-md-5 col-md-offset-3">
-                <p>To complete the scorecard, please simply do the following:</p>
-                <ol>
-                    <li>Read the success definition for each factor.</li>
-                    <li>Select the most appropriate description for the factor based on your assessment of the employee during the interview process.</li>
-                    <li>Please be prepared to substantiate you evaluations with examples from your interviews</li>
-                </ol>
+                <p><strong>To complete the scorecard, please simply do the following:</strong></p>
+                <blockquote>
+                    <ol>
+                        <li>Read the success definition for each factor.</li>
+                        <li>Select the most appropriate description for the factor based on your assessment of the employee during the interview process.</li>
+                        <li>Please be prepared to substantiate you evaluations with examples from your interviews</li>
+                    </ol>
+                </blockquote>
             </div>
         </div>
         <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
@@ -441,7 +443,7 @@
                 <div class="form-group">
                     <label for="s">Candidate´s Strengths</label>
                     <input type="text" id="s" class="form-control input-lg" name="Strengths" style="max-width:none;" required="required">
-                    <label for="s" class="col-sm-7 col-sm-offset-3">(Please add at least 3 Candidates´s strengths for the position)</label>
+                    <label for="s" class="col-sm-7 col-sm-offset-2">(Please add at least 3 Candidates´s strengths for the position)</label>
                 </div>
             </div>
         </div>
@@ -450,7 +452,7 @@
                 <div class="form-group">
                     <label for="w">Candidate´s Weaknesses</label>
                     <input type="text" id="sw" class="form-control input-lg" name="Weaknesses" style="max-width:none;" required="required">
-                    <label for="w" class="col-sm-7 col-sm-offset-3">(Please add at least 3 Candidates´s weaknesses for the position)</label>
+                    <label for="w" class="col-sm-8 col-sm-offset-2">(Please add at least 3 Candidates´s weaknesses for the position)</label>
                 </div>
             </div>
         </div>
@@ -485,10 +487,14 @@
         <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 
     </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Submit" class="btn btn-default" />
+    <hr />
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-offset-3">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" />
+                </div>
+            </div>
         </div>
     </div>
 }

@@ -15,9 +15,17 @@
 }
 
 <div class="page-header">
-    <h1>Behavioral Success Factors Scorecard</h1>
+    <h1 class="text-center text-primary">Behavioral Success Factors Scorecard</h1>
 </div>
 <hr>
+<div class="row">
+    <div class="col-sm-offset-2">       
+        <ul class="pager">
+            <li class="previous"><a href="/"><span aria-hidden="true">&larr;</span>Back</a></li>
+        </ul>
+    </div>
+</div>
+<br />
 <div class="">
     <!--Candidate information-->
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -76,12 +84,14 @@
     </div>
     <div class="row">
         <div class="col-md-5 col-md-offset-3">
-            <p>To complete the scorecard, please simply do the following:</p>
-            <ol>
-                <li>Read the success definition for each factor.</li>
-                <li>Select the most appropriate description for the factor based on your assessment of the employee during the interview process.</li>
-                <li>Please be prepared to substantiate you evaluations with examples from your interviews</li>
-            </ol>
+            <p><strong>To complete the scorecard, please simply do the following:</strong></p>
+            <blockquote>
+                <ol>
+                    <li>Read the success definition for each factor.</li>
+                    <li>Select the most appropriate description for the factor based on your assessment of the employee during the interview process.</li>
+                    <li>Please be prepared to substantiate you evaluations with examples from your interviews</li>
+                </ol>
+            </blockquote>
         </div>
     </div>
     <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->

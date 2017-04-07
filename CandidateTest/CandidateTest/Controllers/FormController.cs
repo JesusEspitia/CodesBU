@@ -55,6 +55,12 @@ namespace CandidateTest.Controllers
             try
             {
                 var model = context.Form.Find(id);
+                var model2 = context.Candidate.Where(c => c.FormId == id).ToList();
+                foreach(var item in model2.ToList())
+                {
+                    item.Review = true;
+                }
+                context.SaveChanges();
                 return View(model);
             }
             catch 
