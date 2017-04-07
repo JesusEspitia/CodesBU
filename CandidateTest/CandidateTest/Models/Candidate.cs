@@ -20,5 +20,8 @@ namespace CandidateTest.Models
         [DisplayName("Accepted")]
         public bool Accepted { get; set; }
         public int FormId { get; set; }
+
+        [ForeignKey("FormId")]
+        public Form Form { get; set; }
     }
 }

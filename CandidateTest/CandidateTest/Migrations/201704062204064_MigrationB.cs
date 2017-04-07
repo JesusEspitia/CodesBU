@@ -3,7 +3,7 @@ namespace CandidateTest.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class MigrationB : DbMigration
     {
         public override void Up()
         {
@@ -15,15 +15,19 @@ namespace CandidateTest.Migrations
                         CandidateName = c.String(unicode: false),
                         CandidateScore = c.Int(),
                         Review = c.Boolean(nullable: false),
+                        Accepted = c.Boolean(nullable: false),
+                        FormId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.CandidateId);
+                .PrimaryKey(t => t.CandidateId)
+                .ForeignKey("dbo.Forms", t => t.FormId, cascadeDelete: true)
+                .Index(t => t.FormId);
             
             CreateTable(
                 "dbo.Forms",
                 c => new
                     {
                         FormId = c.Int(nullable: false, identity: true),
-                        Candidate = c.String(unicode: false),
+                        Candidate = c.String(nullable: false, unicode: false),
                         Positiion = c.String(unicode: false),
                         InterviewDate = c.DateTime(nullable: false, precision: 0),
                         HR_rep = c.String(unicode: false),
@@ -51,6 +55,8 @@ namespace CandidateTest.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Candidates", "FormId", "dbo.Forms");
+            DropIndex("dbo.Candidates", new[] { "FormId" });
             DropTable("dbo.Forms");
             DropTable("dbo.Candidates");
         }

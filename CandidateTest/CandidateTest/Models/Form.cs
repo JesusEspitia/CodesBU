@@ -56,5 +56,6 @@ namespace CandidateTest.Models
         [DisplayName("Do your recommend this Candidate for the next step?")]
         public string Continue { get; set; }
 
+        public ICollection<Candidate> Candidates { get; set; }
     }
 }

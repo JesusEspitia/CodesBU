@@ -1,0 +1,367 @@
+﻿@model CandidateTest.Models.Form
+
+@{
+    ViewBag.Title = "Detail";
+    string val1 = "";
+    string val2 = "";
+    string val3 = "";
+    string val4 = "";
+    string val5 = "";
+    string val6 = "";
+    string val7 = "";
+    string val8 = "";
+    string val9 = "";
+    string val10 = "";
+}
+
+<div class="page-header">
+    <h1>Behavioral Success Factors Scorecard</h1>
+</div>
+<hr>
+<div class="">
+    <!--Candidate information-->
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="candidatename">Candidate´s Name</label>
+                <input type="text" id="candidatename" class="form-control" name="Candidate" style="max-width:none;" required="required" value="@Model.Candidate" readonly>
+
+            </div>
+        </div>
+    </div>
+    @Html.ValidationMessage("Candidate")
+    <div class="row">
+        <div class="col-sm-5 col-sm-offset-2">
+            <div class="form-group">
+                <label for="position">Position</label>
+                <input type="text" id="position" class="form-control" name="Positiion" style="max-width:none;" required="required" value="@Model.Positiion" readonly>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="interview">Interview</label>
+                <input type="text" id="interview" class="form-control" name="Interview" style="max-width:none;" required="required" value="@Model.InterviewDate" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5 col-sm-offset-2">
+            <div class="form-group">
+                <label for="hr">HR Rep.</label>
+                <select name="HR_rep" id="hr" class="form-control" style="max-width:none;" required="required" value="@Model.HR_rep" readonly>
+                    <option value="Martinez,Cristian">Martinez,Cristian</option>
+                    <option value="Marmolejo,Griselda">Marmolejo,Griselda</option>
+                    <option value="Santillan,Ana">Santillan,Ana</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-2 col-sm-offset-1">
+            <div class="form-group">
+                <label for="type"></label>
+                <select name="candidate_type" id="type" class="form-control" style="max-width:none;" required="required" value="@Model.candidate_type" readonly>
+                    <option value="Internal Candidate">Internal Candidate</option>
+                    <option value="External Candidate">External Candidate</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-7 col-sm-offset-2">
+            <div class="form-group">
+                <label for="manager">Hiring Manager(e-mail)</label>
+                <input type="text" id="manager" class="form-control" name="manager_email" style="max-width:none;" required="required" value="@Model.manager_email" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-md-offset-3">
+            <p>To complete the scorecard, please simply do the following:</p>
+            <ol>
+                <li>Read the success definition for each factor.</li>
+                <li>Select the most appropriate description for the factor based on your assessment of the employee during the interview process.</li>
+                <li>Please be prepared to substantiate you evaluations with examples from your interviews</li>
+            </ol>
+        </div>
+    </div>
+    <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <!--Questions begin-->
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="q1">Technical Skills</label>
+                @switch (Model.question1)
+                {
+                    case "1":
+                        val1 = "Uno";
+                        break;
+                    case "2":
+                        val1 = "Dos";
+                        break;
+                    case "3":
+                        val1 = "Tres";
+                        break;
+                    case "4":
+                        val1 = "Cuatro";
+                        break;
+                }
+                <input type="text" id="q1" class="form-control"  style="max-width:none;" required="required" value="@val1" readonly>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="q2">Motivated to do the work"</label>
+                @switch (Model.question1)
+                {
+                    case "1":
+                        val2 = "Uno";
+                        break;
+                    case "2":
+                        val2 = "Dos";
+                        break;
+                    case "3":
+                        val2 = "Tres";
+                        break;
+                    case "4":
+                        val2 = "Cuatro";
+                        break;
+                }
+                <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val2" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="q3">Team Skills in Similar Gruops</label>
+                @switch (Model.question1)
+                {
+                    case "1":
+                        val3 = "Uno";
+                        break;
+                    case "2":
+                        val3 = "Dos";
+                        break;
+                    case "3":
+                        val3 = "Tres";
+                        break;
+                    case "4":
+                        val3 = "Cuatro";
+                        break;
+                }
+                <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val3" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="q4">Problem Solving and Quality of Things</label>
+                @switch (Model.question1)
+                {
+                    case "1":
+                        val4 = "Uno";
+                        break;
+                    case "2":
+                        val4 = "Dos";
+                        break;
+                    case "3":
+                        val4 = "Tres";
+                        break;
+                    case "4":
+                        val4 = "Cuatro";
+                        break;
+                }
+                <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val4" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="q5">Achieved Similar Results</label>
+                @switch (Model.question1)
+                {
+                    case "1":
+                        val5 = "Uno";
+                        break;
+                    case "2":
+                        val5 = "Dos";
+                        break;
+                    case "3":
+                        val5 = "Tres";
+                        break;
+                    case "4":
+                        val5 = "Cuatro";
+                        break;
+                }
+                <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val5" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="q6">Planning and Executing</label>
+                @switch (Model.question1)
+                {
+                    case "1":
+                        val6 = "Uno";
+                        break;
+                    case "2":
+                        val6 = "Dos";
+                        break;
+                    case "3":
+                        val6 = "Tres";
+                        break;
+                    case "4":
+                        val6 = "Cuatro";
+                        break;
+                }
+                <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val6" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="q7">Continuous Improvement</label>
+                @switch (Model.question1)
+                {
+                    case "1":
+                        val7 = "Uno";
+                        break;
+                    case "2":
+                        val7 = "Dos";
+                        break;
+                    case "3":
+                        val7 = "Tres";
+                        break;
+                    case "4":
+                        val7 = "Cuatro";
+                        break;
+                }
+                <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val7" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="q8">Environment and Motivational Fit</label>
+                @switch (Model.question1)
+                {
+                    case "1":
+                        val8 = "Uno";
+                        break;
+                    case "2":
+                        val8 = "Dos";
+                        break;
+                    case "3":
+                        val8 = "Tres";
+                        break;
+                    case "4":
+                        val8 = "Cuatro";
+                        break;
+                }
+                <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val8" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="q9">Trend for Growth</label>
+                @switch (Model.question1)
+                {
+                    case "1":
+                        val9 = "Uno";
+                        break;
+                    case "2":
+                        val9 = "Dos";
+                        break;
+                    case "3":
+                        val9 = "Tres";
+                        break;
+                    case "4":
+                        val9 = "Cuatro";
+                        break;
+                }
+                <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val9" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label for="q10">Character and Values</label>
+                @switch (Model.question1)
+                {
+                    case "1":
+                        val10 = "Uno";
+                        break;
+                    case "2":
+                        val10 = "Dos";
+                        break;
+                    case "3":
+                        val10 = "Tres";
+                        break;
+                    case "4":
+                        val10 = "Cuatro";
+                        break;
+                }
+                <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val10" readonly>
+            </div>
+        </div>
+    </div>
+    <!--Questions edn-->
+    <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="form-group">
+                <label for="s">Candidate´s Strengths</label>
+                <input type="text" id="s" class="form-control input-lg" name="Strengths" style="max-width:none;" required="required" value="@Model.Strengths" readonly>
+                <label for="s" class="col-sm-7 col-sm-offset-3">(Please add at least 3 Candidates´s strengths for the position)</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="form-group">
+                <label for="w">Candidate´s Weaknesses</label>
+                <input type="text" id="sw" class="form-control input-lg" name="Weaknesses" style="max-width:none;" required="required" value="@Model.Weaknesses" readonly>
+                <label for="w" class="col-sm-7 col-sm-offset-3">(Please add at least 3 Candidates´s weaknesses for the position)</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="form-group">
+                <label for="r">Recommendations</label>
+                <input type="text" id="r" class="form-control" name="Recommendations" style="max-width:none;" value="@Model.Recommendations" readonly>
+                <label for="r" class="col-sm-7 col-sm-offset-4">(Internal Candidates Only)</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="form-group">
+                <label for="i">Interviewer</label>
+                <input type="text" id="i" class="form-control" name="Interviewer" style="max-width:none;" required="required" value="@Model.Interviewer" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <div class="form-group">
+                <label for="do">Do your recommend this Candidate for the next step?</label>
+                <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@Model.Continue" readonly>
+            </div>
+        </div>
+    </div>
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+</div>
