@@ -29,7 +29,7 @@ namespace testEmail
                 //mail.Body = "Mensaje de prueba";
                 //client.Send(mail);
 
-                string micoreo = "leopoldo.espitia@gmail.com";
+                string micoreo = "leopoldo_espitia@baxter.com";
 
                 correo.From = new MailAddress(micoreo);
                 correo.To.Add(to);
@@ -39,9 +39,9 @@ namespace testEmail
                 correo.Priority = MailPriority.Normal;
                 ////enviar correo
                 SmtpClient smtp = new SmtpClient();
-                smtp.Credentials = new NetworkCredential(micoreo, "foster9324");
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
+                smtp.Credentials = new NetworkCredential(micoreo, "Baxter6.");
+                smtp.Host = "BN1PRD9201.prod.outlook.com";
+                smtp.Port = 25;
                 smtp.EnableSsl = true;
 
                 smtp.Send(correo);

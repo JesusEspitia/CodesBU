@@ -14,10 +14,12 @@ namespace CandidateTest.Controllers
         
         public ActionResult Index()
         {
-            var model = context.Candidate.Include("Form").Where(c => c.Review == false).ToList();
-            var model2= context.Candidate.Include("Form").Where(c => c.Review == true).ToList();
+            var model = context.Candidate.Include("Form").Where(c => c.Review == false).Where(c=>c.Form.Continue=="Yes").ToList();
+            var model2= context.Candidate.Include("Form").Where(c => c.Review == false).Where(c=>c.Form.Continue=="No").ToList();
             ViewBag.candidateList = model.ToList();
-            ViewBag.history = model2.ToList();
+            ViewBag.candidate2 = model2.ToList();
+            var model3 = context.Candidate.Include("Form").Where(c => c.Review == true).ToList();
+            ViewBag.history = model3.ToList();
             return View();
         }
 

@@ -10,10 +10,10 @@
 <hr />
 
 <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
+    <div class="col-lg-4 col-lg-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>Interviews performed</h3>
+                <h3>Candidates Accepted</h3>
             </div>
             <table class="table table-hover">
                 <thead>
@@ -45,8 +45,44 @@
                     }
                 </tbody>
             </table>
+        </div>        
+    </div>
+    <div class="col-lg-4 ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Candidates Rejected</h3>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Candidate´s Name</th>
+                        <th>Position</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Candidate item in ViewBag.candidate2)
+                    {
+                        <tr>
+                            <td>
+
+                                @Ajax.ActionLink(item.CandidateName, "Detail", "Form", new { id = item.FormId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "" })
+                            </td>
+                            <td>
+                                @item.Form.Positiion
+                            </td>
+                            <td>
+                                @item.CandidateScore
+                            </td>
+                            <td>
+                                @item.Form.InterviewDate
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-        
     </div>
 </div>
 
