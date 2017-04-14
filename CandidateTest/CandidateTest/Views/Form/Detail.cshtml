@@ -102,17 +102,20 @@
                 <label for="q1">Technical Skills</label>
                 @switch (Model.question1)
                 {
-                    case "1":
-                        val1 = "Uno";
+                    case "10":
+                        val1 = "Does not Meet Expectations. Below standards.";
                         break;
-                    case "2":
-                        val1 = "Dos";
+                    case "20":
+                        val1 = "Partially Meets Expectations. Can do work but needs added support.";
                         break;
-                    case "3":
-                        val1 = "Tres";
+                    case "30":
+                        val1 = "Meets Expectations. Can perform all required very well.";
                         break;
-                    case "4":
-                        val1 = "Cuatro";
+                    case "40":
+                        val1 = "Exceeds Expectations. Does more, better, faster.";
+                        break;
+                    case "50":
+                        val1 = "Exceptional. Leader in the field. Sets the bar.";
                         break;
                 }
                 <input type="text" id="q1" class="form-control"  style="max-width:none;" required="required" value="@val1" readonly>
@@ -126,17 +129,20 @@
                 <label for="q2">Motivated to do the work"</label>
                 @switch (Model.question2)
                 {
-                    case "1":
-                        val2 = "Uno";
+                    case "10":
+                        val2 = "Does not Meet Expectations. Doesn’t do the work.";
                         break;
-                    case "2":
-                        val2 = "Dos";
+                    case "20":
+                        val2 = "Partially Meets Expectations. Will do the work if supervised.";
                         break;
-                    case "3":
-                        val2 = "Tres";
+                    case "30":
+                        val2 = "Meets Expectations. Self-motivated to do this type of work.";
                         break;
-                    case "4":
-                        val2 = "Cuatro";
+                    case "40":
+                        val2 = "Exceeds Expectations. Takes initiative to do more, better, faster.";
+                        break;
+                    case "50":
+                        val2 = "Exceptional. Totally committed to getting it done.";
                         break;
                 }
                 <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val2" readonly>
@@ -149,17 +155,20 @@
                 <label for="q3">Team Skills in Similar Gruops</label>
                 @switch (Model.question3)
                 {
-                    case "1":
-                        val3 = "Uno";
+                    case "10":
+                        val3 = "Does not Meet Expectations. Does not cooperate with others.";
                         break;
-                    case "2":
-                        val3 = "Dos";
+                    case "20":
+                        val3 = "Partially Meets Expectations.  Will cooperate if asked. Needs close supervision.";
                         break;
-                    case "3":
-                        val3 = "Tres";
+                    case "30":
+                        val3 = "Meets Expectations. Fully Cooperates. Handles conflict.";
                         break;
-                    case "4":
-                        val3 = "Cuatro";
+                    case "40":
+                        val3 = "Exceeds Expectations. Takes initiative to help others. Motivates.";
+                        break;
+                    case "50":
+                        val2 = "Exceptional. Inspires, coaches. Asked to lead.";
                         break;
                 }
                 <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val3" readonly>
@@ -172,17 +181,20 @@
                 <label for="q4">Problem Solving and Quality of Things</label>
                 @switch (Model.question4)
                 {
-                    case "1":
-                        val4 = "Uno";
+                    case "10":
+                        val4 = "Does not Meet Expectations. Misunderstood issues. Doesn’t provide solutions.";
                         break;
-                    case "2":
-                        val4 = "Dos";
+                    case "20":
+                        val4 = "Partially Meets Expectations.  Scarcely understood issues. Provides weak solutions.";
                         break;
-                    case "3":
-                        val4 = "Tres";
+                    case "30":
+                        val4 = "Meets Expectations.  Understood all issues and has good solutions.";
                         break;
-                    case "4":
-                        val4 = "Cuatro";
+                    case "40":
+                        val4 = "Exceeds Expectations. Quickly understood issues, with great solutions.";
+                        break;
+                    case "50":
+                        val2 = "Exceptional. Understood all issues. Always optimizes result.";
                         break;
                 }
                 <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val4" readonly>
@@ -195,17 +207,20 @@
                 <label for="q5">Achieved Similar Results</label>
                 @switch (Model.question5)
                 {
-                    case "1":
-                        val5 = "Uno";
+                    case "10":
+                        val5 = "Does Not Meet Expectations. Experience and accomplishments are a mismatch.";
                         break;
-                    case "2":
-                        val5 = "Dos";
+                    case "20":
+                        val5 = "Partially Meets Expectations. Some comparable accomplishments. Needs coaching.";
                         break;
-                    case "3":
-                        val5 = "Tres";
+                    case "30":
+                        val5 = "Meets Expectations. Handled similar projects with very good results.";
                         break;
-                    case "4":
-                        val5 = "Cuatro";
+                    case "40":
+                        val5 = "Exceeds Expectations. Environment and projects match with strong results.";
+                        break;
+                    case "50":
+                        val2 = "Exceptional. Scope, motivational match with exceptional results.";
                         break;
                 }
                 <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val5" readonly>
@@ -218,17 +233,20 @@
                 <label for="q6">Planning and Executing</label>
                 @switch (Model.question6)
                 {
-                    case "1":
-                        val6 = "Uno";
+                    case "10":
+                        val6 = "Does Not Meet Expectations. Poor planning, reactive approach.";
                         break;
-                    case "2":
-                        val6 = "Dos";
+                    case "20":
+                        val6 = "Partially Meets Expectations. Tends to miss deadlines.";
                         break;
-                    case "3":
-                        val6 = "Tres";
+                    case "30":
+                        val6 = "Meets Expectations. Prioritizes. Meets deadlines.";
                         break;
-                    case "4":
-                        val6 = "Cuatro";
+                    case "40":
+                        val6 = "Exceeds Expectations.  Anticipates problems. Often Beats Deadlines.";
+                        break;
+                    case "50":
+                        val2 = "Exceptional. Great planning and execution. Optimizes results.";
                         break;
                 }
                 <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val6" readonly>
@@ -241,17 +259,20 @@
                 <label for="q7">Continuous Improvement</label>
                 @switch (Model.question7)
                 {
-                    case "1":
-                        val7 = "Uno";
+                    case "10":
+                        val7 = "Does Not Meet Expectations. Shows resistance to change.";
                         break;
-                    case "2":
-                        val7 = "Dos";
+                    case "20":
+                        val7 = "Partially Meets Expectations. Slow to change. Has difficulty taking on new tasks.";
                         break;
-                    case "3":
-                        val7 = "Tres";
+                    case "30":
+                        val7 = "Meets Expectations. Adjust well to new changes or work requirements.";
                         break;
-                    case "4":
-                        val7 = "Cuatro";
+                    case "40":
+                        val7 = "Exceeds Expectations. Motivate to take on new tasks. Sees as a Learning opportunity.";
+                        break;
+                    case "50":
+                        val2 = "Exceptional. Always shows initiative and enthusiasm towards new changes and work requirements.";
                         break;
                 }
                 <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val7" readonly>
@@ -264,17 +285,20 @@
                 <label for="q8">Environment and Motivational Fit</label>
                 @switch (Model.question8)
                 {
-                    case "1":
-                        val8 = "Uno";
+                    case "10":
+                        val8 = "Does Not Meet Expectations. Mismatch";
                         break;
-                    case "2":
-                        val8 = "Dos";
+                    case "20":
+                        val8 = "Partially Meets Expectations. Reasonable match, but with some considerations.";
                         break;
-                    case "3":
-                        val8 = "Tres";
+                    case "30":
+                        val8 = "Meets Expectations. Solid match, no issues or concerns.";
                         break;
-                    case "4":
-                        val8 = "Cuatro";
+                    case "40":
+                        val8 = "Exceeds Expectations. Will be very successful within this environment.";
+                        break;
+                    case "50":
+                        val2 = "Exceptional. Will thrive, hit unexpected level of performance.";
                         break;
                 }
                 <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val8" readonly>
@@ -287,17 +311,20 @@
                 <label for="q9">Trend for Growth</label>
                 @switch (Model.question9)
                 {
-                    case "1":
-                        val9 = "Uno";
+                    case "10":
+                        val9 = "Does Not Meet Expectations. No personal or business growth noted.";
                         break;
-                    case "2":
-                        val9 = "Dos";
+                    case "20":
+                        val9 = "Partially Meets Expectations. Flat trend is consistent and positive.";
                         break;
-                    case "3":
-                        val9 = "Tres";
+                    case "30":
+                        val9 = "Meets Expectations. Growth trend is consistent and positive.";
                         break;
-                    case "4":
-                        val9 = "Cuatro";
+                    case "40":
+                        val9 = "Exceeds Expectations. Strong upward growth trend. Wants more.";
+                        break;
+                    case "50":
+                        val2 = "Exceptional. Great upward trend. Needs big opportunity.";
                         break;
                 }
                 <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val9" readonly>
@@ -310,17 +337,20 @@
                 <label for="q10">Character and Values</label>
                 @switch (Model.question10)
                 {
-                    case "1":
-                        val10 = "Uno";
+                    case "10":
+                        val10 = "Does Not Meet Expectations. Mismatch in character and value system according to company values.";
                         break;
-                    case "2":
-                        val10 = "Dos";
+                    case "20":
+                        val10 = "Partially Meets Expectations. Reasonable match, but with some considerations.";
                         break;
-                    case "3":
-                        val10 = "Tres";
+                    case "30":
+                        val10 = "Meets Expectations. Solid match on values. No issues or concerns.";
                         break;
-                    case "4":
-                        val10 = "Cuatro";
+                    case "40":
+                        val10 = "Exceeds Expectations. Demonstrates high respect, integrity, concern for others.";
+                        break;
+                    case "50":
+                        val2 = "Exceptional. A role model Essence and Values.";
                         break;
                 }
                 <input type="text" id="q1" class="form-control" style="max-width:none;" required="required" value="@val10" readonly>

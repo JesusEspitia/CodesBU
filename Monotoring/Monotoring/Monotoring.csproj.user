@@ -10,7 +10,9 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <WebStackScaffolding_DbContextTypeFullName>Monotoring.Context.TrackContext</WebStackScaffolding_DbContextTypeFullName>
-    <NameOfLastUsedPublishProfile>track2</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>Track</NameOfLastUsedPublishProfile>
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

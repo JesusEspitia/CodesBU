@@ -259,7 +259,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="interview">Interview</label>
-                    <input type="text" id="interview" class="form-control" name="Interview" style="max-width:none;" required="required" value="@DateTime.Now">
+                    <input type="date" id="interview" class="form-control" name="Interview" style="max-width:none;" required="required" value="@DateTime.Now">
                 </div>
             </div>
         </div>
@@ -311,10 +311,11 @@
                 <div class="form-group">
                     <label for="q1">Technical Skills</label>
                     <select name="question1" id="q1" class="form-control" style="max-width:none;">
-                        <option value="1">uno</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="10">Does not Meet Expectations. Below standards.</option>
+                        <option value="20">Partially Meets Expectations. Can do work but needs added support.</option>
+                        <option value="30">Meets Expectations. Can perform all required very well.</option>
+                        <option value="40">Exceeds Expectations. Does more, better, faster.</option>
+                        <option value="10">Exceptional. Leader in the field. Sets the bar.</option>
                     </select>
                 </div>
             </div>
@@ -324,10 +325,11 @@
                 <div class="form-group">
                     <label for="q2">Motivated to do the work"</label>
                     <select name="question2" id="q2" class="form-control" style="max-width:none;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="10">Does not Meet Expectations. Doesn’t do the work.</option>
+                        <option value="20">Partially Meets Expectations. Will do the work if supervised.</option>
+                        <option value="30">Meets Expectations. Self-motivated to do this type of work. </option>
+                        <option value="40">Exceeds Expectations. Takes initiative to do more, better, faster. </option>
+                        <option value="50">Exceptional. Totally committed to getting it done.</option>
                     </select>
                 </div>
             </div>
@@ -337,10 +339,11 @@
                 <div class="form-group">
                     <label for="q3">Team Skills in Similar Gruops</label>
                     <select name="question3" id="q3" class="form-control" style="max-width:none;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="10">Does not Meet Expectations. Does not cooperate with others.</option>
+                        <option value="20">Partially Meets Expectations.  Will cooperate if asked. Needs close supervision.</option>
+                        <option value="30">Meets Expectations. Fully Cooperates. Handles conflict.</option>
+                        <option value="40">Exceeds Expectations. Takes initiative to help others. Motivates.</option>
+                        <option value="50">Exceptional. Inspires, coaches. Asked to lead.</option>
                     </select>
                 </div>
             </div>
@@ -350,10 +353,11 @@
                 <div class="form-group">
                     <label for="q4">Problem Solving and Quality of Things</label>
                     <select name="question4" id="q4" class="form-control" style="max-width:none;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="10">Does not Meet Expectations. Misunderstood issues. Doesn’t provide solutions.</option>
+                        <option value="20">Partially Meets Expectations.  Scarcely understood issues. Provides weak solutions.</option>
+                        <option value="30">Meets Expectations.  Understood all issues and has good solutions.</option>
+                        <option value="40">Exceeds Expectations. Quickly understood issues, with great solutions.</option>
+                        <option value="50">Exceptional. Understood all issues. Always optimizes result.</option>
                     </select>
                 </div>
             </div>
@@ -363,10 +367,11 @@
                 <div class="form-group">
                     <label for="q5">Achieved Similar Results</label>
                     <select name="question5" id="q5" class="form-control" style="max-width:none;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="10">Does Not Meet Expectations. Experience and accomplishments are a mismatch.</option>
+                        <option value="20">Partially Meets Expectations. Some comparable accomplishments. Needs coaching.</option>
+                        <option value="30">Meets Expectations. Handled similar projects with very good results.</option>
+                        <option value="40">Exceeds Expectations. Environment and projects match with strong results.</option>
+                        <option value="50">Exceptional. Scope, motivational match with exceptional results.</option>
                     </select>
                 </div>
             </div>
@@ -376,10 +381,12 @@
                 <div class="form-group">
                     <label for="q6">Planning and Executing</label>
                     <select name="question6" id="q6" class="form-control" style="max-width:none;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="10">Does Not Meet Expectations. Poor planning, reactive approach.</option>
+                        <option value="20">Partially Meets Expectations. Tends to miss deadlines.</option>
+                        <option value="30">Meets Expectations. Prioritizes. Meets deadlines.</option>
+                        <option value="40">Exceeds Expectations.  Anticipates problems. Often Beats Deadlines.</option>
+                        <option value="50">Exceptional. Great planning and execution. Optimizes results.</option>
+                        
                     </select>
                 </div>
             </div>
@@ -389,10 +396,11 @@
                 <div class="form-group">
                     <label for="q7">Continuous Improvement</label>
                     <select name="question7" id="q7" class="form-control" style="max-width:none;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="10">Does Not Meet Expectations. Shows resistance to change.</option>
+                        <option value="20">Partially Meets Expectations. Slow to change. Has difficulty taking on new tasks.</option>
+                        <option value="30">Meets Expectations. Adjust well to new changes or work requirements.</option>
+                        <option value="40">Exceeds Expectations. Motivate to take on new tasks. Sees as a Learning opportunity.</option>
+                        <option value="50">Exceptional. Always shows initiative and enthusiasm towards new changes and work requirements. </option>
                     </select>
                 </div>
             </div>
@@ -402,10 +410,11 @@
                 <div class="form-group">
                     <label for="q8">Environment and Motivational Fit</label>
                     <select name="question8" id="q8" class="form-control" style="max-width:none;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="10">Does Not Meet Expectations. Mismatch</option>
+                        <option value="20">Partially Meets Expectations. Reasonable match, but with some considerations.</option>
+                        <option value="30">Meets Expectations. Solid match, no issues or concerns.</option>
+                        <option value="40">Exceeds Expectations. Will be very successful within this environment.</option>
+                        <option value="50">Exceptional. Will thrive, hit unexpected level of performance.</option>
                     </select>
                 </div>
             </div>
@@ -415,10 +424,11 @@
                 <div class="form-group">
                     <label for="q9">Trend for Growth</label>
                     <select name="question9" id="q9" class="form-control" style="max-width:none;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="10">Does Not Meet Expectations. No personal or business growth noted.</option>
+                        <option value="20">Partially Meets Expectations. Flat trend is consistent and positive.</option>
+                        <option value="30">Meets Expectations. Growth trend is consistent and positive.</option>
+                        <option value="40">Exceeds Expectations. Strong upward growth trend. Wants more.</option>
+                        <option value="50">Exceptional. Great upward trend. Needs big opportunity.</option>
                     </select>
                 </div>
             </div>
@@ -428,10 +438,11 @@
                 <div class="form-group">
                     <label for="q10">Character and Values</label>
                     <select name="question10" id="q10" class="form-control" style="max-width:none;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <option value="10">Does Not Meet Expectations. Mismatch in character and value system according to company values.</option>
+                        <option value="20">Partially Meets Expectations. Reasonable match, but with some considerations.</option>
+                        <option value="30">Meets Expectations. Solid match on values. No issues or concerns.</option>
+                        <option value="40">Exceeds Expectations. Demonstrates high respect, integrity, concern for others.</option>
+                        <option value="50">Exceptional. A role model Essence and Values.</option>
                     </select>
                 </div>
             </div>

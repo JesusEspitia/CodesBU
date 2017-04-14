@@ -36,7 +36,7 @@ namespace CandidateTest.Controllers
                     Review = false,
                     CandidateScore = ((Convert.ToInt32(model.question1) + Convert.ToInt32(model.question2) + Convert.ToInt32(model.question2) +
                     Convert.ToInt32(model.question4) + Convert.ToInt32(model.question5) + Convert.ToInt32(model.question6) + Convert.ToInt32(model.question7) +
-                    Convert.ToInt32(model.question8) + Convert.ToInt32(model.question9) + Convert.ToInt32(model.question10)) * 10) / 40,
+                    Convert.ToInt32(model.question8) + Convert.ToInt32(model.question9) + Convert.ToInt32(model.question10)) * 100) / 400,
                     FormId=model.FormId
                 };
                 context.Candidate.Add(c);
