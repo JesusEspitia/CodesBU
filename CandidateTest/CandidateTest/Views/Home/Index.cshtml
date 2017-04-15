@@ -99,11 +99,11 @@
 
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-        <div class="panel panel-primary">
+        <div class="panel panel-primary" >
             <div class="panel-heading">
                 <h3>Interviews History</h3>
             </div>
-            <table class="table table-hover">
+            <table class="table table-hover table-fixed">
                 <thead>
                     <tr>
                         <th class="text-center">Candidate´s Name</th>
@@ -117,7 +117,7 @@
                     {
                         <tr>
                             <td class="text-center">
-                                
+
                                 @Ajax.ActionLink(item.CandidateName, "Detail", "Form", new { id = item.FormId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "" })
                             </td>
                             <td class="text-center">
@@ -126,7 +126,7 @@
                             <td class="text-center">
                                 @item.CandidateScore
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @item.Form.InterviewDate
                             </td>
                         </tr>

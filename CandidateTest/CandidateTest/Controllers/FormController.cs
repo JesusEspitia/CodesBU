@@ -29,6 +29,7 @@ namespace CandidateTest.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.InterviewDate = DateTime.Now;
                 context.Form.Add(model);
                 Candidate c = new Candidate()
                 {
@@ -41,7 +42,7 @@ namespace CandidateTest.Controllers
                 };
                 context.Candidate.Add(c);
                 context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Finish");
             }
             else
             {
@@ -67,6 +68,11 @@ namespace CandidateTest.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Finish()
+        {
+            return View();
         }
     }
 }

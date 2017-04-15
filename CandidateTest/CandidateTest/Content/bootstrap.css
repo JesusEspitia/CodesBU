@@ -6755,3 +6755,20 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+/*table.scroll tbody,
+table.scroll thead {
+    display:block;
+}
+
+
+table.scroll tbody {
+    height: 300px;
+    overflow-x: hidden;
+}*/
+
+/*tbody {
+    height: 120px;
+    overflow-x: auto;
+}*/
