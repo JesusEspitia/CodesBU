@@ -8,7 +8,7 @@
     <h1>Candidates Interviews</h1>
 </div>
 <hr />
-
+@Html.AntiForgeryToken()
 <div class="row">
     <div class="col-lg-2 col-lg-offset-8">
         <div class="input-group">
@@ -110,6 +110,7 @@
                         <th class="text-center">Position</th>
                         <th class="text-center">Score</th>
                         <th class="text-center">Date</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -128,6 +129,9 @@
                             </td>
                             <td class="text-center">
                                 @item.Form.InterviewDate
+                            </td>
+                            <td>
+                                @Ajax.ActionLink(" ", "Delete", "Form", new { id=item.FormId},new AjaxOptions() { HttpMethod="GET"}, new { @class= "glyphicon glyphicon glyphicon-trash" })<span></span>
                             </td>
                         </tr>
                     }

@@ -74,5 +74,20 @@ namespace CandidateTest.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                var model = context.Form.Find(id);
+                context.Form.Remove(model);
+                context.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            catch
+            {
+                return RedirectToAction("Index","Home");
+            }
+        }
     }
 }
