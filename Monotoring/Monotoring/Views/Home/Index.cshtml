@@ -90,6 +90,7 @@
                         <td class="text-center">@w.Catalog.CatalogDescrip</td>
                         <td class="text-center">
                             @Html.ActionLink(w.WorkOrden.BatchOrden, "Index", "OrdenDetail", new { id = w.WorkOrden.WorkOrdenId },new { @data_toggle = "tooltip", @data_placement = "rigth", @title = "Detalles" })                           
+                            <button type="button" class="btn" data-toggle="modal" data-target="#modalDetail">modal</button>
                         </td>
                         @foreach (AreaViewModel a in Model.Area_Orden)
                         {
@@ -291,7 +292,7 @@
 </div>
 
 <!--Modal-->
-<div class="modal fade" id="modalRetraso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

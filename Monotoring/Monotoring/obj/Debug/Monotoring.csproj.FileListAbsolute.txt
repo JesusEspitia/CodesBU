@@ -439,7 +439,6 @@ C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\bin\es\Microsoft
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\bin\es\Microsoft.Owin.Security.Google.resources.dll
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csprojResolveAssemblyReference.cache
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracionK.resources
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.magracionT.resources
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracionU.resources
@@ -447,3 +446,4 @@ C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monoto
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csproj.GenerateResource.Cache
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.dll
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.pdb
+C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csprojResolveAssemblyReference.cache
