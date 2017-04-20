@@ -20,7 +20,7 @@ namespace ShutdownMonitoring
             con = new Connect();
         }
 
-        public void sendEmail(string to)
+        public void sendEmail(string to,string title)
         {
             try
             {
@@ -37,7 +37,8 @@ namespace ShutdownMonitoring
                 //client.Credentials = new System.Net.NetworkCredential("leopoldo_espitia@baxter.com", "Baxter6.");
 
                 mail.From = new MailAddress("baxnotificaciones@baxter.com");
-                mail.Subject = "Prueba";
+                mail.CC.Add("leopoldo_espitia@baxter.com");
+                mail.Subject = title;
                 mail.Body = bodyHtml;
                 mail.IsBodyHtml = true;
                 client.Send(mail);
@@ -49,15 +50,16 @@ namespace ShutdownMonitoring
             }
         }
 
-        public void writeBody(string query)
+        public void writeBody(string query,string header)
         {
             
             string body = con.getValues(query);
-            using (StreamReader reader= new StreamReader(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\CAPA Tool\emailTemplete.html"))
+            using (StreamReader reader= new StreamReader(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\Shutdown Monitoring\emailTemplete.html"))
             {
                 bodyHtml = reader.ReadToEnd();
             }
-            bodyHtml = bodyHtml.Replace("{table}", body);
+            bodyHtml = bodyHtml.Replace("{titulo} ", header);
+            bodyHtml = bodyHtml.Replace("{table}", body);     
         }
     }
 }
