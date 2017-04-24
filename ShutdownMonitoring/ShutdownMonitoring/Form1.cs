@@ -13,6 +13,7 @@ namespace ShutdownMonitoring
     public partial class Form1 : Form
     {
         private Connect con;
+        private ConnectNotify noticon;
         private Email email;
         private List<string> notify1 = new List<string>();
         private List<string> notify2 = new List<string>();
@@ -34,10 +35,12 @@ namespace ShutdownMonitoring
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            noticon = new ConnectNotify();
             con = new Connect();
             email = new Email();
-            
-            if(DateTime.Now.Hour >=6 && DateTime.Now.Hour < 18)
+            email.writeBodyNotify(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\CAPA Tool\temp.htm");
+            email.sendEmail("leopoldo_espitia@baxter.com", "Prueba", "");
+            if (DateTime.Now.Hour >=6 && DateTime.Now.Hour < 18)
             {
                 turn = 1;
             }
@@ -63,7 +66,7 @@ namespace ShutdownMonitoring
             if(con.getValueBool("select * from Shutdown_Monitoring where Solved=false and Not1=true") == true)
             {
                 email.writeBody("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where Solved=false and Not1=true", "Equipos dentenidos.");
-                email.sendEmail("leopoldo_espitia@baxter.com", "Notificación. Equipo detenido");
+                email.sendEmail("leopoldo_espitia@baxter.com", "Notificación. Equipo detenido","leopoldo_espitia@baxter.com");
                 ChangeNot();
             }
             timerNotfitication();
@@ -144,14 +147,14 @@ namespace ShutdownMonitoring
             foreach (string s in lst)
             {
                 email.writeBody(string.Format("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where ID={0}",s), tittle);
-                email.sendEmail(to, tittle);
+                email.sendEmail(to, tittle, "leopoldo_espitia@baxter.com");
             }
         }
 
         private void allStops()
         {
             email.writeBody(string.Format("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where Solved=false"), "");
-            email.sendEmail("leopoldo_espitia@baxter.com", "Paros sin resolver durante el turno");
+            email.sendEmail(allGroup, "Paros sin resolver durante el turno", "leopoldo_espitia@baxter.com");
         }
 
         private bool checkTurn()

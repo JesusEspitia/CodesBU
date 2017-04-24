@@ -20,11 +20,11 @@ namespace ShutdownMonitoring
             con = new Connect();
         }
 
-        public void sendEmail(string to,string title)
+        public void sendEmail(string to,string title,string cc)
         {
             try
             {
-                MailMessage mail = new MailMessage("leopoldo_espitia@baxter.com", to);
+                MailMessage mail = new MailMessage();
                 SmtpClient client = new SmtpClient();
 
 
@@ -36,8 +36,12 @@ namespace ShutdownMonitoring
                 client.UseDefaultCredentials = false;
                 //client.Credentials = new System.Net.NetworkCredential("leopoldo_espitia@baxter.com", "Baxter6.");
 
-                mail.From = new MailAddress("baxnotificaciones@baxter.com");
-                mail.CC.Add("leopoldo_espitia@baxter.com");
+                mail.From = new MailAddress("baxnotificaciones@baxter.com","Baxter Tj Notificaciones");
+                mail.To.Add(to);
+                if (cc != "")
+                {
+                    mail.CC.Add(cc);
+                }
                 mail.Subject = title;
                 mail.Body = bodyHtml;
                 mail.IsBodyHtml = true;
@@ -52,7 +56,7 @@ namespace ShutdownMonitoring
 
         public void writeBody(string query,string header)
         {
-            
+            bodyHtml = "";
             string body = con.getValues(query);
             using (StreamReader reader= new StreamReader(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\Shutdown Monitoring\emailTemplete.html"))
             {
@@ -61,5 +65,15 @@ namespace ShutdownMonitoring
             bodyHtml = bodyHtml.Replace("{titulo} ", header);
             bodyHtml = bodyHtml.Replace("{table}", body);     
         }
+
+        public void writeBodyNotify(string path)
+        {
+            bodyHtml = "";
+            using (StreamReader reader = new StreamReader(path))
+            {
+                bodyHtml = reader.ReadToEnd();
+            }
+        }
+
     }
 }
