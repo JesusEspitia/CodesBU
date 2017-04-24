@@ -372,26 +372,39 @@
 
 
     <!--Modal code-->
-    <div class="modal fade" id="modalRetraso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id='myModal' class='modal fade' tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dissmiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Seleccione el tipo de retraso.</h4>
-                </div>
-                <div class="modal-body">
-                    <button class="btn btn-default">Calidad</button>
-                   <button class="btn btn-default">Operación/Producción</button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dissmiss="modal">Cancelar</button>
-                </div>
+                <div id='myModalContent'></div>
             </div>
         </div>
     </div>
     <!--end modal-->
     <script>
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-      })
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+        //show the modal(partial view) for orden details
+        $(function () {
+            $(".showDetail").click(function () {
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: "/Home/showDetail",
+                    contentType: "application/json; charset=utf-8",
+                    data: { "id": id },
+                    dataType: "html",
+                    success: function (data) {
+                        $('#myModalContent').html(data);
+                        $('myModal').modal(options);
+                        $('#myModal').modal('show');
+                    },
+                    error: function () {
+                        alert("Error al cargar el contenido");
+                    }
+                })
+            });
+        });
     </script>

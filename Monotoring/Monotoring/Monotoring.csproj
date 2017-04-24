@@ -501,6 +501,7 @@
     <Content Include="Views\SubCodes\Delete.cshtml" />
     <Content Include="Views\WorkOrden\History.cshtml" />
     <Content Include="Views\WorkOrden\Generate.cshtml" />
+    <Content Include="Views\Home\_modalDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

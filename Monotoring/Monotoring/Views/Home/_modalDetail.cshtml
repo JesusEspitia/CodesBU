@@ -1,0 +1,143 @@
+﻿@using  Monotoring.Models
+@model dynamic
+@{ 
+    int count = 0;
+    string head = "";
+    string collap = "";
+}
+
+<div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-header">Detalles.</h4>
+    </div>
+
+   <div class="modal-body">
+       <div class="row">
+           <div class=" col-lg-12">
+               @foreach (WorkCatalog item in Model.WorkCatalog)
+               {
+                   <div class="media">
+                       <div class="media-right media-middle">
+                           <img class="media-object" src="~/fonts/images/@item.Catalog.image" height="50" width="50" />
+                       </div>
+                       <div class="media-body">
+                           <br />
+                           <br />
+                           <dl class="dl-horizontal">
+                               <dt>Batch:</dt>
+                               <dd>@item.WorkOrden.BatchOrden</dd>
+                               <dt>No. Producto:</dt>
+                               <dd>@item.Catalog.CatalogNo</dd>
+                               <dt>Producto:</dt>
+                               <dd>@item.Catalog.CatalogDescrip</dd>
+                               <dt>Cantidad:</dt>
+                               <dd>@item.WorkOrden.quantityOrden</dd>
+
+                               @if (item.WorkOrden.dateFinish != null)
+                               {
+                                   <dt>Estado:</dt>
+                                   <dd>Finalizado</dd>
+                                   <dt>Fecha de inicio:</dt>
+                                       <dd>@item.WorkOrden.dateStart</dd>
+                                       <dt>Fecha de finalización:</dt>
+                                       <dd>@item.WorkOrden.dateFinish</dd>
+                               }
+                               else
+                               {
+                                   <dt>Estado:</dt>
+                                   <dd>Trabajando</dd>
+                               }
+
+                           </dl>
+                       </div>
+                   </div>
+               }
+           </div>
+       </div>
+       <div class="row">
+           <div class="panel panel-default">
+               <div class="panel-heading">
+                   <h5 class="panel-title">Retrasos generados.</h5>
+               </div>
+               <div class="panel-body">
+                   @foreach (DelayArea item in Model.Delay)
+                   {
+                       <hr />
+                       <dl class="dl-horizontal">
+                           <dt>Tipo:</dt>
+                           <dd>@item.DelayCode.DelayName</dd>
+                           <dt>Descripción:</dt>
+                           <dd>@item.SubCodes.DescripCode</dd>
+                           @if (item.DelayWork.dateFinish != null)
+                           {
+                               <dt>Estado:</dt>
+                               <dd>Liberado</dd>
+                               <dt>Fecha de inicio:</dt>
+                               <dd>@item.DelayWork.dateDelay</dd>
+                                   <dt>Fecha de liberación:</dt>
+                                   <dd>@item.DelayWork.dateFinish</dd>
+                                   <dt>Duración:</dt>
+                                   <dd>@(((DateTime)item.DelayWork.dateFinish - (DateTime)item.DelayWork.dateDelay).TotalDays)</dd>
+                           }
+                           else
+                           {
+                               <dt>Estado:</dt>
+                               <dd>Detenido</dd>
+                               <dt>Fecha de inicio:</dt>
+                               <dd>@item.DelayWork.dateDelay</dd>
+                                   <dt>Responsable:</dt>
+                                   <dd>@item.DelayWork.Responsable</dd>
+                                   <dt>Área:</dt>
+                                   <dd>@item.Area.AreaName</dd>
+                           }
+                           @*<dt>
+                               @Ajax.ActionLink("Comentarios", "List", "DelayComment", new { id = item.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "text-rigth", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
+                           </dt>*@
+                       </dl>
+                        <!--comments panel-->
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <!-- panel1 -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="head">
+                                <h4 class="panel-tittle">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collap" aria-expanded="true" aria-controls="collap">
+                                        Comentarios
+                                    </a>
+
+                                </h4>
+                            </div>
+                            <div id="collap" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head">
+                                <div class="panel-body ">
+                                    @foreach (DelayComment item2 in Model.DelayComment)
+                                    {
+                                        <blockquote>
+                                            <p class="text-justify ">@item2.Comment</p>
+                                            <footer>@item2.Users.username (@item2.dateComment)</footer>
+                                        </blockquote>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <!--end comment-->
+                       <hr />
+                   }
+                  
+               </div>
+           </div>
+       </div>
+
+      
+
+   </div>
+</div>
+
+<script>
+    $("#close").click(function () {
+        $("#myModal").modal('hide');
+    });
+</script>
