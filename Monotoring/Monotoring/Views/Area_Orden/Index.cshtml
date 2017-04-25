@@ -86,10 +86,12 @@
                                                 <dt>Días transcurridos:</dt>
                                                 <dd>@(Math.Round((DateTime.Now - (DateTime)arrayOrd[0].Area_Orden.dateStart).TotalDays, 0))</dd>
                                             </dl>
+
                                             @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
                                             @if (arrayOrd[0].DelayWork == null)
                                             {
-                                                @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                                <a onclick="ModalDelay();" class="createDelay btn btn-warning btn-sm" data-id="@arrayOrd[0].DelayWork.DelayWorkId">Retraso</a>
+                                                @*@Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })*@
                                             }
                                             else
                                             {
@@ -136,8 +138,8 @@
                                             @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
                                             @if (arrayOrd[1].DelayWork == null)
                                             {
-                                                
-                                                @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                                <a onclick="ModalDelay();" class="createDelay btn btn-warning btn-sm" data-id="@arrayOrd[1].DelayWork.DelayWorkId">Retraso</a>
+                                                @*@Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })*@
                                             }
                                             else
                                             {
@@ -192,10 +194,11 @@
                                     @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = o.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
                                     @if (o.DelayWork == null)
                                     {
-                                        @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = o.WorkOrden.WorkOrdenId }, 
+                                        <a onclick="ModalDelay();" class="createDelay btn btn-warning btn-sm" data-id="@o.WorkOrden.WorkOrdenId">Retraso</a>
+                                        @*@Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = o.WorkOrden.WorkOrdenId }, 
                                        new AjaxOptions() { HttpMethod = "GET" }, 
                                        new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom"
-                                       , @title = "Indicar algún retraso en el trabajo" })
+                                       , @title = "Indicar algún retraso en el trabajo" })*@
                                     }
                                     else
                                     {
@@ -242,13 +245,15 @@
                                             
                                             @if (arrayOrd[0].DelayWork == null)
                                             {
-                                                @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                                
+                                                @*@Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })*@
                                             }
                                             else
                                             {
                                                 @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                             }
-                                            @Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })
+                                            <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@arrayOrd[0].DelayWork.DelayWorkId">Modal</a>
+                                            @*@Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })*@
                                             @Ajax.ActionLink("Consultar", "List", "DelayComment", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
                                         </div>
                                     </div>
@@ -272,13 +277,15 @@
                                             
                                             @if (arrayOrd[1].DelayWork == null)
                                             {
-                                                @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                                <a onclick="ModalDelay();" class="createDelay" data-id="@arrayOrd[1].DelayWork.DelayWorkId">Retraso</a>
+                                                @*@Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })*@
                                             }
                                             else
                                             {
                                                 @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                             }
-                                            @Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })
+                                            <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@arrayOrd[1].DelayWork.DelayWorkId">Modal</a>
+                                            @*@Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })*@
                                             @Ajax.ActionLink("Consultar", "List", "DelayComment", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
                                         </div>
                                     </div>
@@ -310,13 +317,15 @@
                                     
                                     @if (o.DelayWork == null)
                                     {
-                                        @Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = o.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })
+                                        <a onclick="ModalDelay();" class="createDelay btn btn-primary btn-sm" data-id="@o.WorkOrden.WorkOrdenId">Retraso</a>
+                                        @*@Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = o.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })*@
                                     }
                                     else
                                     {
                                         @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                     }
-                                    @Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })
+                                    <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@o.DelayWork.DelayWorkId">Modal</a>
+                                    @*@Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })*@
                                     @Ajax.ActionLink("Consultar", "List", "DelayComment", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
                                 </div>
                             </div>
@@ -371,7 +380,7 @@
     </div>*@
 
 
-    <!--Modal code-->
+    <!--Modal code create comment-->
     <div id='myModal' class='modal fade' tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -380,11 +389,21 @@
         </div>
     </div>
     <!--end modal-->
+
+    <!--Modal code create delay-->
+    <div id='myModal2' class='modal fade' tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id='myModalContent2'></div>
+            </div>
+        </div>
+    </div>
+    <!--end modal-->
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
-        //show the modal(partial view) for orden details
+        //show the modal(partial view) for new comment
         $(function () {
             $(".showDetail").click(function () {
                 var $buttonClicked = $(this);
@@ -392,7 +411,30 @@
                 var options = { "backdrop": "static", keyboard: true };
                 $.ajax({
                     type: "GET",
-                    url: "/Home/showDetail",
+                    url: "/DelayComment/New",
+                    contentType: "application/json; charset=utf-8",
+                    data: { "id": id },
+                    dataType: "html",
+                    success: function (data) {
+                        $('#myModalContent').html(data);
+                        $('myModal').modal(options);
+                        $('#myModal').modal('show');
+                    },
+                    error: function () {
+                        alert("Error al cargar el contenido");
+                    }
+                })
+            });
+        });
+        //show the modal(partial view) for new delay
+        $(function ModalDelay() {
+            $(".createDelay").click(function () {
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: "/DelayWork/Create",
                     contentType: "application/json; charset=utf-8",
                     data: { "id": id },
                     dataType: "html",

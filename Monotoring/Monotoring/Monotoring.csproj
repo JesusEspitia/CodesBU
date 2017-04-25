@@ -244,21 +244,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703081716560_migracionK.cs" />
-    <Compile Include="Migrations\201703081716560_migracionK.Designer.cs">
-      <DependentUpon>201703081716560_migracionK.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703140053339_magracionT.cs" />
-    <Compile Include="Migrations\201703140053339_magracionT.Designer.cs">
-      <DependentUpon>201703140053339_magracionT.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703161832175_migracionU.cs" />
-    <Compile Include="Migrations\201703161832175_migracionU.Designer.cs">
-      <DependentUpon>201703161832175_migracionU.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703161856209_migracionN.cs" />
-    <Compile Include="Migrations\201703161856209_migracionN.Designer.cs">
-      <DependentUpon>201703161856209_migracionN.cs</DependentUpon>
+    <Compile Include="Migrations\201704252240328_migrationT.cs" />
+    <Compile Include="Migrations\201704252240328_migrationT.Designer.cs">
+      <DependentUpon>201704252240328_migrationT.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -502,6 +490,8 @@
     <Content Include="Views\WorkOrden\History.cshtml" />
     <Content Include="Views\WorkOrden\Generate.cshtml" />
     <Content Include="Views\Home\_modalDetail.cshtml" />
+    <Content Include="Views\DelayComment\_modelNewComment.cshtml" />
+    <Content Include="Views\DelayWork\_modalDelay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -511,20 +501,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703081716560_migracionK.resx">
-      <DependentUpon>201703081716560_migracionK.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703140053339_magracionT.resx">
-      <DependentUpon>201703140053339_magracionT.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703161832175_migracionU.resx">
-      <DependentUpon>201703161832175_migracionU.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703161856209_migracionN.resx">
-      <DependentUpon>201703161856209_migracionN.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704252240328_migrationT.resx">
+      <DependentUpon>201704252240328_migrationT.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

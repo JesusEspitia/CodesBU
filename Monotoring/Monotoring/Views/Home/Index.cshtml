@@ -89,9 +89,9 @@
                         <td class="text-center">@w.Catalog.CatalogNo</td>
                         <td class="text-center">@w.Catalog.CatalogDescrip</td>
                         <td class="text-center">
-                            @Html.ActionLink(w.WorkOrden.BatchOrden, "Index", "OrdenDetail", new { id = w.WorkOrden.WorkOrdenId },new { @data_toggle = "tooltip", @data_placement = "rigth", @title = "Detalles" })                           
+                            @*@Html.ActionLink(w.WorkOrden.BatchOrden, "Index", "OrdenDetail", new { id = w.WorkOrden.WorkOrdenId },new { @data_toggle = "tooltip", @data_placement = "rigth", @title = "Detalles" })*@                           
                             @*<button type="button" class="btn" data-toggle="modal" data-target="#modalDetail">modal</button>*@
-                            <a href="javascript:void(0);" class="showDetail"data-id="@w.WorkOrden.WorkOrdenId">Modal</a>
+                            <a href="javascript:void(0);" class="showDetail"data-id="@w.WorkOrden.WorkOrdenId">@w.WorkOrden.BatchOrden</a>
                         </td>
                         @foreach (AreaViewModel a in Model.Area_Orden)
                         {

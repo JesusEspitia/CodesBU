@@ -19,6 +19,8 @@ namespace Monotoring.Models
         //[RegularExpression(@"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")]
         [DisplayName("Nombre completo")]
         public string fullname { get; set; }
+        [DisplayName("Correo electronico")]
+        public string emailuser { get; set; }
         [DisplayName("Cargo")]
         public int TypeId { get; set; }
         [DisplayName("Área")]

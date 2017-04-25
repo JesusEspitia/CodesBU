@@ -34,11 +34,11 @@ namespace Monotoring.Controllers
                     {
                         model.titleComment =item.SubCodes.DescripCode;
                     }
-                    return View(model);
+                    return PartialView("_modelNewComment",model);
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    return PartialView("Index", "Home");
                 }
             }
             catch (Exception ex)
@@ -85,6 +85,8 @@ namespace Monotoring.Controllers
                 return View();
             }
         }
+
+        
 
     }
 }

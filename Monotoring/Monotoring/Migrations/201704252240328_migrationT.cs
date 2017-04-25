@@ -3,16 +3,16 @@ namespace Monotoring.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class migracionU : DbMigration
+    public partial class migrationT : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.DelayWorks", "ReportNo", c => c.String(unicode: false));
+            AddColumn("dbo.Users", "emailuser", c => c.String(unicode: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.DelayWorks", "ReportNo");
+            DropColumn("dbo.Users", "emailuser");
         }
     }
 }

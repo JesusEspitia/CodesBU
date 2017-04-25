@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using Monotoring.Models;
 using Monotoring.Context;
+using System.IO;
+using System.IO.Ports;
+using System.Net;
+using System.Net.Mail;
 
 namespace Monotoring.Controllers
 {
@@ -95,6 +99,36 @@ namespace Monotoring.Controllers
                     }
                 }
                 context.SaveChanges();
+                if (area != 6)
+                {
+                    int areanext = 0;
+                    string to="";
+                    int areaRoot = (int)Session["userAreaId"] + 1;
+                    var an = from a in context.Area
+                             where a.orden == areaRoot
+                             select a;
+                    foreach(var item in an.ToList())
+                    {
+                        areanext = (int)item.AreaId;
+                    }
+                    var emails = from u in context.Users
+                                 where u.AreaId == areanext
+                                 select u;
+                    int i = 1;
+                    foreach(var item in emails.ToList())
+                    {
+                        if (i == emails.ToList().Count)
+                        {
+                            to += item.emailuser;
+                        }
+                        else
+                        {
+                            to += item.emailuser + ",";
+                        }
+                    }
+                    sendEmail("Pruena", to);
+                }
+
                 return RedirectToAction("Index");
             }
             else
@@ -175,6 +209,24 @@ namespace Monotoring.Controllers
             {
                 return View();
             }
+        }
+
+        private void sendEmail(string body,string to)
+        {
+            var message = new MailMessage();
+            message.To.Add("leopoldo_espitia@baxter.com");
+            message.From=new MailAddress("baxnotificaciones@baxter.com");
+            message.Subject = "Nueva orden por comenzar";
+            message.Body = body;
+            message.IsBodyHtml = true;
+            var smtp = new SmtpClient();
+            smtp.Host = "BN1PRD9201.prod.outlook.com";
+            smtp.Port = 25;
+            smtp.EnableSsl = false;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.UseDefaultCredentials = false;
+        
+            smtp.Send(message);
         }
     
     }
