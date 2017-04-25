@@ -29,8 +29,14 @@ namespace CandidateTest.Controllers
         {
             if (ModelState.IsValid)
             {
+                bool acp = false;
                 model.InterviewDate = DateTime.Now;
                 context.Form.Add(model);
+                if (model.Continue == "Yes")
+                {
+                    acp = true;
+                }
+
                 Candidate c = new Candidate()
                 {
                     CandidateName = model.Candidate,
@@ -38,7 +44,8 @@ namespace CandidateTest.Controllers
                     CandidateScore = ((Convert.ToInt32(model.question1) + Convert.ToInt32(model.question2) + Convert.ToInt32(model.question2) +
                     Convert.ToInt32(model.question4) + Convert.ToInt32(model.question5) + Convert.ToInt32(model.question6) + Convert.ToInt32(model.question7) +
                     Convert.ToInt32(model.question8) + Convert.ToInt32(model.question9) + Convert.ToInt32(model.question10)) * 100) / 400,
-                    FormId=model.FormId
+                    FormId = model.FormId,
+                    Accepted = acp
                 };
                 context.Candidate.Add(c);
                 context.SaveChanges();

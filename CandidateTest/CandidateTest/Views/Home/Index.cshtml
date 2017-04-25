@@ -110,6 +110,7 @@
                         <th class="text-center">Position</th>
                         <th class="text-center">Score</th>
                         <th class="text-center">Date</th>
+                        <th class="text-center"></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -130,6 +131,14 @@
                             <td class="text-center">
                                 @item.Form.InterviewDate
                             </td>
+                            @if (item.Accepted == true)
+                            {
+                                <td><span class=" label label-success">Candidate Accepted </span></td>
+                            }
+                            else
+                            {
+                                <td><span class="label label-danger">Candidate Rejected </span></td>
+                            }
                             <td>
                                 @Ajax.ActionLink(" ", "Delete", "Form", new { id=item.FormId},new AjaxOptions() { HttpMethod="GET"}, new { @class= "glyphicon glyphicon glyphicon-trash" })<span></span>
                             </td>

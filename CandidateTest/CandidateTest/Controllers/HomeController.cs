@@ -18,7 +18,7 @@ namespace CandidateTest.Controllers
             var model2= context.Candidate.Include("Form").Where(c => c.Review == false).Where(c=>c.Form.Continue=="No").ToList();
             ViewBag.candidateList = model.ToList();
             ViewBag.candidate2 = model2.ToList();
-            var model3 = context.Candidate.Include("Form").Where(c => c.Review == true).ToList();
+            var model3 = context.Candidate.Include("Form").OrderByDescending(c=>c.Form.InterviewDate).Where(c => c.Review == true).ToList();
             ViewBag.history = model3.ToList();
             return View();
         }
