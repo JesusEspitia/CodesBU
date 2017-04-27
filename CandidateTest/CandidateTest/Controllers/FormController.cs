@@ -68,6 +68,16 @@ namespace CandidateTest.Controllers
                 {
                     item.Review = true;
                 }
+                ViewBag.d1 = model.question1;
+                ViewBag.d2 = model.question2;
+                ViewBag.d3 = model.question3;
+                ViewBag.d4 = model.question4;
+                ViewBag.d5 = model.question5;
+                ViewBag.d6 = model.question6;
+                ViewBag.d7 = model.question7;
+                ViewBag.d8 = model.question8;
+                ViewBag.d9 = model.question9;
+                ViewBag.d10 = model.question10;
                 context.SaveChanges();
                 return View(model);
             }

@@ -90,7 +90,7 @@
                                             @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
                                             @if (arrayOrd[0].DelayWork == null)
                                             {
-                                                <a onclick="ModalDelay();" class="createDelay btn btn-warning btn-sm" data-id="@arrayOrd[0].DelayWork.DelayWorkId">Retraso</a>
+                                                <a onclick="ModalDelay();" class="createDelay btn btn-warning btn-sm" data-id="@arrayOrd[0].WorkOrden.WorkOrdenId">Retraso</a>
                                                 @*@Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })*@
                                             }
                                             else
@@ -138,7 +138,7 @@
                                             @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
                                             @if (arrayOrd[1].DelayWork == null)
                                             {
-                                                <a onclick="ModalDelay();" class="createDelay btn btn-warning btn-sm" data-id="@arrayOrd[1].DelayWork.DelayWorkId">Retraso</a>
+                                                <a onclick="ModalDelay();" class="createDelay btn btn-warning btn-sm" data-id="@arrayOrd[1].WorkOrden.WorkOrdenId">Retraso</a>
                                                 @*@Ajax.ActionLink("Retraso", "Create", "DelayWork", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "GET" }, new { @class = "btn btn-warning btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Indicar algún retraso en el trabajo" })*@
                                             }
                                             else

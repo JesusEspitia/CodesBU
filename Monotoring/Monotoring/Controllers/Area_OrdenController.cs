@@ -213,20 +213,25 @@ namespace Monotoring.Controllers
 
         private void sendEmail(string body,string to)
         {
-            var message = new MailMessage();
-            message.To.Add("leopoldo_espitia@baxter.com");
-            message.From=new MailAddress("baxnotificaciones@baxter.com");
-            message.Subject = "Nueva orden por comenzar";
-            message.Body = body;
-            message.IsBodyHtml = true;
-            var smtp = new SmtpClient();
-            smtp.Host = "BN1PRD9201.prod.outlook.com";
-            smtp.Port = 25;
-            smtp.EnableSsl = false;
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.UseDefaultCredentials = false;
-        
-            smtp.Send(message);
+            MailMessage mail = new MailMessage();
+            SmtpClient client = new SmtpClient();
+
+
+            client.Host = "BN1PRD9201.prod.outlook.com";
+            //client.Host = "smtp.google.com";
+            client.Port = 25;
+            client.EnableSsl = false;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            //client.Credentials = new System.Net.NetworkCredential("leopoldo_espitia@baxter.com", "Baxter6.");
+
+            mail.From = new MailAddress("baxnotificaciones@baxter.com", "Trackbatch Notificaciones.");
+            mail.To.Add(to);
+            
+            mail.Subject = "Notificacion";
+            mail.Body = body;
+            mail.IsBodyHtml = true;
+            client.Send(mail);
         }
     
     }

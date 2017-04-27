@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     string val1 = "";
     string val2 = "";
     string val3 = "";
@@ -77,7 +78,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <hr />
+    @*<div class="row">
         <div class="col-md-5 col-md-offset-3">
             <p><strong>To complete the scorecard, please simply do the following:</strong></p>
             <blockquote>
@@ -88,8 +90,39 @@
                 </ol>
             </blockquote>
         </div>
-    </div>
+    </div>*@
     <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-3">
+            <canvas id="detailChart" width="50" height="50"></canvas>
+        </div>
+        <div class="col-lg-2">
+            <br />
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Questions</h1>
+                </div>
+                <div class="panel-body">
+                    <ol>
+                        <li>Technical Skills </li>
+                        <li>Motivated to do the work</li>
+                        <li>Team Skills in Similar Gruops</li>
+                        <li>Problem Solving and Quality of Things </li>
+                        <li>Achieved Similar Results </li>
+                        <li>Planning and Executing </li>
+                        <li>Continuous Improvement </li>
+                        <li>Environment and Motivational Fit </li>
+                        <li>Trend for Growth </li>
+                        <li>Character and Values </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--chart-->
+
+   <!--end chart-->
+    <hr />
     <!--Questions begin-->
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
@@ -400,3 +433,30 @@
     <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 
 </div>
+
+<script>
+    var ctx = document.getElementById("detailChart")
+    var mychart = new Chart(ctx, {        
+        type: 'radar',
+        data: {
+            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+            datasets:[ {
+                label: "Questionnaire Summary",
+                backgroundColor: "rgba(5, 90, 144, 0.71)",
+                borderColor: "rgba(8, 34, 144, 0.71)",
+                pointBackgroundColor: "rgba(37, 72, 222, 0.71)",
+                pointBorderColor: "#fff",
+                pointHoverBorderColor: "rgba(16, 226, 194, 0.71)",
+                data: [@Model.question1,@Model.question2,@Model.question3,@Model.question4,@Model.question5,@Model.question6,@Model.question7,@Model.question8,@Model.question9,@Model.question10]
+            }]
+        },
+        options: {
+            scale: {
+                reverse: false,
+                ticks: {
+                    beginAtZero:true
+                }
+            }
+        }
+    });
+</script>
