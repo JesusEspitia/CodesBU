@@ -35,11 +35,11 @@ namespace ShutdownMonitoring
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            noticon = new ConnectNotify();
+            //noticon = new ConnectNotify();
             con = new Connect();
             email = new Email();
-            email.writeBodyNotify(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\CAPA Tool\temp.htm");
-            email.sendEmail("leopoldo_espitia@baxter.com", "Prueba", "");
+            //email.writeBodyNotify(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\CAPA Tool\temp.htm");
+            //email.sendEmail("leopoldo_espitia@baxter.com", "Prueba", "");
             if (DateTime.Now.Hour >=6 && DateTime.Now.Hour < 18)
             {
                 turn = 1;
@@ -66,7 +66,8 @@ namespace ShutdownMonitoring
             if(con.getValueBool("select * from Shutdown_Monitoring where Solved=false and Not1=true") == true)
             {
                 email.writeBody("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where Solved=false and Not1=true", "Equipos dentenidos.");
-                email.sendEmail("leopoldo_espitia@baxter.com", "Notificación. Equipo detenido","leopoldo_espitia@baxter.com");
+                email.sendEmail("abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com, jorge_ramos@baxter.com, leticia_ramirez@baxter.com,edgar_aleman@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com",
+                    "Notificación. Equipo detenido","leopoldo_espitia@baxter.com");
                 ChangeNot();
             }
             timerNotfitication();
@@ -92,28 +93,31 @@ namespace ShutdownMonitoring
             Clearlist();
             List<string> stoped = new List<string>();
             con.fillList("select ID from Shutdown_Monitoring where Solved=false", stoped);
-            foreach (string s in stoped)
+            if (stoped.Count > 0)
             {
-                DateTime d = Convert.ToDateTime(con.getValue(string.Format("select Shutdown_Time from Shutdown_Monitoring where ID={0}", s)));
+                foreach (string s in stoped)
+                {
+                    DateTime d = Convert.ToDateTime(con.getValue(string.Format("select Shutdown_Time from Shutdown_Monitoring where ID={0}", s)));
 
-                double time = (DateTime.Now - d).TotalMinutes;
-                if (time >= 30 && time <= 31)
-                {
-                    notify1.Add(s);
-                }
-                if (time >= 60 && time <= 61)
-                {
-                    notify2.Add(s);
-                }
-                if (time >= 120 && time < 121)
-                {
-                    notify3.Add(s);
+                    double time = (DateTime.Now - d).TotalMinutes;
+                    if (time >= 30 && time <= 31)
+                    {
+                        notify1.Add(s);
+                    }
+                    if (time >= 60 && time <= 61)
+                    {
+                        notify2.Add(s);
+                    }
+                    if (time >= 120 && time < 121)
+                    {
+                        notify3.Add(s);
 
-                }
-                if(time>=240 && time <= 241)
-                {
-                    notify4.Add(s);
+                    }
+                    if (time >= 240 && time <= 241)
+                    {
+                        notify4.Add(s);
 
+                    }
                 }
             }
             if (notify1.Count() > 0)

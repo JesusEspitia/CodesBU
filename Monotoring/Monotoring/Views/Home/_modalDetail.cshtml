@@ -21,7 +21,7 @@
                {
                    <div class="media">
                        <div class="media-right media-middle">
-                           <img class="media-object" src="~/fonts/images/@item.Catalog.image" height="50" width="50" />
+                           <img class="media-object" src="~/fonts/images/@item.Catalog.image" height="100" width="100" />
                        </div>
                        <div class="media-body">
                            <br />
@@ -58,74 +58,77 @@
            </div>
        </div>
        <div class="row">
-           <div class="panel panel-default">
+           <div class="panel panel-warning">
                <div class="panel-heading">
                    <h5 class="panel-title">Retrasos generados.</h5>
                </div>
                <div class="panel-body">
-                   @foreach (DelayArea item in Model.Delay)
-                   {
-                       <hr />
-                       <dl class="dl-horizontal">
-                           <dt>Tipo:</dt>
-                           <dd>@item.DelayCode.DelayName</dd>
-                           <dt>Descripción:</dt>
-                           <dd>@item.SubCodes.DescripCode</dd>
-                           @if (item.DelayWork.dateFinish != null)
-                           {
-                               <dt>Estado:</dt>
-                               <dd>Liberado</dd>
-                               <dt>Fecha de inicio:</dt>
-                               <dd>@item.DelayWork.dateDelay</dd>
+                   <div class="well well-lg">
+                       @foreach (DelayArea item in Model.Delay)
+                       {
+                           <hr />
+                           <dl class="dl-horizontal">
+                               <dt>Tipo:</dt>
+                               <dd>@item.DelayCode.DelayName</dd>
+                               <dt>Descripción:</dt>
+                               <dd>@item.SubCodes.DescripCode</dd>
+                               @if (item.DelayWork.dateFinish != null)
+                               {
+                                   <dt>Estado:</dt>
+                                   <dd>Liberado</dd>
+                                   <dt>Fecha de inicio:</dt>
+                                   <dd>@item.DelayWork.dateDelay</dd>
                                    <dt>Fecha de liberación:</dt>
                                    <dd>@item.DelayWork.dateFinish</dd>
                                    <dt>Duración:</dt>
                                    <dd>@(((DateTime)item.DelayWork.dateFinish - (DateTime)item.DelayWork.dateDelay).TotalDays)</dd>
-                           }
-                           else
-                           {
-                               <dt>Estado:</dt>
-                               <dd>Detenido</dd>
-                               <dt>Fecha de inicio:</dt>
-                               <dd>@item.DelayWork.dateDelay</dd>
+                               }
+                               else
+                               {
+                                   <dt>Estado:</dt>
+                                   <dd>Detenido</dd>
+                                   <dt>Fecha de inicio:</dt>
+                                   <dd>@item.DelayWork.dateDelay</dd>
                                    <dt>Responsable:</dt>
                                    <dd>@item.DelayWork.Responsable</dd>
                                    <dt>Área:</dt>
                                    <dd>@item.Area.AreaName</dd>
-                           }
-                           @*<dt>
-                               @Ajax.ActionLink("Comentarios", "List", "DelayComment", new { id = item.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "text-rigth", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
-                           </dt>*@
-                       </dl>
+                               }
+                               @*<dt>
+                        @Ajax.ActionLink("Comentarios", "List", "DelayComment", new { id = item.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "text-rigth", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
+                    </dt>*@
+                           </dl>
                         <!--comments panel-->
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <!-- panel1 -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="head">
-                                <h4 class="panel-tittle">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collap" aria-expanded="true" aria-controls="collap">
-                                        Comentarios
-                                    </a>
+                           <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                               <!-- panel1 -->
+                               <div class="panel panel-default">
+                                   <div class="panel-heading" role="tab" id="head">
+                                       <h4 class="panel-tittle">
+                                           <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collap" aria-expanded="true" aria-controls="collap">
+                                               Comentarios
+                                           </a>
 
-                                </h4>
-                            </div>
-                            <div id="collap" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head">
-                                <div class="panel-body ">
-                                    @foreach (DelayComment item2 in Model.DelayComment)
-                                    {
-                                        <blockquote>
-                                            <p class="text-justify ">@item2.Comment</p>
-                                            <footer>@item2.Users.username (@item2.dateComment)</footer>
-                                        </blockquote>
-                                    }
+                                       </h4>
+                                   </div>
+                                   <div id="collap" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head">
+                                       <div class="panel-body ">
+                                           @foreach (DelayComment item2 in Model.DelayComment)
+                                           {
+                                               <blockquote>
+                                                   <p class="text-justify ">@item2.Comment</p>
+                                                   <footer>@item2.Users.username (@item2.dateComment)</footer>
+                                               </blockquote>
+                                           }
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+
                    <!--end comment-->
-                       <hr />
-                   }
+                           <hr />
+                       }
+                   </div>
                   
                </div>
            </div>

@@ -24,28 +24,32 @@ namespace ShutdownMonitoring
         {
             try
             {
-                MailMessage mail = new MailMessage();
-                SmtpClient client = new SmtpClient();
-
-
-                client.Host = "BN1PRD9201.prod.outlook.com";
-                //client.Host = "smtp.google.com";
-                client.Port = 25;
-                client.EnableSsl = false;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-                //client.Credentials = new System.Net.NetworkCredential("leopoldo_espitia@baxter.com", "Baxter6.");
-
-                mail.From = new MailAddress("baxnotificaciones@baxter.com","Baxter Tj Notificaciones");
-                mail.To.Add(to);
-                if (cc != "")
+                if (bodyHtml != "")
                 {
-                    mail.CC.Add(cc);
+                    MailMessage mail = new MailMessage();
+                    SmtpClient client = new SmtpClient();
+
+
+                    client.Host = "BN1PRD9201.prod.outlook.com";
+                    //client.Host = "smtp.google.com";
+                    client.Port = 25;
+                    client.EnableSsl = false;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.UseDefaultCredentials = false;
+                    //client.Credentials = new System.Net.NetworkCredential("leopoldo_espitia@baxter.com", "Baxter6.");
+
+                    mail.From = new MailAddress("baxnotificaciones@baxter.com", "Baxter Tj Notificaciones");
+                    mail.To.Add(to);
+                    if (cc != "")
+                    {
+                        mail.CC.Add(cc);
+                    }
+                    mail.Subject = title;
+                    mail.Body = bodyHtml;
+                    mail.IsBodyHtml = true;
+                    client.Send(mail);
+                    bodyHtml = "";
                 }
-                mail.Subject = title;
-                mail.Body = bodyHtml;
-                mail.IsBodyHtml = true;
-                client.Send(mail);
 
             }
             catch (Exception ex)
@@ -58,12 +62,15 @@ namespace ShutdownMonitoring
         {
             bodyHtml = "";
             string body = con.getValues(query);
-            using (StreamReader reader= new StreamReader(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\Shutdown Monitoring\emailTemplete.html"))
+            if (body != "")
             {
-                bodyHtml = reader.ReadToEnd();
+                using (StreamReader reader = new StreamReader(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\Shutdown Monitoring\emailTemplete.html"))
+                {
+                    bodyHtml = reader.ReadToEnd();
+                }
+                bodyHtml = bodyHtml.Replace("{titulo} ", header);
+                bodyHtml = bodyHtml.Replace("{table}", body);
             }
-            bodyHtml = bodyHtml.Replace("{titulo} ", header);
-            bodyHtml = bodyHtml.Replace("{table}", body);     
         }
 
         public void writeBodyNotify(string path)
