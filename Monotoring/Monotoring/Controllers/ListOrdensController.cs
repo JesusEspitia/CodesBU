@@ -141,7 +141,8 @@ namespace Monotoring.Controllers
                 AreaId = area,
                 WorkOrdenId = orden,
                 dateStart = DateTime.Now,
-                runOrden = true
+                runOrden = true,
+                notify = false
             };
             area = (int)Session["userAreaId"];
             if (area != 1)

@@ -19,6 +19,7 @@ namespace Monotoring.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? dateFinish { get; set; }
         public bool runOrden { get; set; }
+        public bool notify { get; set; }
 
         [ForeignKey("AreaId")]
         public Area Area { get; set; }

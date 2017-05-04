@@ -14,8 +14,14 @@
             @Html.DisplayNameFor(model => model.userNameRequest)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.areaRequest)
+            @Html.DisplayNameFor(model => model.fullname)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.areaRequest)
+        </th>       
         <th></th>
     </tr>
 
@@ -25,10 +31,16 @@
             @Html.DisplayFor(modelItem => item.userNameRequest)
         </td>
         <td>
+            @Html.DisplayFor(modelItem=>item.fullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem=>item.email)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.areaRequest)
         </td>
         <td>
-            @Html.ActionLink("Registrar", "Create", "Users", new { username = item.userNameRequest },null) | 
+            @Html.ActionLink("Registrar", "Create", "Users", new { username = item.userNameRequest,fullname=item.fullname,email=item.email,area=item.areaRequest },null) | 
             @Html.ActionLink("Rechazar solicitud", "DenyRequest", "Admin", new { id = item.UserNewRequestId }, null)
         </td>
     </tr>

@@ -85,6 +85,7 @@ namespace Monotoring.Controllers
                 foreach (Area_Orden a in up)
                 {
                     a.dateFinish = DateTime.Now;
+                    a.notify = true;
                     //finish = a.AreaId;
                 }
                 if (area == 6)
@@ -99,35 +100,35 @@ namespace Monotoring.Controllers
                     }
                 }
                 context.SaveChanges();
-                if (area != 6)
-                {
-                    int areanext = 0;
-                    string to="";
-                    int areaRoot = (int)Session["userAreaId"] + 1;
-                    var an = from a in context.Area
-                             where a.orden == areaRoot
-                             select a;
-                    foreach(var item in an.ToList())
-                    {
-                        areanext = (int)item.AreaId;
-                    }
-                    var emails = from u in context.Users
-                                 where u.AreaId == areanext
-                                 select u;
-                    int i = 1;
-                    foreach(var item in emails.ToList())
-                    {
-                        if (i == emails.ToList().Count)
-                        {
-                            to += item.emailuser;
-                        }
-                        else
-                        {
-                            to += item.emailuser + ",";
-                        }
-                    }
-                    sendEmail("Pruena", to);
-                }
+                //if (area != 6)
+                //{
+                //    int areanext = 0;
+                //    string to="";
+                //    int areaRoot = (int)Session["userAreaId"] + 1;
+                //    var an = from a in context.Area
+                //             where a.orden == areaRoot
+                //             select a;
+                //    foreach(var item in an.ToList())
+                //    {
+                //        areanext = (int)item.AreaId;
+                //    }
+                //    var emails = from u in context.Users
+                //                 where u.AreaId == areanext
+                //                 select u;
+                //    int i = 1;
+                //    foreach(var item in emails.ToList())
+                //    {
+                //        if (i == emails.ToList().Count)
+                //        {
+                //            to += item.emailuser;
+                //        }
+                //        else
+                //        {
+                //            to += item.emailuser + ",";
+                //        }
+                //    }
+                //    sendEmail("Pruena", to);
+                //}
 
                 return RedirectToAction("Index");
             }

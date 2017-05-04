@@ -101,7 +101,7 @@ namespace Monotoring.Controllers
         }
         [HttpGet]
         // GET: Users/Create
-        public ActionResult Create(string username="")
+        public ActionResult Create(string username="",string fullname="",string email="",int  area=0)
         {
             if (Convert.ToString(Session["userType"]) == "3")
             {
@@ -110,6 +110,9 @@ namespace Monotoring.Controllers
                 ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
                 Users model = new Users();
                 model.username = username;
+                model.fullname = fullname;
+                model.emailuser = email;
+                model.AreaId = area;
                 return View(model);
             }
             else

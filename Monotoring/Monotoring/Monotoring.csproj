@@ -248,6 +248,14 @@
     <Compile Include="Migrations\201704252240328_migrationT.Designer.cs">
       <DependentUpon>201704252240328_migrationT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705021835001_migrationNew.cs" />
+    <Compile Include="Migrations\201705021835001_migrationNew.Designer.cs">
+      <DependentUpon>201705021835001_migrationNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705032356496_migrationNew2.cs" />
+    <Compile Include="Migrations\201705032356496_migrationNew2.Designer.cs">
+      <DependentUpon>201705032356496_migrationNew2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
@@ -503,6 +511,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704252240328_migrationT.resx">
       <DependentUpon>201704252240328_migrationT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705021835001_migrationNew.resx">
+      <DependentUpon>201705021835001_migrationNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705032356496_migrationNew2.resx">
+      <DependentUpon>201705032356496_migrationNew2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,8 +13,9 @@ namespace ShutdownMonitoring
     public partial class Form1 : Form
     {
         private Connect con;
-        private ConnectNotify noticon;
+        private Notifiy noticon;
         private Email email;
+        private TrackNotification track;
         private List<string> notify1 = new List<string>();
         private List<string> notify2 = new List<string>();
         private List<string> notify3 = new List<string>();
@@ -23,9 +24,9 @@ namespace ShutdownMonitoring
 
         private string grupoA = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,jorge_ramos@baxter.com,leticia_ramirez@baxter.com,mirtha_perez@baxter.com";
         private string grupoB = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,jorge_ramos@baxter.com,leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
-        private string grupoC = " abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,jorge_ramos@baxter.com, leticia_ramirez@baxter.com,edgar_aleman@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
-        private string grupoD = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,enrique_perez_sanchez@baxter.com,fernando_vera@baxter.com,jorge_ramos@baxter.com,leticia_ramirez@baxter.com,edgar_aleman@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
-        private string allGroup = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com, jorge_ramos@baxter.com, leticia_ramirez@baxter.com,edgar_aleman@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
+        private string grupoC = " abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,jorge_ramos@baxter.com, leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
+        private string grupoD = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,enrique_perez_sanchez@baxter.com,fernando_vera@baxter.com,jorge_ramos@baxter.com,leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
+        private string allGroup = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com, jorge_ramos@baxter.com, leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
         private int turn;
 
         public Form1()
@@ -36,8 +37,14 @@ namespace ShutdownMonitoring
         private void Form1_Load(object sender, EventArgs e)
         {
             //noticon = new ConnectNotify();
+
+            track = new TrackNotification();
+            
             con = new Connect();
             email = new Email();
+
+            noticon = new Notifiy();
+            noticon.ReadNewNotify();
             //email.writeBodyNotify(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\CAPA Tool\temp.htm");
             //email.sendEmail("leopoldo_espitia@baxter.com", "Prueba", "");
             if (DateTime.Now.Hour >=6 && DateTime.Now.Hour < 18)
@@ -66,7 +73,7 @@ namespace ShutdownMonitoring
             if(con.getValueBool("select * from Shutdown_Monitoring where Solved=false and Not1=true") == true)
             {
                 email.writeBody("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where Solved=false and Not1=true", "Equipos dentenidos.");
-                email.sendEmail("abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com, jorge_ramos@baxter.com, leticia_ramirez@baxter.com,edgar_aleman@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com",
+                email.sendEmail("abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com, jorge_ramos@baxter.com, leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com",
                     "Notificación. Equipo detenido","leopoldo_espitia@baxter.com");
                 ChangeNot();
             }
@@ -76,6 +83,8 @@ namespace ShutdownMonitoring
             {
                 allStops();
             }
+            track.getNewNotify();
+            track.makeEmail();
         }
 
         public void ChangeNot()
