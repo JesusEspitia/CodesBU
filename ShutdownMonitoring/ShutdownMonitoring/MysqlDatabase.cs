@@ -14,7 +14,7 @@ namespace ShutdownMonitoring
         private MySqlConnection conn;
         private MySqlCommand cmd = new MySqlCommand();
         private MySqlDataReader reader;
-        private string connectionString = "server=localhost;uid=root;pwd=stringFoster9324;database=trackbatch";
+        private string connectionString = "server=localhost;uid=root;pwd=stringBaxter20.;database=trackbatch";
 
         public MysqlDatabase()
         {

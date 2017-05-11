@@ -44,7 +44,7 @@ namespace ShutdownMonitoring
             email = new Email();
 
             noticon = new Notifiy();
-            noticon.ReadNewNotify();
+            
             //email.writeBodyNotify(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\CAPA Tool\temp.htm");
             //email.sendEmail("leopoldo_espitia@baxter.com", "Prueba", "");
             if (DateTime.Now.Hour >=6 && DateTime.Now.Hour < 18)
@@ -83,8 +83,9 @@ namespace ShutdownMonitoring
             {
                 allStops();
             }
-            track.getNewNotify();
-            track.makeEmail();
+            //track.getNewNotify();
+            //track.makeEmail();
+            noticon.ReadNewNotify();
         }
 
         public void ChangeNot()

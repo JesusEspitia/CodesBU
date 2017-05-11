@@ -29,7 +29,7 @@ namespace Monotoring.Controllers
             {
                 if (Convert.ToString(Session["userType"]) == "3")
                 {
-                    var model = context.UserNewRequest.ToList();
+                    var model = context.Users.Include("Type").Include("Area").Where(u => u.active == false).ToList();
                     return View(model);
                 }
                 else
@@ -44,14 +44,37 @@ namespace Monotoring.Controllers
         }  
 
         [HttpGet]
+        public ActionResult ApproveRequest(int id)
+        {
+            try
+            {
+                if (Convert.ToString(Session["userType"]) == "3")
+                {
+                    var model = context.Users.Find(id);
+                    model.active = true;
+                    context.SaveChanges();
+                    return RedirectToAction("ListNewRequest");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpGet]
         public ActionResult DenyRequest(int id)
         {
             try
             {
                 if (Convert.ToString(Session["userType"]) == "3")
                 {
-                    var model = context.UserNewRequest.Find(id);
-                    context.UserNewRequest.Remove(model);
+                    var model = context.Users.Find(id);
+                    context.Users.Remove(model);
                     context.SaveChanges();
                     return RedirectToAction("ListNewRequest");
                 }

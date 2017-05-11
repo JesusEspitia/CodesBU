@@ -1,11 +1,11 @@
 ﻿@model Monotoring.Models.Users
 
 @{
-    ViewBag.Title = "Nuevo - Usuario";
+    ViewBag.Title = "Registro - Usuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Usuario Nuevo</h1>
+<h1>Registro</h1>
 
 @using (Html.BeginForm()) 
 {
@@ -25,7 +25,7 @@
             @Html.LabelFor(model => model.fullname, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.fullname, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.fullname, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -50,6 +50,14 @@
             <div class="col-md-10">
                 @Html.DropDownList("AreaId", ViewBag.Area as SelectList, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.AreaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="alert alert-warning" role="alert">
+                    El administrador debe aprobar el registro antes. Después de la aprobación podrá ingresar. Gracias.
+                </div>
             </div>
         </div>
 

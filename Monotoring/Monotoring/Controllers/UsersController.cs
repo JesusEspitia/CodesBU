@@ -26,7 +26,7 @@ namespace Monotoring.Controllers
         {
             if (Convert.ToString(Session["userType"]) == "3")
             {
-                var user = context.Users.Include("Area").Include("Type").ToList();
+                var user = context.Users.Include("Area").Include("Type").Where(u=>u.active==true).ToList();
                 return View(user);
             }
             else
@@ -102,23 +102,16 @@ namespace Monotoring.Controllers
         [HttpGet]
         // GET: Users/Create
         public ActionResult Create(string username="",string fullname="",string email="",int  area=0)
-        {
-            if (Convert.ToString(Session["userType"]) == "3")
-            {
-                //var type = context.Employee_type.ToList();
-                ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
-                ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
-                Users model = new Users();
-                model.username = username;
-                model.fullname = fullname;
-                model.emailuser = email;
-                model.AreaId = area;
-                return View(model);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+        {            
+            //var type = context.Employee_type.ToList();
+            ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
+            ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
+            Users model = new Users();
+            model.username = username;
+            model.fullname = fullname;
+            model.emailuser = email;
+            model.AreaId = area;
+            return View(model);            
         }
 
         // POST: Users/Create
@@ -127,11 +120,16 @@ namespace Monotoring.Controllers
         {
             try
             {
+                //user.Area = null;
+                
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
                     if (ValidUserExists(user.username) == true && UserIsNotRegister(user.username) == false)
                     {
+                        ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
+                        ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
+                        user.active = false;
                         context.Users.Add(user);
                         context.SaveChanges();
                         return RedirectToAction("Index");
@@ -146,6 +144,8 @@ namespace Monotoring.Controllers
                 }
                 else
                 {
+                    ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
+                    ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
                     return View(user);
                 }
                 
@@ -182,6 +182,7 @@ namespace Monotoring.Controllers
                 // TODO: Add update logic here
                 if (ModelState.IsValid)
                 {
+                    user.active = true;
                     context.Entry(user).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
                     return RedirectToAction("Index");

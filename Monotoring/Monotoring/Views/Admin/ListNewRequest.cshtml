@@ -1,49 +1,61 @@
-﻿@model IEnumerable<Monotoring.Models.UserNewRequest>
+﻿@model IEnumerable<Monotoring.Models.Users>
 
 @{
-    ViewBag.Title = "Solicitudes";
+    ViewBag.Title = "Solicitudes -  Usuarios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Nuevas solicitudes</h2>
-
+<h2>Solicitudes pendientes</h2>
 
 <table class="table">
     <tr>
+        
         <th>
-            @Html.DisplayNameFor(model => model.userNameRequest)
+            @Html.DisplayNameFor(model => model.username)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.fullname)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.email)
+            @Html.DisplayNameFor(model => model.emailuser)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.areaRequest)
-        </th>       
+            @Html.DisplayNameFor(model => model.Area.AreaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type.NameType)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        
         <td>
-            @Html.DisplayFor(modelItem => item.userNameRequest)
+            @Html.DisplayFor(modelItem => item.username)
         </td>
         <td>
-            @Html.DisplayFor(modelItem=>item.fullname)
+            @Html.DisplayFor(modelItem => item.fullname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem=>item.email)
+            @Html.DisplayFor(modelItem => item.emailuser)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.areaRequest)
+            @Html.DisplayFor(modelItem => item.Area.AreaName)
         </td>
         <td>
-            @Html.ActionLink("Registrar", "Create", "Users", new { username = item.userNameRequest,fullname=item.fullname,email=item.email,area=item.areaRequest },null) | 
-            @Html.ActionLink("Rechazar solicitud", "DenyRequest", "Admin", new { id = item.UserNewRequestId }, null)
+            @Html.DisplayFor(modelItem => item.Type.NameType)
+        </td>
+        <td>
+            @Ajax.ActionLink("Aprobar", "ApproveRequest", "Admin", new { id = item.UsersId }, new AjaxOptions() { HttpMethod = "Post" },new { @class= "glyphicon glyphicon-ok" })
+            |
+            @Ajax.ActionLink("Rechazar", "DenyRequest", "Admin", new { id = item.UsersId }, new AjaxOptions() { HttpMethod = "Post" },new { @class= "glyphicon glyphicon-remove" })
         </td>
     </tr>
 }
 
 </table>
+
+<ul class="pager">
+    <li class="previous"><a href="/Users/"><span aria-hidden="true">&larr;</span>Regresar</a></li>
+</ul>
