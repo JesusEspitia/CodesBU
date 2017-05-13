@@ -88,6 +88,7 @@
                                             </dl>
 
                                             @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = arrayOrd[0].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
+                                            <a onclick="ModalNewComment();" class="createCommentNew btn btn-primary btn-sm" data-id="@arrayOrd[0].WorkOrden.WorkOrdenId">Comentario</a>
                                             @if (arrayOrd[0].DelayWork == null)
                                             {
                                                 <a onclick="ModalDelay();" class="createDelay btn btn-warning btn-sm" data-id="@arrayOrd[0].WorkOrden.WorkOrdenId">Retraso</a>
@@ -136,6 +137,7 @@
                                                 <dd>@(Math.Round((DateTime.Now - (DateTime)arrayOrd[1].Area_Orden.dateStart).TotalDays, 0))</dd>
                                             </dl>
                                             @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = arrayOrd[1].WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
+                                            <a onclick="ModalNewComment();" class="createCommentNew btn btn-primary btn-sm" data-id="@arrayOrd[1].WorkOrden.WorkOrdenId">Comentario</a>
                                             @if (arrayOrd[1].DelayWork == null)
                                             {
                                                 <a onclick="ModalDelay();" class="createDelay btn btn-warning btn-sm" data-id="@arrayOrd[1].WorkOrden.WorkOrdenId">Retraso</a>
@@ -192,6 +194,7 @@
                                         <dd>@(Math.Round((DateTime.Now - (DateTime)o.Area_Orden.dateStart).TotalDays, 0))</dd>
                                     </dl>
                                     @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = o.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-primary btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
+                                    <a onclick="ModalNewComment();" class="createCommentNew btn btn-primary btn-sm" data-id="@o.WorkOrden.WorkOrdenId">Comentario</a>
                                     @if (o.DelayWork == null)
                                     {
                                         <a onclick="ModalDelay();" class="createDelay btn btn-warning btn-sm" data-id="@o.WorkOrden.WorkOrdenId">Retraso</a>
@@ -399,6 +402,16 @@
         </div>
     </div>
     <!--end modal-->
+    <!--Modal code create comment orden-->
+    <div id='myModal3' class='modal fade' tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id='myModalContent3'></div>
+            </div>
+        </div>
+    </div>
+    <!--end modal-->
+
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -435,6 +448,30 @@
                 $.ajax({
                     type: "GET",
                     url: "/DelayWork/Create",
+                    contentType: "application/json; charset=utf-8",
+                    data: { "id": id },
+                    dataType: "html",
+                    success: function (data) {
+                        $('#myModalContent').html(data);
+                        $('myModal').modal(options);
+                        $('#myModal').modal('show');
+                    },
+                    error: function () {
+                        alert("Error al cargar el contenido");
+                    }
+                })
+            });
+        });
+
+        //add commnent orden
+        $(function ModalNewComment() {
+            $(".createCommentNew").click(function () {
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: "/OrdenComment/Create",
                     contentType: "application/json; charset=utf-8",
                     data: { "id": id },
                     dataType: "html",

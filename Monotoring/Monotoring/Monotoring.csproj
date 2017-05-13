@@ -238,6 +238,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListOrdensController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdenCommentController.cs" />
     <Compile Include="Controllers\SubCodesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WorkOrdenController.cs" />
@@ -260,6 +261,10 @@
     <Compile Include="Migrations\201705102137508_migracionA.Designer.cs">
       <DependentUpon>201705102137508_migracionA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705122251247_mig1205.cs" />
+    <Compile Include="Migrations\201705122251247_mig1205.Designer.cs">
+      <DependentUpon>201705122251247_mig1205.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
@@ -274,6 +279,7 @@
     <Compile Include="Models\FamilyProduct.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrdenComment.cs" />
     <Compile Include="Models\OrdenDetail.cs" />
     <Compile Include="Controllers\OrdenDetailController.cs" />
     <Compile Include="Models\OrdensView.cs" />
@@ -504,6 +510,7 @@
     <Content Include="Views\DelayComment\_modelNewComment.cshtml" />
     <Content Include="Views\DelayWork\_modalDelay.cshtml" />
     <Content Include="Views\Admin\ListNewRequest.cshtml" />
+    <Content Include="Views\OrdenComment\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -525,7 +532,11 @@
     <EmbeddedResource Include="Migrations\201705102137508_migracionA.resx">
       <DependentUpon>201705102137508_migracionA.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705122251247_mig1205.resx">
+      <DependentUpon>201705122251247_mig1205.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -447,3 +447,4 @@ C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monoto
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migrationNew2.resources
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.migracionA.resources
 C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.csprojResolveAssemblyReference.cache
+C:\Users\espitij\Documents\GitHub\CodesBU\Monotoring\Monotoring\obj\Debug\Monotoring.Migrations.mig1205.resources

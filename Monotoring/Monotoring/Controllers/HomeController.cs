@@ -16,10 +16,10 @@ namespace Monotoring.Controllers
         {
             dynamic models = new ExpandoObject();
             //List<object> models = new List<object>();
-            var query = from w in context.WorkOrden
+            var query = (from w in context.WorkOrden
                         join c in context.Catalog on w.CatalogId equals c.CatalogId
                         where w.dateStart != null && w.dateFinish == null
-                        select new WorkCatalog { WorkOrden = w, Catalog = c };
+                        select new WorkCatalog { WorkOrden = w, Catalog = c }).OrderByDescending(x=>x.WorkOrden.dateStart);
             models.WorkOrden = query.ToList();
             var qArea = from a in context.Area_Orden
                         join ar in context.Area on a.AreaId equals ar.AreaId

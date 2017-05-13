@@ -36,6 +36,7 @@ namespace Monotoring.Models
         public ICollection<DelayWork> DelayWork { get; set; }
         public ICollection<Area_Orden> Area_Orden { get; set; }
         public ICollection<DelayComment> DelayComment { get; set; }
+        public ICollection<OrdenComment> OrdenComment { get; set; }
 
         private TrackContext context = new TrackContext();
 
