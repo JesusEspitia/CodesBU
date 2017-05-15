@@ -182,16 +182,18 @@ namespace Monotoring.Controllers
                             where a.WorkOrdenId == id
                             select new AreaViewModel { Area = ar, Area_Orden = a };
             model.Area = queryArea.ToList();
-            var queryDelay = from d in context.DelayWork
+            var queryDelay = (from d in context.DelayWork
                              join c in context.DelayCode on d.DelayCodeId equals c.DelayCodeId
                              join s in context.SubCodes on d.SubCodesId equals s.SubCodesId
                              join u in context.Users on d.UsersId equals u.UsersId
                              join a in context.Area on u.AreaId equals a.AreaId
                              where d.WorkOrdenId == id
-                             select new DelayArea { DelayWork = d, DelayCode = c, SubCodes = s, Area = a };
+                             select new DelayArea { DelayWork = d, DelayCode = c, SubCodes = s, Area = a }).OrderByDescending(c=>c.DelayWork.dateDelay);
             model.Delay = queryDelay.ToList();
-            var comment = context.DelayComment.Include("Users").Where(c => c.DelayWorkId == id).ToList();
+            var comment = context.DelayComment.Include("Users").Where(c => c.DelayWorkId == id).OrderByDescending(c=>c.dateComment).ToList();
             model.DelayComment = comment.ToList();
+            var comments = context.OrdenComment.Include("Users").Where(o => o.WorkOrdenId == id).OrderByDescending(o => o.dateComment).ToList();
+            model.OrdenComment = comments.ToList();
 
             return PartialView("_modalDetail",model);
         }

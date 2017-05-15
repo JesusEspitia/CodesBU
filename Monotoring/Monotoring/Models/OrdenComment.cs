@@ -16,6 +16,10 @@ namespace Monotoring.Models
         [DisplayName("Comentario:")]
         public string Commnet { get; set; }
         public int UsersId { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha")]
+        public DateTime dateComment { get; set; }
 
         [ForeignKey("WorkOrdenId")]
         public WorkOrden WorkOrden { get; set; }

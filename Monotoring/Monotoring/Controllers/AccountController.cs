@@ -141,7 +141,7 @@ namespace Monotoring.Controllers
                     this.ModelState.AddModelError(string.Empty, "El usuario no se encuentra registrado, solicite el registro con el administrador");
                 }
             }
-            this.ModelState.AddModelError(string.Empty, "El usuario y/o la contraseña con incorrectos");
+            this.ModelState.AddModelError(string.Empty, "El usuario y/o la contraseña son incorrectos. Verifiquelo por favor.");
             return this.View(model);
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true

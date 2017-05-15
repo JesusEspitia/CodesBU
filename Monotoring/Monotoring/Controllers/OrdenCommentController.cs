@@ -27,18 +27,28 @@ namespace Monotoring.Controllers
         // GET: OrdenComment/Create
         public ActionResult Create(int id)
         {
-            var model = new OrdenComment();
-            model.UsersId= (int)Session["userId"];
-            model.WorkOrdenId = id;
-            return PartialView("Create", model);
+            if (Convert.ToString(Session["userId"]) != "")
+            {
+                var model = new OrdenComment();
+                var ids = (int)Session["userId"];
+                model.UsersId = (int)Session["userId"];
+                model.WorkOrdenId = id;
+                model.dateComment = DateTime.Now;
+                return PartialView("Create", model);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: OrdenComment/Create
-        [HttpPost]
+        [HttpPost,ActionName("Create")]
         public ActionResult Create(OrdenComment model)
         {
             try
             {
+                model.UsersId = (int)Session["userId"];
                 // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
