@@ -22,11 +22,11 @@ namespace ShutdownMonitoring
         private List<string> notify4 = new List<string>();
         private bool send = false;
 
-        private string grupoA = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,jorge_ramos@baxter.com,leticia_ramirez@baxter.com,mirtha_perez@baxter.com";
-        private string grupoB = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,jorge_ramos@baxter.com,leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
-        private string grupoC = " abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,jorge_ramos@baxter.com, leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
-        private string grupoD = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,enrique_perez_sanchez@baxter.com,fernando_vera@baxter.com,jorge_ramos@baxter.com,leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
-        private string allGroup = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com, jorge_ramos@baxter.com, leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
+        private string grupoA = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,marco_vazquez@baxter.com,jorge_ramos@baxter.com,leticia_ramirez@baxter.com,mirtha_perez@baxter.com";
+        private string grupoB = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,marco_vazquez@baxter.com,jorge_ramos@baxter.com,leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
+        private string grupoC = " abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,marco_vazquez@baxter.com,jorge_ramos@baxter.com, leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
+        private string grupoD = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,enrique_perez_sanchez@baxter.com,fernando_vera@baxter.com,marco_vazquez@baxter.com,jorge_ramos@baxter.com,leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
+        private string allGroup = "abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com,marco_vazquez@baxter.com,jorge_ramos@baxter.com, leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com";
         private int turn;
 
         public Form1()
