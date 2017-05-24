@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ShutdownMonitoring
 {
-    public class Email
+    public class Email:Warehouse
     {
         private Connect con;
         string bodyHtml = "";
@@ -20,6 +20,7 @@ namespace ShutdownMonitoring
         public Email()
         {
             con = new Connect();
+            conWare = new ConnectWarehouse();
         }
 
         public void sendEmail(string to,string title,string cc)
@@ -84,6 +85,7 @@ namespace ShutdownMonitoring
                     if (cc != "")
                     {
                         mail.CC.Add(formatString(cc));
+                        mail.CC.Add(fromEmail);
                     }
                     mail.Subject = title;
                     mail.Body = bodyHtml;
@@ -103,6 +105,9 @@ namespace ShutdownMonitoring
         {
             bodyHtml = "";
             string body = con.getValues(query);
+            con.fillList("select Equipment from Shutdown_Monitoring where Solved=false", machines);
+            getParts(machines);
+            getDays();
             if (body != "")
             {
                 using (StreamReader reader = new StreamReader(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\Shutdown Monitoring\emailTemplete.html"))
@@ -111,7 +116,10 @@ namespace ShutdownMonitoring
                 }
                 bodyHtml = bodyHtml.Replace("{titulo} ", header);
                 bodyHtml = bodyHtml.Replace("{table}", body);
+                bodyHtml = bodyHtml.Replace("{comp}", headText);
+                bodyHtml = bodyHtml.Replace("{ware}", resulthtml);
             }
+            
         }
 
         public void writeBody(string batch)

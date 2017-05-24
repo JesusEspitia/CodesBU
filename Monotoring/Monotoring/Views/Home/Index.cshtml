@@ -103,40 +103,26 @@
                                 if (a.Area_Orden.dateFinish != null)
                                 {
                                     lastDate = (DateTime)a.Area_Orden.dateFinish;
-
-                                    if (Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0) <= a.Area.daysMax)
+                                    daysweekend = 0;
+                                    classcolor = "info";
+                                    dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
+                                    for(DateTime d= (DateTime)a.Area_Orden.dateStart; d <= lastDate; d = d.AddDays(1))
                                     {
-                                        daysweekend = 0;
-                                        classcolor = "info";
-                                        dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
-                                        for(DateTime d= (DateTime)a.Area_Orden.dateStart; d <= lastDate; d = d.AddDays(1))
+                                        if(d.DayOfWeek==DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday)
                                         {
-                                            if(d.DayOfWeek==DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday)
-                                            {
-                                                daysweekend++;
-                                            }
+                                            daysweekend++;
                                         }
-                                        dayscount = dayscount - daysweekend;
+                                    }
+                                    dayscount = dayscount - daysweekend;
+                                    if (dayscount <= a.Area.daysMax)
+                                    {
                                         icon = "glyphicon glyphicon-ok";
                                     }
                                     else
                                     {
-                                        if (Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0) > a.Area.daysMax)
-                                        {
-                                            daysweekend = 0;
-                                            classcolor = "info";
-                                            dayscount = (int)Math.Round((lastDate - (DateTime)a.Area_Orden.dateStart).TotalDays, 0);
-                                            for (DateTime d = (DateTime)a.Area_Orden.dateStart; d <= lastDate; d = d.AddDays(1))
-                                            {
-                                                if (d.DayOfWeek == DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday)
-                                                {
-                                                    daysweekend++;
-                                                }
-                                            }
-                                            dayscount = dayscount - daysweekend;
-                                            icon = "glyphicon glyphicon-remove";
-                                        }
+                                        icon = "glyphicon glyphicon-remove";
                                     }
+
 
                                 }
                                 else

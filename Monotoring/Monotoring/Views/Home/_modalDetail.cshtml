@@ -36,6 +36,7 @@
                                <dt>Cantidad:</dt>
                                <dd>@item.WorkOrden.quantityOrden</dd>
 
+
                                @if (item.WorkOrden.dateFinish != null)
                                {
                                    <dt>Estado:</dt>
@@ -49,6 +50,8 @@
                                {
                                    <dt>Estado:</dt>
                                    <dd>Trabajando</dd>
+                                   <dt>Fecha de inicio:</dt>
+                                   <dd>@item.WorkOrden.dateStart</dd>
                                }
 
                            </dl>
