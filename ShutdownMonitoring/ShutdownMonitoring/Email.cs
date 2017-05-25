@@ -104,6 +104,7 @@ namespace ShutdownMonitoring
         public void writeBody(string query,string header)
         {
             bodyHtml = "";
+            machines.Clear();
             string body = con.getValues(query);
             con.fillList("select Equipment from Shutdown_Monitoring where Solved=false", machines);
             getParts(machines);
@@ -119,6 +120,7 @@ namespace ShutdownMonitoring
                 bodyHtml = bodyHtml.Replace("{comp}", headText);
                 bodyHtml = bodyHtml.Replace("{ware}", resulthtml);
             }
+            //resulthtml = "";
             
         }
 
