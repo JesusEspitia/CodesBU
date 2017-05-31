@@ -195,9 +195,13 @@ namespace Monotoring.Controllers
             if (Request != null)
             {
                 HttpPostedFileBase file = Request.Files["fileUp"];
+                string filename = System.IO.Path.GetFileName(file.FileName);
+                string path = Server.MapPath("~/TempFile/"+filename);
+                file.SaveAs(path);
+                
                 if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                 {
-                    string fileName = file.FileName;
+                    string fileName = Server.MapPath("~/TempFile/" + filename);
                     string fileContentType = file.ContentType;
                     byte[] fileBytes = new byte[file.ContentLength];
                     var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
@@ -256,8 +260,11 @@ namespace Monotoring.Controllers
                             itera = 1;
                         }
                     }
+                    xlWorkBook.Close(false);
                     context.SaveChanges();
                 }
+
+                System.IO.File.Delete(path);
                 return RedirectToAction("Generate");
             }
             else

@@ -255,7 +255,7 @@
                                             {
                                                 @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                             }
-                                            <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@arrayOrd[0].DelayWork.DelayWorkId">Modal</a>
+                                            <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@arrayOrd[0].DelayWork.DelayWorkId">Comentario</a>
                                             @*@Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })*@
                                             @Ajax.ActionLink("Consultar", "List", "DelayComment", new { id = arrayOrd[0].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
                                         </div>
@@ -287,7 +287,7 @@
                                             {
                                                 @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                             }
-                                            <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@arrayOrd[1].DelayWork.DelayWorkId">Modal</a>
+                                            <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@arrayOrd[1].DelayWork.DelayWorkId">Comentario</a>
                                             @*@Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })*@
                                             @Ajax.ActionLink("Consultar", "List", "DelayComment", new { id = arrayOrd[1].DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
                                         </div>
@@ -327,7 +327,7 @@
                                     {
                                         @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
                                     }
-                                    <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@o.DelayWork.DelayWorkId">Modal</a>
+                                    <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@o.DelayWork.DelayWorkId">Comentario</a>
                                     @*@Ajax.ActionLink("Comentario", "New", "DelayComment", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Agregar comentario sobre avance o estado" })*@
                                     @Ajax.ActionLink("Consultar", "List", "DelayComment", new { id = o.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
                                 </div>

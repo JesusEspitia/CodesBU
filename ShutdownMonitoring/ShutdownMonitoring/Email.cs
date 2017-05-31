@@ -45,7 +45,7 @@ namespace ShutdownMonitoring
                     mail.To.Add(to);
                     if (cc != "")
                     {
-                        mail.CC.Add(cc);
+                        mail.Bcc.Add(cc);
                     }
                     mail.Subject = title;
                     mail.Body = bodyHtml;
@@ -85,8 +85,12 @@ namespace ShutdownMonitoring
                     if (cc != "")
                     {
                         mail.CC.Add(formatString(cc));
-                        mail.CC.Add(fromEmail);
                     }
+                    
+                    mail.Bcc.Add("abraham_cano@baxter.com");
+                    mail.Bcc.Add("leopoldo_espitia@baxter.com");
+                    mail.Bcc.Add(from);
+                     
                     mail.Subject = title;
                     mail.Body = bodyHtml;
                     mail.IsBodyHtml = true;
@@ -136,10 +140,17 @@ namespace ShutdownMonitoring
 
         public void writeBodyNotify(string path)
         {
-            bodyHtml = "";
-            using (StreamReader reader = new StreamReader(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\CAPA Tool\TempFiles\" + path))
+            try
             {
-                bodyHtml = reader.ReadToEnd();
+                bodyHtml = "";
+                using (StreamReader reader = new StreamReader(@"\\mxtswtjnts\Groups\GRP Tijuana Public\Plastics\CAPA Tool\TempFiles\" + path))
+                {
+                    bodyHtml = reader.ReadToEnd();
+                }
+            }
+            catch
+            {
+
             }
         }
 

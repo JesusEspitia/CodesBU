@@ -17,7 +17,7 @@ namespace ShutdownMonitoring
         private OleDbDataAdapter adapter;
         private DataTable table;
 
-        private string strConnection = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\CAPA Tool\ACRS v Beta.mdb;";
+        private string strConnection = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\mxtswtjnts\Groups\GRP Tijuana Public\Plastics\CAPA Tool\ACRS v Beta.mdb;";
 
         public ConnectNotify()
         {
