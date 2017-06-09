@@ -14,6 +14,7 @@ namespace ShutdownMonitoring
     {
         private Connect con;
         string bodyHtml = "";
+        public string headtitle = "";
         private string fromEmail = "";
         private string fromName = "";
 
@@ -105,12 +106,27 @@ namespace ShutdownMonitoring
             }
         }
 
-        public void writeBody(string query,string header)
+        public void writeBody(string query,string header, string ido="")
         {
             bodyHtml = "";
             machines.Clear();
+            headtitle = header;
             string body = con.getValues(query);
-            con.fillList("select Equipment from Shutdown_Monitoring where Solved=false", machines);
+            if (ido == "")
+            {
+                con.fillList("select Equipment from Shutdown_Monitoring where Solved=false", machines);
+            }
+            else
+            {
+                if (ido == "n")
+                {
+
+                }
+                else
+                {
+                    machines.Add(ido);
+                }
+            }
             getParts(machines);
             getDays();
             if (body != "")
@@ -119,7 +135,7 @@ namespace ShutdownMonitoring
                 {
                     bodyHtml = reader.ReadToEnd();
                 }
-                bodyHtml = bodyHtml.Replace("{titulo} ", header);
+                bodyHtml = bodyHtml.Replace("{cmb}", headtitle);
                 bodyHtml = bodyHtml.Replace("{table}", body);
                 bodyHtml = bodyHtml.Replace("{comp}", headText);
                 bodyHtml = bodyHtml.Replace("{ware}", resulthtml);

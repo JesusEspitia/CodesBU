@@ -73,10 +73,17 @@ namespace ShutdownMonitoring
         {
             if(con.getValueBool("select * from Shutdown_Monitoring where Solved=false and Not1=true") == true)
             {
-                email.writeBody("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where Solved=false and Not1=true", "Equipos dentenidos.");
-                email.sendEmail("abraham_cano@baxter.com,jose_barragan@baxter.com,jose_montoya@baxter.com,fernando_vera@baxter.com, jorge_ramos@baxter.com, leticia_ramirez@baxter.com,mirtha_perez@baxter.com,anibal_de_jesus_martinez@baxter.com,victor_alvarez@baxter.com",
+                email.writeBody("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where Solved=false and Not1=true", "Equipos dentenidos.","n");
+                email.sendEmail("leopoldo_espitia@baxter.com",
                     "Notificación. Equipo detenido","leopoldo_espitia@baxter.com");
                 ChangeNot();
+            }
+            if (con.getValueBool("select * from Shutdown_Monitoring where Not2=true") == true)
+            {
+                email.writeBody("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where Not2=true", "Equipo(s) reiniciado(s).","n");
+                email.sendEmail(allGroup,
+                    "Notificación. Equipo reiniciado.", "leopoldo_espitia@baxter.com");
+                ChangeStr();
             }
             timerNotfitication();
 
@@ -96,6 +103,16 @@ namespace ShutdownMonitoring
             foreach(string s in lst)
             {
                 con.executeQuery(string.Format("update Shutdown_Monitoring set Not1=false where ID={0}", s));
+            }
+        }
+
+        public  void ChangeStr()
+        {
+            List<string> lst = new List<string>();
+            con.fillList("select * from Shutdown_Monitoring where Not2=true", lst);
+            foreach (string s in lst)
+            {
+                con.executeQuery(string.Format("update Shutdown_Monitoring set Not2=false where ID={0}", s));
             }
         }
 
@@ -161,7 +178,7 @@ namespace ShutdownMonitoring
         {
             foreach (string s in lst)
             {
-                email.writeBody(string.Format("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where ID={0}",s), tittle);
+                email.writeBody(string.Format("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where ID={0}",s), tittle,s);
                 email.sendEmail(to, tittle, "leopoldo_espitia@baxter.com");
             }
         }
