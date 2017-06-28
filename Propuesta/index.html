@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/materialize.min.css">
+
+
+  <title>Document</title>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-wrapper blue darken-3">
+      <a href="#" class="brand-logo">Baxter</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="">Op1</a></li>
+        <li><a href="">Op2</a></li>
+        <li><a href="">Op3</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="">
+    <!-- menu,title,add new -->
+    <div class="row">
+      <div class="col s3">
+        <div class="collection z-depth-3">
+          <a href="" class="collection-item"><span class="new badge">3</span>Moldeo</a>
+          <a href="" class="collection-item"><span class="badge">3</span>Extrusión/Corte</a>
+          <a href="" class="collection-item"><span class="badge">3</span>Ensamble Final</a>
+          <a href="" class="collection-item"><span class="badge">3</span>Almacen</a>
+        </div>
+      </div>
+      <!--title-->
+      <div class="col s5 offset-s1">
+        <h1 class="center-aling">Observaciones en la planta.</h1>
+      </div>
+      <!--button add new-->
+      <div class="col s2 offset-s1">
+        <br>
+        <br>
+        <br>
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+      </div>
+    </div>
+    <!-- fin -->
+    <!--show comments-->
+    <div class="row">
+      <!--card with image-->
+      <div class="col s8 offset-s2">
+        <div class="card horizontal z-depth-5">
+          <div class="card-image">
+            <img src="C:\Users\espitij\Pictures\Calibracion\20170619_092400.jpg" class="img-reponsive" alt="" height="200" width="200">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p class="flow-text">
+                Aqui va el comentario que se haga sobre algun problema
+                Aqui va el comentario que se haga sobre algun problema
+                Aqui va el comentario que se haga sobre algun problema
+                Aqui va el comentario que se haga sobre algun problema
+                Aqui va el comentario que se haga sobre algun problema
+              </p>
+              <br>
+              <div class="chip right-aling">Moldeo</div>
+            </div>
+            <div class="card-action">
+              <a href="#"><b>Nombre del usuario</b></a>
+              <h5 class="right-align">06/28/17</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end card with imge-->
+      <!--card with out image-->
+      <div class="col s8 offset-s2">
+        <div class="card z-depth-5">
+          <div class="card-content">
+            <p class="flow-text">
+              Aqui va el comentario que se haga sobre algun problema
+              Aqui va el comentario que se haga sobre algun problema
+              Aqui va el comentario que se haga sobre algun problema
+              Aqui va el comentario que se haga sobre algun problema
+              Aqui va el comentario que se haga sobre algun problema
+            </p>
+            <br>
+            <div class="chip">Moldeo</div>
+          </div>
+          <div class="card-action">
+            <a href="#"><b>Nombre del usuario</b></a>
+            <h5 class="right-align">06/28/17</h5>
+          </div>
+        </div>
+      </div>
+      <!--end card with out image-->
+    </div>
+    <!--end comments-->
+  </div>
+
+
+
+  <footer class="page-footer blue darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          Algunos logos aqui.
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright blue darken-4">
+      <div class="container">
+        Baxter.
+      </div>
+    </div>
+  </footer>
+
+  <!--modal-->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <form action="" class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="username" type="text" class="validate">
+              <label for="username">Nombre</label>
+            </div>
+            <div class="input-field col s6">
+              <select>
+                <option value="" disabled selected>Seleccione</option>
+                <option value="">Moldeo</option>
+                <option value="">Extrusión/Corte</option>
+                <option value="">Ensamble Final</option>
+                <option value="">Almacen</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="cmmnt" rows="8" cols="80" class="materialize-textarea"></textarea>
+              <label for="cmmnt">Observación:</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+    </div>
+  </div>
+  <!--end modal-->
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){
+     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+     $('.modal').modal();
+     $('select').material_select();
+    });
+  </script>
+</body>
+</html>

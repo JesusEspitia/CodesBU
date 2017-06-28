@@ -44,6 +44,8 @@ namespace ShutdownMonitoring
             email = new Email();
 
             noticon = new Notifiy();
+            //email.writeBody(string.Format("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where ID={0}", "239"), "tittle", "239");
+            //email.sendEmail("leopoldo_espitia@baxter.com", "", "leopoldo_espitia@baxter.com");
             //email.writeBody(string.Format("select Equipment, Shutdown_Time,Description from Shutdown_Monitoring where Solved=false"), "");
             //email.writeBodyNotify(@"\\mxtswtjnts\Groups\GRP Tijuana Departments\Plastics\2015 Plastics DB\CAPA Tool\temp.htm");
             //email.sendEmail("leopoldo_espitia@baxter.com", "Prueba", "");
