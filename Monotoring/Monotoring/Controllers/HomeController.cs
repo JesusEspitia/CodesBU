@@ -194,7 +194,9 @@ namespace Monotoring.Controllers
             model.DelayComment = comment.ToList();
             var comments = context.OrdenComment.Include("Users").Where(o => o.WorkOrdenId == id).OrderByDescending(o => o.dateComment).ToList();
             model.OrdenComment = comments.ToList();
-
+            var last = context.Area_Orden.Include("Area").Where(a=> a.WorkOrdenId == id).Where(a => a.dateFinish == null).ToList();
+            model.LastArea = last.ToList();
+            //var 
             return PartialView("_modalDetail",model);
         }
 

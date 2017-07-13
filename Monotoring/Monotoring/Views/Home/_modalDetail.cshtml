@@ -4,6 +4,13 @@
     int count = 0;
     string head = "";
     string collap = "";
+    string User = Convert.ToString(Session["userName"]);
+    int InArea = Convert.ToInt32(Session["userAreaId"]);
+    int thisArea = 0;
+    foreach( Area_Orden item in Model.LastArea)
+    {
+        thisArea = item.Area.orden;
+    }
 }
 
 <div>
@@ -16,7 +23,8 @@
 
    <div class="modal-body">
        <div class="row">
-           <div class=" col-lg-12">
+           <div class=" col-lg-7">
+              
                @foreach (WorkCatalog item in Model.WorkCatalog)
                {
                    <div class="media">
@@ -27,7 +35,7 @@
                            <br />
                            <br />
                            <dl class="dl-horizontal">
-                               <dt>Batch:</dt>
+                               <dt>Batch: </dt>
                                <dd>@item.WorkOrden.BatchOrden</dd>
                                <dt>No. Producto:</dt>
                                <dd>@item.Catalog.CatalogNo</dd>
@@ -59,6 +67,16 @@
                    </div>
                }
            </div>
+           @if (User != "" && InArea == thisArea)
+           {
+           <div class="col-lg-5">
+               <div class="btn-group" role="group">
+                   <button type="button" class="btn btn-default" >Comentario</button>
+                   <button type="button" class="btn btn-default">Agregar Retraso</button>
+                   <button type="button" class="btn btn-default">Cerrar orden</button>
+               </div>
+           </div>
+           }
        </div>
 
        <div class="row">
