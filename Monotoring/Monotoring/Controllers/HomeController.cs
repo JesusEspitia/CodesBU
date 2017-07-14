@@ -196,6 +196,7 @@ namespace Monotoring.Controllers
             model.OrdenComment = comments.ToList();
             var last = context.Area_Orden.Include("Area").Where(a=> a.WorkOrdenId == id).Where(a => a.dateFinish == null).ToList();
             model.LastArea = last.ToList();
+            
             //var 
             return PartialView("_modalDetail",model);
         }
