@@ -64,80 +64,90 @@ namespace Monotoring.Controllers
         [HttpGet]
         public ActionResult FinishOrden(int id)
         {
-            var delay = from d in context.DelayWork
-                        where d.WorkOrdenId == id && d.dateFinish == null
-                        select d;
-            var lstdelay = delay.ToList();
-            if (lstdelay.Count < 1)
+            var check = context.DelayWork.Where(d => d.WorkOrdenId == id).Where(d => d.dateFinish == null).ToList();
+            if (check.ToList().Count == 0)
             {
-                Session["stop"] = null;
-                int area = (int)Session["userAreaId"];
-                var ar = from u in context.Area
-                         where u.orden == area
-                         select u;
-                foreach (var item in ar.ToList())
+                var delay = from d in context.DelayWork
+                            where d.WorkOrdenId == id && d.dateFinish == null
+                            select d;
+                var lstdelay = delay.ToList();
+                if (lstdelay.Count < 1)
                 {
-                    area = (int)item.AreaId;
-                }
-                var up = from w in context.Area_Orden
-                         where w.WorkOrdenId == id && w.AreaId == area
-                         select w;
-                foreach (Area_Orden a in up)
-                {
-                    a.dateFinish = DateTime.Now;
-                    a.notify = true;
-                    //finish = a.AreaId;
-                }
-                if (area == 6)
-                {
-                    var upOrden = from w in context.WorkOrden
-                                  where w.WorkOrdenId == id
-                                  select w;
-
-                    foreach (WorkOrden w in upOrden)
+                    Session["stop"] = null;
+                    int area = (int)Session["userAreaId"];
+                    var ar = from u in context.Area
+                             where u.orden == area
+                             select u;
+                    foreach (var item in ar.ToList())
                     {
-                        w.dateFinish = DateTime.Now;
+                        area = (int)item.AreaId;
                     }
-                }
-                context.SaveChanges();
-                //if (area != 6)
-                //{
-                //    int areanext = 0;
-                //    string to="";
-                //    int areaRoot = (int)Session["userAreaId"] + 1;
-                //    var an = from a in context.Area
-                //             where a.orden == areaRoot
-                //             select a;
-                //    foreach(var item in an.ToList())
-                //    {
-                //        areanext = (int)item.AreaId;
-                //    }
-                //    var emails = from u in context.Users
-                //                 where u.AreaId == areanext
-                //                 select u;
-                //    int i = 1;
-                //    foreach(var item in emails.ToList())
-                //    {
-                //        if (i == emails.ToList().Count)
-                //        {
-                //            to += item.emailuser;
-                //        }
-                //        else
-                //        {
-                //            to += item.emailuser + ",";
-                //        }
-                //    }
-                //    sendEmail("Pruena", to);
-                //}
+                    var up = from w in context.Area_Orden
+                             where w.WorkOrdenId == id && w.AreaId == area
+                             select w;
+                    foreach (Area_Orden a in up)
+                    {
+                        a.dateFinish = DateTime.Now;
+                        a.notify = true;
+                        //finish = a.AreaId;
+                    }
+                    if (area == 6)
+                    {
+                        var upOrden = from w in context.WorkOrden
+                                      where w.WorkOrdenId == id
+                                      select w;
 
-                return RedirectToAction("Index");
+                        foreach (WorkOrden w in upOrden)
+                        {
+                            w.dateFinish = DateTime.Now;
+                        }
+                    }
+                    context.SaveChanges();
+                    //if (area != 6)
+                    //{
+                    //    int areanext = 0;
+                    //    string to="";
+                    //    int areaRoot = (int)Session["userAreaId"] + 1;
+                    //    var an = from a in context.Area
+                    //             where a.orden == areaRoot
+                    //             select a;
+                    //    foreach(var item in an.ToList())
+                    //    {
+                    //        areanext = (int)item.AreaId;
+                    //    }
+                    //    var emails = from u in context.Users
+                    //                 where u.AreaId == areanext
+                    //                 select u;
+                    //    int i = 1;
+                    //    foreach(var item in emails.ToList())
+                    //    {
+                    //        if (i == emails.ToList().Count)
+                    //        {
+                    //            to += item.emailuser;
+                    //        }
+                    //        else
+                    //        {
+                    //            to += item.emailuser + ",";
+                    //        }
+                    //    }
+                    //    sendEmail("Pruena", to);
+                    //}
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Stop = "No puede finalizar la orden ya que cuenta con un retraso abierto, debe ser cerrado antes.";
+                    Session["stop"] = "No puede finalizar la orden ya que cuenta con un retraso abierto, debe ser cerrado antes.";
+                    return RedirectToAction("Index");
+                    //return Content("<script language='javascript' type='text/javascript'>alert('No puede finalizar la orden ya que cuenta con un retraso abierto, debe ser cerrado antes.');</script>");
+                }
             }
             else
             {
-                ViewBag.Stop = "No puede finalizar la orden ya que cuenta con un retraso abierto, debe ser cerrado antes.";
+                //this.ModelState.AddModelError(string.Empty, "No puede finalizar la orden ya que cuenta con un retraso abierto, debe ser cerrado antes.");
                 Session["stop"] = "No puede finalizar la orden ya que cuenta con un retraso abierto, debe ser cerrado antes.";
-                return RedirectToAction("Index");
-                //return Content("<script language='javascript' type='text/javascript'>alert('No puede finalizar la orden ya que cuenta con un retraso abierto, debe ser cerrado antes.');</script>");
+                return RedirectToAction("Index","Home");
             }
         }
         // GET: Area_Orden/Details/5

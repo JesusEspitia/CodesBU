@@ -30,17 +30,25 @@ namespace Monotoring.Controllers
         {
             if (Convert.ToString(Session["userType"]) != "")
             {
-                DelayWork model = new DelayWork();
-                model.WorkOrdenId = id;
-                model.UsersId = (int)Session["userId"];
-                model.dateDelay = DateTime.Now;
-                //model.DelayCodeId = code;
-                ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
-                ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
-                //ViewBag.Sub = new SelectList(context.SubCodes.Where(c => c.DelayCodeId == code),"SubCodesId","DescripCode");
-                //ViewBag.WorkOrden = id;
-                ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
-                return PartialView("_modalDelay",model);
+                var check = context.DelayWork.Where(d => d.WorkOrdenId == id).Where(d => d.dateFinish == null).ToList();
+                if (check.ToList().Count == 0)
+                {
+                    DelayWork model = new DelayWork();
+                    model.WorkOrdenId = id;
+                    model.UsersId = (int)Session["userId"];
+                    model.dateDelay = DateTime.Now;
+                    //model.DelayCodeId = code;
+                    ViewBag.DelayCode = new SelectList(context.DelayCode, "DelayCodeId", "DelayName");
+                    ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
+                    //ViewBag.Sub = new SelectList(context.SubCodes.Where(c => c.DelayCodeId == code),"SubCodesId","DescripCode");
+                    //ViewBag.WorkOrden = id;
+                    ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
+                    return PartialView("_modalDelay", model);
+                }
+                else
+                {
+                    return Content("<script language='javascript' type='text/javascript'>alert('Cuenta con un retraso abierto, debe ser cerrado antes de abrir uno nuevo. Gracias.');</script>");
+                }
             }
             else
             {

@@ -23,6 +23,7 @@
     </div>
 
    <div class="modal-body">
+      
        <div class="row">
            
               
@@ -69,26 +70,14 @@
                     </div>
                 </div>
                    if (User != "" && InArea == thisArea)
-                   {
-                       if (Model.Delay.Content.Count > 0)
-                       {
+                   {                       
                         <div class="col-lg-5">
                             <div class="btn-group" role="group">
-                                <a href="javascript:void(0);" class="showDetail btn btn-default" data-id="">Comentario</a>
+                                <a onclick="ModalNewComment();" class="createCommentNew btn btn-default" data-id="@item.WorkOrden.WorkOrdenId">Comentario</a>
+                                <a onclick="ModalDelay();" class="createDelay btn btn-default" data-id="@item.WorkOrden.WorkOrdenId">Retraso</a>
+                                @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = item.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
                             </div>
-                        </div>
-                       }
-                       else
-                       {
-                            <div class="col-lg-5">
-                                <div class="btn-group" role="group">
-                                    <a onclick="ModalNewComment();" class="createCommentNew btn btn-default" data-id="@item.WorkOrden.WorkOrdenId">Comentario</a>
-                            
-                                    <a onclick="ModalDelay();" class="createDelay btn btn-default" data-id="@item.WorkOrden.WorkOrdenId">Retraso</a>
-                                    <button type="button" class="btn btn-default">Cerrar orden</button>
-                                </div>
-                            </div>
-                       }
+                        </div>                       
                    }
                }
 
@@ -136,70 +125,83 @@
                        <h5 class="panel-title">Retrasos generados.</h5>
                    </div>
                    <div class="panel-body">
+                       
                        <div class="well well-lg">
+
                            @foreach (DelayArea item in Model.Delay)
                            {
+
                                <hr />
-                               <dl class="dl-horizontal">
-                                   <dt>Tipo:</dt>
-                                   <dd>@item.DelayCode.DelayName</dd>
-                                   <dt>Descripción:</dt>
-                                   <dd>@item.SubCodes.DescripCode</dd>
-                                   @if (item.DelayWork.dateFinish != null)
-                                   {
-                                       <dt>Estado:</dt>
-                                       <dd>Liberado</dd>
-                                       <dt>Fecha de inicio:</dt>
-                                       <dd>@item.DelayWork.dateDelay</dd>
-                                       <dt>Fecha de liberación:</dt>
-                                       <dd>@item.DelayWork.dateFinish</dd>
-                                       <dt>Duración:</dt>
-                                       <dd>@(((DateTime)item.DelayWork.dateFinish - (DateTime)item.DelayWork.dateDelay).TotalDays)</dd>
-                                   }
-                                   else
-                                   {
-                                       <dt>Estado:</dt>
-                                       <dd>Detenido</dd>
-                                       <dt>Fecha de inicio:</dt>
-                                       <dd>@item.DelayWork.dateDelay</dd>
-                                       <dt>Responsable:</dt>
-                                       <dd>@item.DelayWork.Responsable</dd>
-                                       <dt>Área:</dt>
-                                       <dd>@item.Area.AreaName</dd>
-                                   }
-                                   @*<dt>
-                                        @Ajax.ActionLink("Comentarios", "List", "DelayComment", new { id = item.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "text-rigth", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Consultar comentarios" })
-                                    </dt>*@
-                               </dl>
-                        <!--comments panel-->
-                               <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                   <!-- panel1 -->
-                                   <div class="panel panel-default">
-                                       <div class="panel-heading" role="tab" id="head">
-                                           <h4 class="panel-tittle">
-                                               <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collap" aria-expanded="true" aria-controls="collap">
-                                                   Comentarios
-                                               </a>
-
-                                           </h4>
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <dl class="dl-horizontal">
+                                        <dt>Tipo:</dt>
+                                        <dd>@item.DelayCode.DelayName</dd>
+                                        <dt>Descripción:</dt>
+                                        <dd>@item.SubCodes.DescripCode</dd>
+                                        @if (item.DelayWork.dateFinish != null)
+                                        {
+                                            <dt>Estado:</dt>
+                                            <dd>Liberado</dd>
+                                            <dt>Fecha de inicio:</dt>
+                                            <dd>@item.DelayWork.dateDelay</dd>
+                                            <dt>Fecha de liberación:</dt>
+                                            <dd>@item.DelayWork.dateFinish</dd>
+                                            <dt>Duración:</dt>
+                                            <dd>@(((DateTime)item.DelayWork.dateFinish - (DateTime)item.DelayWork.dateDelay).TotalDays)</dd>
+                                        }
+                                        else
+                                        {
+                                            <dt>Estado:</dt>
+                                            <dd>Detenido</dd>
+                                            <dt>Fecha de inicio:</dt>
+                                            <dd>@item.DelayWork.dateDelay</dd>
+                                            <dt>Responsable:</dt>
+                                            <dd>@item.DelayWork.Responsable</dd>
+                                            <dt>Área:</dt>
+                                            <dd>@item.Area.AreaName</dd>
+                                        }
+                                    </dl>
+                                </div>
+                                <div class="col-lg-5">
+                                @if (item.DelayWork.dateFinish == null)
+                                {
+                                    <div class="btn-group" role="group">
+                                        @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = item.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
+                                        <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@item.DelayWork.DelayWorkId">Comentario</a>
+                                    </div>
+                                }
+                                    </div>
                                        </div>
-                                       <div id="collap" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head">
-                                           <div class="panel-body ">
-                                               @foreach (DelayComment item2 in Model.DelayComment)
-                                               {
-                                                   <blockquote>
-                                                       <p class="text-justify ">@item2.Comment</p>
-                                                       <footer>@item2.Users.fullname (@item2.dateComment)</footer>
-                                                   </blockquote>
-                                               }
+                        <!--comments panel-->
+                                       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                           <!-- panel1 -->
+                                           <div class="panel panel-default">
+                                               <div class="panel-heading" role="tab" id="head">
+                                                   <h4 class="panel-tittle">
+                                                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collap" aria-expanded="true" aria-controls="collap">
+                                                           Comentarios
+                                                       </a>
 
+                                                   </h4>
+                                               </div>
+                                               <div id="collap" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head">
+                                                   <div class="panel-body ">
+                                                       @foreach (DelayComment item2 in Model.DelayComment)
+                                                       {
+                                                           <blockquote>
+                                                               <p class="text-justify ">@item2.Comment</p>
+                                                               <footer>@item2.Users.fullname (@item2.dateComment)</footer>
+                                                           </blockquote>
+                                                       }
+
+                                                   </div>
+                                               </div>
                                            </div>
                                        </div>
-                                   </div>
-                               </div>
 
                    <!--end comment-->
-                               <hr />
+                                       <hr />
                            }
                        </div>
 
@@ -231,9 +233,31 @@
 
 <script>
     $("#close").click(function () {
-        $("#myModal").modal('hide');
+        $("#myModal").modal('hide');       
     });
-
+    //show the modal(partial view) for new comment
+    $(function () {
+        $(".showDetail").click(function () {
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: "/DelayComment/New",
+                contentType: "application/json; charset=utf-8",
+                data: { "id": id },
+                dataType: "html",
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    $('myModal').modal(options);
+                    $('#myModal').modal('show');
+                },
+                error: function () {
+                    alert("Error al cargar el contenido");
+                }
+            })
+        });
+    });
     //add commnent orden
     $(function ModalNewComment() {
         $(".createCommentNew").click(function () {

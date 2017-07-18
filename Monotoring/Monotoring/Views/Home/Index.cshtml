@@ -42,6 +42,19 @@
     </div>
 </div>
 
+@if (Session["stop"] != null)
+{
+    <div class="row">
+        <div class="col-md-5 col-md-offset-4">
+            <div id="Myalert" class="alert alert-info alert-dismissible" role="alert">
+                <span class="close" data-dismiss="alert">&times;</span>
+                <strong>Alerta: </strong> @Session["stop"]
+            </div>
+        </div>
+    </div>
+    Session["stop"] = null;
+}
+
 @*<dvi class="container-fluid">*@
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
@@ -296,6 +309,11 @@
 
 <!--End modal-->
 <script>
+    $("#close").click(function () {
+        $("#Myalert").alert('close')
+        @Session["stop"] = null
+    });
+
     var ctx = document.getElementById("myChart");
     var mychart = new Chart(ctx, {
         type: 'line',
@@ -391,7 +409,7 @@
 
     function Automatico() {
         window.scrollTo(0, posY);
-        
+
         if (posY < max) {
             posY = posY + 50;
         }

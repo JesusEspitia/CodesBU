@@ -12,13 +12,13 @@
 
 <div class="container-fluid">
    
-    @if (Session["stop"] != null)
+    @if (Session["stop"] != null )
     {
         <div class="row">
             <div class="col-md-5 col-md-offset-4">
-                <div class="alert alert-warning alert-dismissible" role="alert">
+                <div class="alert alert-info alert-dismissible" role="alert">
                     <button type="button" class="close" data-dissmiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Alerta: </strong> @Session["stop"]
+                    <strong>Aviso: </strong> @Session["stop"]
                 </div>
             </div>
         </div>
