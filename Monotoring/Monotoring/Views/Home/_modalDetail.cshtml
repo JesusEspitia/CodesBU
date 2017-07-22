@@ -164,18 +164,21 @@
                                     </dl>
                                 </div>
                                 <div class="col-lg-5">
-                                @if (item.DelayWork.dateFinish == null)
+                                @if (item.DelayWork.dateFinish == null && User != "" && InArea == thisArea)
                                 {
                                     <div class="btn-group" role="group">
                                         @Ajax.ActionLink("Cerrar Retraso", "finishDelay", "DelayWork", new { id = item.DelayWork.DelayWorkId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-success btn-sm text-left", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Retraso solucionado" })
-                                        <a href="javascript:void(0);" class="showDetail btn btn-primary btn-sm" data-id="@item.DelayWork.DelayWorkId">Comentario</a>
+                                        <a href="javascript:void(0);" class="newdelaycomment btn btn-primary btn-sm" data-id="@item.DelayWork.DelayWorkId">Comentario</a>
                                     </div>
                                 }
                                     </div>
                                        </div>
-                        <!--comments panel-->
+                                       <div class="row">
+                                           <a onclick="ModalDelayComment();" class="showDelayCmmnt btn btn-default" data-id="@item.DelayWork.DelayWorkId">Consultar comentarios</a>
+                                       </div>
+                        <!--comments panel
                                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                           <!-- panel1 -->
+                                           panel1 
                                            <div class="panel panel-default">
                                                <div class="panel-heading" role="tab" id="head">
                                                    <h4 class="panel-tittle">
@@ -187,11 +190,11 @@
                                                </div>
                                                <div id="collap" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head">
                                                    <div class="panel-body ">
-                                                       @foreach (DelayComment item2 in Model.DelayComment)
+                                                       //foreach (DelayComment item2 in Model.DelayComment)
                                                        {
                                                            <blockquote>
-                                                               <p class="text-justify ">@item2.Comment</p>
-                                                               <footer>@item2.Users.fullname (@item2.dateComment)</footer>
+                                                               <p class="text-justify ">//item2.Comment</p>
+                                                               <footer>//item2.Users.fullname (//item2.dateComment)</footer>
                                                            </blockquote>
                                                        }
 
@@ -213,10 +216,10 @@
 </div>
 
 <!--Modal code create comment-->
-<div id='myModal' class='modal fade' tabindex="-1" role="dialog">
+<div id='myModal1' class='modal fade' tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div id='myModalContent'></div>
+            <div id='myModalContent1'></div>
         </div>
     </div>
 </div>
@@ -230,6 +233,16 @@
     </div>
 </div>
 <!--end modal-->
+<!--Modal show delays comments-->
+<div id='myModal3' class='modal fade' tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id='myModalContent3'></div>
+        </div>
+    </div>
+</div>
+<!--End modal-->
+
 
 <script>
     $("#close").click(function () {
@@ -237,7 +250,7 @@
     });
     //show the modal(partial view) for new comment
     $(function () {
-        $(".showDetail").click(function () {
+        $(".newdelaycomment").click(function () {
             var $buttonClicked = $(this);
             var id = $buttonClicked.attr('data-id');
             var options = { "backdrop": "static", keyboard: true };
@@ -253,7 +266,7 @@
                     $('#myModal').modal('show');
                 },
                 error: function () {
-                    alert("Error al cargar el contenido");
+                    //alert("Error al cargar el contenido");
                 }
             })
         });
@@ -276,7 +289,7 @@
                     $('#myModal').modal('show');
                 },
                 error: function () {
-                    alert("Error al cargar el contenido");
+                    //alert("Error al cargar el contenido");
                 }
             })
         });
@@ -300,10 +313,32 @@
                     $('#myModal').modal('show');
                 },
                 error: function () {
-                    alert("Error al cargar el contenido");
+                    //alert("Error al cargar el contenido");
                 }
             })
         });
     });
-
+    //see delays comments
+    $(function ModalDelayComment() {
+        $(".showDelayCmmnt").click(function () {
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: "/DelayComment/List",
+                contentType: "application/json; charset=utf-8",
+                data: { "id": id },
+                dataType: "html",
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    $('myModal').modal(options);
+                    $('#myModal').modal('show');
+                },
+                error: function () {
+                    //alert("Error al cargar el contenido");
+                }
+            })
+        });
+    });
 </script>

@@ -54,7 +54,7 @@ namespace Monotoring.Controllers
                 {
                     context.OrdenComment.Add(model);
                     context.SaveChanges();
-                    return RedirectToAction("Index", "Area_Orden");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

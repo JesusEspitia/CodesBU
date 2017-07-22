@@ -70,7 +70,7 @@ namespace Monotoring.Controllers
                     ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
                     context.DelayWork.Add(delay);
                     context.SaveChanges();
-                    return RedirectToAction("Index", "Area_Orden");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -182,7 +182,7 @@ namespace Monotoring.Controllers
                     d.dateFinish = DateTime.Now;
                 }
                 context.SaveChanges();
-                return RedirectToAction("Index", "Area_Orden");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

@@ -57,7 +57,7 @@ namespace Monotoring.Controllers
                 {
                     context.DelayComment.Add(model);
                     context.SaveChanges();
-                    return RedirectToAction("Index", "Area_Orden");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -74,10 +74,10 @@ namespace Monotoring.Controllers
         {
             try
             {
-                var comment = context.DelayComment.Include("Users").Where(c => c.DelayWorkId == id).ToList();
+                var comment = context.DelayComment.Include("Users").Where(c => c.DelayWorkId == id).OrderByDescending(c => c.dateComment).ToList();
 
                 //ViewBag.Comments = commet.ToList();
-                return View(comment);
+                return PartialView("_Comments",comment);
             }
             catch (Exception ex)
             {

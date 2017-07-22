@@ -190,6 +190,7 @@ namespace Monotoring.Controllers
                              where d.WorkOrdenId == id
                              select new DelayArea { DelayWork = d, DelayCode = c, SubCodes = s, Area = a }).OrderByDescending(c=>c.DelayWork.dateDelay);
             model.Delay = queryDelay.ToList();
+
             var comment = context.DelayComment.Include("Users").Where(c => c.DelayWorkId == id).OrderByDescending(c=>c.dateComment).ToList();
             model.DelayComment = comment.ToList();
             var comments = context.OrdenComment.Include("Users").Where(o => o.WorkOrdenId == id).OrderByDescending(o => o.dateComment).ToList();

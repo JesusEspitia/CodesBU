@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Monotoring.Models.DelayComment>
+    @{ 
+        int count = 0;
+        string head = "";
+        string collap = "";
+    }
+
+<div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Comentarios.</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            @foreach (var item in Model)
+            {
+                count++;
+                head = "heading" + count;
+                collap = "collapse" + count;
+    <!-- panel1 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="@head">
+                        <h4 class="panel-tittle">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#@collap" aria-expanded="true" aria-controls="@collap">
+                                @item.titleComment
+                            </a>
+                            <p class="text-right">
+                                <span class="glyphicon glyphicon-user right"><small> @item.Users.fullname </small></span>
+                            </p>
+                        </h4>
+                    </div>
+                    <div id="@collap" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@head">
+                        <div class="panel-body ">
+                            <p class="text-justify">@item.Comment</p>
+                            <p class="text-right"><i>@item.dateComment</i></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (count == 0)
+        {
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="jumbotron">
+                        <h1 class="text-left">No cuenta con ningún comentario.</h1>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
