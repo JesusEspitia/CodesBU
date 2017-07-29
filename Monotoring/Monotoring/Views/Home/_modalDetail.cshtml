@@ -7,9 +7,19 @@
     string User = Convert.ToString(Session["userName"]);
     int InArea = Convert.ToInt32(Session["userAreaId"]);
     int thisArea = 0;
+    List<int> lstarea = new List<int>();
+    bool IsJoin = false;
     foreach( Area_Orden item in Model.LastArea)
     {
         thisArea = item.Area.orden;
+    }
+    foreach(AreaPlus item in Model.plus)
+    {
+        if(thisArea == item.Area.orden)
+        {
+            IsJoin = true;
+            break;
+        }
     }
 
 }
@@ -69,13 +79,13 @@
                         </div>
                     </div>
                 </div>
-                   if (User != "" && InArea == thisArea)
+                   if (User != "" && (InArea == thisArea || IsJoin==true) )
                    {                       
                         <div class="col-lg-5">
                             <div class="btn-group" role="group">
                                 <a onclick="ModalNewComment();" class="createCommentNew btn btn-default" data-id="@item.WorkOrden.WorkOrdenId">Comentario</a>
                                 <a onclick="ModalDelay();" class="createDelay btn btn-default" data-id="@item.WorkOrden.WorkOrdenId">Retraso</a>
-                                @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = item.WorkOrden.WorkOrdenId }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
+                                @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = item.WorkOrden.WorkOrdenId, areaid= thisArea }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
                             </div>
                         </div>                       
                    }

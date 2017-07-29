@@ -18,6 +18,7 @@ namespace Monotoring.Controllers
             {
                 int areaId = 0;
                 int userId = 0;
+                
                 if (Session["userName"].ToString() != "")
                 {
                     userId = (int)Session["userId"];
@@ -28,6 +29,7 @@ namespace Monotoring.Controllers
                         //            where w.dateStart == null
                         //            select w;
                         var model = context.WorkOrden.Include("Catalog").Where(m => m.dateStart == null);
+                        
                         ViewBag.myModel = model.ToList();
                         List<int> lst = new List<int>();
                         ViewBag.myModel2 = lst.ToList();
@@ -35,7 +37,7 @@ namespace Monotoring.Controllers
                     }
                     else
                     {
-                        int getArea = getBeforeArea(userId);
+                        int getArea = getBeforeArea(areaId);
                         var model = from a in context.Area_Orden
                                     join ar in context.Area on a.AreaId equals ar.AreaId
                                     join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
@@ -164,7 +166,7 @@ namespace Monotoring.Controllers
         public int getBeforeArea(int id)
         {
             
-            int areaid = (int)Session["userAreaId"];
+            int areaid = id;
             int ret = 0;
             
             switch (areaid)

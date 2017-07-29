@@ -298,5 +298,21 @@ namespace Monotoring.Controllers
                 return View();
             }
         }
+
+        public ActionResult AddArea(int id)
+        {
+            try
+            {
+                var model = new AreaPlus();
+                model.userId = id;
+                ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
+                ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
+                return PartialView("_modalAddArea", model);
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Users");
+            }
+        }
     }
 }

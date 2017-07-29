@@ -29,6 +29,7 @@
 
 
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -53,6 +54,9 @@
                     @Html.ActionLink("Editar", "Edit", new { id = item.UsersId }) |
                     @Html.ActionLink("Eliminar", "Delete", new { id = item.UsersId })
                 </td>
+                <td>
+                    <a href="javascript:void(0);" class="showDetail btn btn-sm btn-default" data-id="@item.UsersId">Otra área</a>
+                </td>
             </tr>
         }
     </tbody>
@@ -61,3 +65,36 @@
 @*<ul class="pager">
     <li class="previous"><a href="/Admin/"><span aria-hidden="true">&larr;</span>Regresar</a></li>
 </ul>*@
+
+<div id='myModal' class='modal fade' tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $(".showDetail").click(function () {
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: "/Users/AddArea",
+                contentType: "application/json; charset=utf-8",
+                data: { "id": id },
+                dataType: "html",
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    $('myModal').modal(options);
+                    $('#myModal').modal('show');
+                },
+                error: function () {
+                    //alert("Error al cargar el contenido");
+                }
+            })
+        });
+    });
+</script>

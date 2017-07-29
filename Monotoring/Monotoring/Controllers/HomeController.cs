@@ -162,6 +162,7 @@ namespace Monotoring.Controllers
         public ActionResult showDetail(int id)
         {
             int catalog = 0;
+            int userId = 0;
             dynamic model = new ExpandoObject();
             //var query = from w in context.WorkOrden
             //            join a in context.Area_Orden on w.WorkOrdenId equals a.WorkOrdenId
@@ -174,8 +175,9 @@ namespace Monotoring.Controllers
             //model.OrdenDetail = query.ToList();
             var queryOrden = from w in context.WorkOrden
                              join c in context.Catalog on w.CatalogId equals c.CatalogId
-                             where w.WorkOrdenId == id
-                             select new WorkCatalog { WorkOrden = w, Catalog = c };
+                             join a in context.Area_Orden on w.WorkOrdenId equals a.WorkOrdenId
+                             where w.WorkOrdenId == id && a.dateFinish == null
+                             select new WorkCatalog { WorkOrden = w, Catalog = c, Area_Orden = a };
             model.WorkCatalog = queryOrden.ToList();
             var queryArea = from a in context.Area_Orden
                             join ar in context.Area on a.AreaId equals ar.AreaId
@@ -198,8 +200,15 @@ namespace Monotoring.Controllers
             var last = context.Area_Orden.Include("Area").Where(a=> a.WorkOrdenId == id).Where(a => a.dateFinish == null).ToList();
             model.LastArea = last.ToList();
             
-            //var 
-            return PartialView("_modalDetail",model);
+            if (Session["userName"].ToString() != "")
+            {
+                userId = (int)Session["userId"];
+                model.plus = context.AreaPlus.Include("Area").Where(a => a.userId == userId).ToList();
+            }
+            
+
+                //var 
+                return PartialView("_modalDetail",model);
         }
 
     }

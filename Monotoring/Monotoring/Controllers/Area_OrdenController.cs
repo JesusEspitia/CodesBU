@@ -62,7 +62,7 @@ namespace Monotoring.Controllers
         }
 
         [HttpGet]
-        public ActionResult FinishOrden(int id)
+        public ActionResult FinishOrden(int id, int areaid)
         {
             var check = context.DelayWork.Where(d => d.WorkOrdenId == id).Where(d => d.dateFinish == null).ToList();
             if (check.ToList().Count == 0)
@@ -74,7 +74,7 @@ namespace Monotoring.Controllers
                 if (lstdelay.Count < 1)
                 {
                     Session["stop"] = null;
-                    int area = (int)Session["userAreaId"];
+                    int area = areaid;
                     var ar = from u in context.Area
                              where u.orden == area
                              select u;
@@ -133,7 +133,7 @@ namespace Monotoring.Controllers
                     //    sendEmail("Pruena", to);
                     //}
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Home");
                 }
                 else
                 {

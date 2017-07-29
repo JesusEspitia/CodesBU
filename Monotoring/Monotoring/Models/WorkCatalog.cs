@@ -10,5 +10,6 @@ namespace Monotoring.Models
     {
         public WorkOrden WorkOrden { get; set; }
         public Catalog Catalog { get; set; }
+        public Area_Orden Area_Orden { get; set; }
     }
 }

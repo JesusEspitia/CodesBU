@@ -226,6 +226,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AreaController.cs" />
+    <Compile Include="Controllers\AreaPlusController.cs" />
     <Compile Include="Controllers\Area_OrdenController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\ConfigController.cs" />
@@ -269,9 +270,14 @@
     <Compile Include="Migrations\201705151704162_migracion1505.Designer.cs">
       <DependentUpon>201705151704162_migracion1505.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707272131555_migracionX.cs" />
+    <Compile Include="Migrations\201707272131555_migracionX.Designer.cs">
+      <DependentUpon>201707272131555_migracionX.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
+    <Compile Include="Models\AreaPlus.cs" />
     <Compile Include="Models\AreaViewModel.cs" />
     <Compile Include="Models\Area_Orden.cs" />
     <Compile Include="Models\Catalog.cs" />
@@ -516,6 +522,7 @@
     <Content Include="Views\Admin\ListNewRequest.cshtml" />
     <Content Include="Views\OrdenComment\Create.cshtml" />
     <Content Include="Views\DelayComment\_Comments.cshtml" />
+    <Content Include="Views\Users\_modalAddArea.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -543,9 +550,13 @@
     <EmbeddedResource Include="Migrations\201705151704162_migracion1505.resx">
       <DependentUpon>201705151704162_migracion1505.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707272131555_migracionX.resx">
+      <DependentUpon>201707272131555_migracionX.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TempFile\" />
+    <Folder Include="Views\AreaPlus\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
