@@ -28,15 +28,38 @@ namespace Monotoring.Controllers
                         //var model = from w in context.WorkOrden
                         //            where w.dateStart == null
                         //            select w;
-                        var model = context.WorkOrden.Include("Catalog").Where(m => m.dateStart == null);
-                        
-                        ViewBag.myModel = model.ToList();
                         List<int> lst = new List<int>();
-                        ViewBag.myModel2 = lst.ToList();
+                        List<WorkCatalog> modelLst = new List<WorkCatalog>();
+                        var model = context.WorkOrden.Include("Catalog").Where(m => m.dateStart == null);
+                        var ids = context.AreaPlus.Include("Area").Where(a => a.userId == userId).ToList();
+                        foreach(var item in ids.ToList())
+                        {
+                            lst.Add(getBeforeArea(item.Area.orden));
+                        }
+                        foreach(int i in lst)
+                        {
+                            var modelalt = from a in context.Area_Orden
+                                           join ar in context.Area on a.AreaId equals ar.AreaId
+                                           join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
+                                           join c in context.Catalog on w.CatalogId equals c.CatalogId
+                                           where ar.orden == i && a.runOrden == true && a.dateFinish != null
+                                           select new WorkCatalog { WorkOrden = w, Catalog = c, Area = ar };
+                            foreach(WorkCatalog w in modelalt.ToList())
+                            {
+                                modelLst.Add(w);
+                            }
+                            
+                        }
+                    
+                        ViewBag.myModel = model.ToList();
+
+                        ViewBag.myModel2 = modelLst.ToList();
                         return View();
                     }
                     else
                     {
+                        List<int> lst = new List<int>();
+                        List<WorkCatalog> modelLst = new List<WorkCatalog>();
                         int getArea = getBeforeArea(areaId);
                         var model = from a in context.Area_Orden
                                     join ar in context.Area on a.AreaId equals ar.AreaId
@@ -44,9 +67,30 @@ namespace Monotoring.Controllers
                                     join c in context.Catalog on w.CatalogId equals c.CatalogId
                                     where ar.orden == getArea && a.runOrden == true && a.dateFinish != null
                                     select new WorkCatalog { WorkOrden = w, Catalog = c };
-                        List<int> lst = new List<int>();
-                        ViewBag.myModel = lst.ToList();
-                        ViewBag.myModel2 = model.ToList();
+
+                        var ids = context.AreaPlus.Include("Area").Where(a => a.userId == userId).ToList();
+                        foreach (var item in ids.ToList())
+                        {
+                            lst.Add(getBeforeArea(item.Area.orden));
+                        }
+                        foreach (int i in lst)
+                        {
+                            var modelalt = from a in context.Area_Orden
+                                           join ar in context.Area on a.AreaId equals ar.AreaId
+                                           join w in context.WorkOrden on a.WorkOrdenId equals w.WorkOrdenId
+                                           join c in context.Catalog on w.CatalogId equals c.CatalogId
+                                           where ar.orden == i && a.runOrden == true && a.dateFinish != null
+                                           select new WorkCatalog { WorkOrden = w, Catalog = c, Area = ar };
+                            foreach (WorkCatalog w in modelalt.ToList())
+                            {
+                                modelLst.Add(w);
+                            }
+
+                        }
+                        List<int> t = new List<int>();
+                        ViewBag.myModel = t.ToList();
+                        ViewBag.myModel3 = model.ToList();
+                        ViewBag.myModel4 = modelLst.ToList();
                         return View();
                     }
                 }
