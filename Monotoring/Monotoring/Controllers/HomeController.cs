@@ -14,6 +14,7 @@ namespace Monotoring.Controllers
         private TrackContext context = new TrackContext();
         public ActionResult Index()
         {
+
             dynamic models = new ExpandoObject();
             //List<object> models = new List<object>();
             var query = (from w in context.WorkOrden
@@ -163,6 +164,7 @@ namespace Monotoring.Controllers
         {
             int catalog = 0;
             int userId = 0;
+            List<string> strt = new List<string>();
             dynamic model = new ExpandoObject();
             //var query = from w in context.WorkOrden
             //            join a in context.Area_Orden on w.WorkOrdenId equals a.WorkOrdenId
@@ -176,8 +178,8 @@ namespace Monotoring.Controllers
             var queryOrden = from w in context.WorkOrden
                              join c in context.Catalog on w.CatalogId equals c.CatalogId
                              join a in context.Area_Orden on w.WorkOrdenId equals a.WorkOrdenId
-                             where w.WorkOrdenId == id && a.dateFinish == null
-                             select new WorkCatalog { WorkOrden = w, Catalog = c, Area_Orden = a };
+                             where w.WorkOrdenId == id
+                             select new WorkCatalog { WorkOrden = w, Catalog = c};
             model.WorkCatalog = queryOrden.ToList();
             var queryArea = from a in context.Area_Orden
                             join ar in context.Area on a.AreaId equals ar.AreaId
@@ -200,10 +202,18 @@ namespace Monotoring.Controllers
             var last = context.Area_Orden.Include("Area").Where(a=> a.WorkOrdenId == id).Where(a => a.dateFinish == null).ToList();
             model.LastArea = last.ToList();
             
-            if (Session["userName"].ToString() != "")
+            if (Session["userName"] != null )
             {
-                userId = (int)Session["userId"];
-                model.plus = context.AreaPlus.Include("Area").Where(a => a.userId == userId).ToList();
+                if (Session["userName"].ToString() != "")
+                {
+                    userId = (int)Session["userId"];
+                    model.plus = context.AreaPlus.Include("Area").Where(a => a.userId == userId).ToList();
+                }
+            }
+            else
+            {
+                userId = 0;
+                model.plus = strt;
             }
             
 

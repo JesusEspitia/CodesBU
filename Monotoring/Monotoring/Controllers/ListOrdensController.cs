@@ -50,10 +50,12 @@ namespace Monotoring.Controllers
                             }
                             
                         }
-                    
+                        List<int> t = new List<int>();
                         ViewBag.myModel = model.ToList();
-
+                        ViewBag.IDArea = areaId;
                         ViewBag.myModel2 = modelLst.ToList();
+                        ViewBag.myModel3 = t.ToList();
+                        ViewBag.myModel4 = t.ToList();
                         return View();
                     }
                     else
@@ -88,6 +90,7 @@ namespace Monotoring.Controllers
 
                         }
                         List<int> t = new List<int>();
+                        ViewBag.IDArea = areaId;
                         ViewBag.myModel = t.ToList();
                         ViewBag.myModel3 = model.ToList();
                         ViewBag.myModel4 = modelLst.ToList();
@@ -148,10 +151,10 @@ namespace Monotoring.Controllers
         //}
 
         [HttpGet]
-        public ActionResult StartOrden(int id)
+        public ActionResult StartOrden(int id, int fromarea)
         {
             int orden = id;
-            int area = 0;
+            int area = fromarea;
             //var getOrden = from w in context.WorkOrden
             //            where w.BatchOrden == id.ToString()
             //            select w;
@@ -161,7 +164,7 @@ namespace Monotoring.Controllers
             //    orden = d.WorkOrdenId;
             //}
             int user = Convert.ToInt32(Session["userId"]);
-            area = (int)Session["userAreaId"];
+            //area = (int)Session["userAreaId"];
 
 
             if (area == 1)
@@ -174,9 +177,9 @@ namespace Monotoring.Controllers
                     wo.dateStart = DateTime.Now;
                 }
             }
-            var ar=from u in context.Users
-                  where u.UsersId==user
-                  select u;
+            var ar = from a in context.Area
+                     where a.orden == area
+                     select a;
 
             foreach (var item in ar.ToList())
             {
@@ -190,7 +193,7 @@ namespace Monotoring.Controllers
                 runOrden = true,
                 notify = false
             };
-            area = (int)Session["userAreaId"];
+            area = fromarea;
             if (area != 1)
             {
                 var slut = from a in context.Area_Orden
