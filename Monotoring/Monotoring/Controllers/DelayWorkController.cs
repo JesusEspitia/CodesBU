@@ -42,7 +42,7 @@ namespace Monotoring.Controllers
                     ViewBag.WorkOrden = new SelectList(context.WorkOrden, "WorkOrdenId", "BatchOrden");
                     //ViewBag.Sub = new SelectList(context.SubCodes.Where(c => c.DelayCodeId == code),"SubCodesId","DescripCode");
                     //ViewBag.WorkOrden = id;
-                    ViewBag.Users = new SelectList(context.Users, "UsersId", "username");
+                    ViewBag.Users = new SelectList(context.Users, "UsersId", "fullname");
                     return PartialView("_modalDelay", model);
                 }
                 else

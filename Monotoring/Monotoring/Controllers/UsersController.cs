@@ -130,6 +130,7 @@ namespace Monotoring.Controllers
                         ViewBag.Employee_type = new SelectList(context.Employee_type, "Employee_typeId", "NameType");
                         ViewBag.Area = new SelectList(context.Area, "AreaId", "AreaName");
                         user.active = false;
+                        user.notify = false;
                         context.Users.Add(user);
                         context.SaveChanges();
                         return RedirectToAction("Index");

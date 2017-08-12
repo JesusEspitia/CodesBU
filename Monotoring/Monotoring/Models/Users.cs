@@ -26,6 +26,7 @@ namespace Monotoring.Models
         [DisplayName("Área")]
         public int? AreaId { get; set; }
         public bool active { get; set; }
+        public bool notify { get; set; }
 
         [ForeignKey("TypeId")]
         public Employee_type Type { get; set; }
