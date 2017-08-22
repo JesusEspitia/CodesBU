@@ -85,18 +85,19 @@
                             <div class="btn-group" role="group">
                                 <a onclick="ModalNewComment();" class="createCommentNew btn btn-default" data-id="@item.WorkOrden.WorkOrdenId">Comentario</a>
                                 <a onclick="ModalDelay();" class="createDelay btn btn-default" data-id="@item.WorkOrden.WorkOrdenId">Retraso</a>
-                                @Ajax.ActionLink("Finalizar", "FinishOrden", "Area_Orden", new { id = item.WorkOrden.WorkOrdenId, areaid= thisArea }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })
+                                @*@if (thisArea == 2 || thisArea == 3)
+                                {
+                                    <a onclick="ModalShipper();" class="AddDateShipper btn btn-default" data-id="@item.WorkOrden.WorkOrdenId">Fecha de entrega</a>
+                                }*@
+                                @*@Ajax.ActionLink("Finalizar", "preFinishOrden", "Area_Orden", new { id = item.WorkOrden.WorkOrdenId, area= thisArea }, new AjaxOptions() { HttpMethod = "POST" }, new { @class = "btn btn-default", @data_toggle = "tooltip", @data_placement = "bottom", @title = "Terminar orden de trabajo" })*@
+                                <a onclick="ModalShipper();" class="AddDateShipper btn btn-default" data-id="@item.WorkOrden.WorkOrdenId">Fecha de entrega</a>
                             </div>
                         </div>                       
                    }
                    break;
                }
-
-
-
-
        </div>
-
+       
        <div class="row">
            <div class="col-lg-10 col-lg-offset-1">
                <!--comments panel-->
@@ -253,7 +254,15 @@
     </div>
 </div>
 <!--End modal-->
-
+<!--Modal show date shipping-->
+<div id='myModal3' class='modal fade' tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id='myModalContent3'></div>
+        </div>
+    </div>
+</div>
+<!--End modal-->
 
 <script>
     $("#close").click(function () {
@@ -340,6 +349,28 @@
                 url: "/DelayComment/List",
                 contentType: "application/json; charset=utf-8",
                 data: { "id": id },
+                dataType: "html",
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    $('myModal').modal(options);
+                    $('#myModal').modal('show');
+                },
+                error: function () {
+                    //alert("Error al cargar el contenido");
+                }
+            })
+        });
+    });
+    $(function ModalShipper() {
+        $(".AddDateShipper").click(function () {
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: "/DeliveryOrder/Create",
+                contentType: "application/json; charset=utf-8",
+                data: { "id": id ,"areaid":@thisArea},
                 dataType: "html",
                 success: function (data) {
                     $('#myModalContent').html(data);

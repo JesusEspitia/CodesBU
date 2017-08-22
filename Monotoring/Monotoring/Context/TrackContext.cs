@@ -27,5 +27,6 @@ namespace Monotoring.Context
         public DbSet<SubCodes> SubCodes { get; set; }
         public DbSet<OrdenComment> OrdenComment { get; set; }
         public DbSet<AreaPlus> AreaPlus { get; set; }
+        public DbSet<DeliveryOrder> DeliveryOrder { get; set; }
     }
 }

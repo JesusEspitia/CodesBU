@@ -160,6 +160,11 @@ namespace Monotoring.Controllers
             return View(model);
         }
 
+        public ActionResult refresh()
+        {
+            return RedirectToAction("Index");
+        }
+
         public ActionResult showDetail(int id)
         {
             int catalog = 0;
@@ -220,7 +225,8 @@ namespace Monotoring.Controllers
                 //var 
                 return PartialView("_modalDetail",model);
         }
+      
 
-    }
+    }   
 
 }

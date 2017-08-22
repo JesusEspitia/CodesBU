@@ -61,9 +61,13 @@ namespace Monotoring.Controllers
             }
         }
 
+       
+
         [HttpGet]
         public ActionResult FinishOrden(int id, int areaid)
         {
+            Session["temparea"] = 0;
+            Session["tempid"] = 0;
             var check = context.DelayWork.Where(d => d.WorkOrdenId == id).Where(d => d.dateFinish == null).ToList();
             if (check.ToList().Count == 0)
             {
@@ -133,7 +137,10 @@ namespace Monotoring.Controllers
                     //    sendEmail("Pruena", to);
                     //}
 
-                    return RedirectToAction("Index","Home");
+                    return PartialView("_closeWork");
+                    //return RedirectToAction("Index","Home");
+                    //return JavaScript("window.location.reload();");
+                    //return Content("<script language='javascript' type='text/javascript'>window.location.reload();</script>");
                 }
                 else
                 {

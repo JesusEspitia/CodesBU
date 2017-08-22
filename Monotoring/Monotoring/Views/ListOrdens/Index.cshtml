@@ -16,31 +16,31 @@
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
-                <tr>
+                <tr class="bg-primary">
                     @switch (myArea)
                     {
                         case 1:
-                            <th class="text-center bg-Baxter1" colspan="6"><h3>Ensamble Final</h3></th>
+                            <th class="text-center" colspan="6"><h3>Ensamble Final</h3></th>
                             break;
                         case 2:
-                            <th class="text-center bg-Baxter1" colspan="6"><h3>Calidad</h3></th>
+                            <th class="text-center" colspan="6"><h3>Calidad</h3></th>
                             break;
                         case 3:
-                            <th class="text-center bg-Baxter1" colspan="6"><h3>Logistica</h3></th>
+                            <th class="text-center " colspan="6"><h3>Logistica</h3></th>
                             break;
                         case 4:
-                            <th class="text-center bg-Baxter1" colspan="6"><h3>Esterilización</h3></th>
+                            <th class="text-center" colspan="6"><h3>Esterilización</h3></th>
                             break;
                         case 5:
-                            <th class="text-center bg-Baxter1" colspan="6"><h3>Liberación QA Final</h3></th>
+                            <th class="text-center " colspan="6"><h3>Liberación QA Final</h3></th>
                             break;
                         case 6:
-                            <th class="text-center bg-Baxter1" colspan="6">Envío P/L</th>
+                            <th class="text-center " colspan="6">Envío P/L</th>
                             break;
                     }
                 </tr>
 
-                <tr>
+                <tr class="bg-Baxter-default">
                     <th class="text-center">No. Catalogo</th>
                     <th class="text-center">Producto</th>
                     <th class="text-center">Batch</th>
@@ -69,7 +69,7 @@
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>                
-                <tr>
+                <tr class="bg-Baxter-default">
                     <th class="text-center">Área por inicar</th>
                     <th class="text-center">No. Catalogo</th>
                     <th class="text-center">Producto</th>
@@ -220,10 +220,63 @@
         }
         else
         {
+            if (ViewBag.myModel4.Count > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="bg-Baxter-default">
+                                <th class="text-center">Área por iniciar</th>
+                                <th class="text-center">No. Catalogo</th>
+                                <th class="text-center">Producto</th>
+                                <th class="text-center">Batch</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Fecha de registro</th>
+                                <th class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (WorkCatalog item in ViewBag.myModel4)
+                            {
+                                <tr>
+                                    @switch (item.Area.orden)
+                                    {
+                                        case 1:
+                                            <td class="text-center">Calidad</td>
+                                            break;
+                                        case 2:
+                                            <td class="text-center">Logistica</td>
+                                            break;
+                                        case 3:
+                                            <td class="text-center">Esterilización</td>
+                                            break;
+                                        case 4:
+                                            <td class="text-center">Libración Final QA</td>
+                                            break;
+                                        case 5:
+                                            <td class="text-center">Envío P/L</td>
+                                            break;
+                                    }
+                                    <td class="text-center">@item.Catalog.CatalogNo</td>
+                                    <td class="text-center">@item.Catalog.CatalogDescrip</td>
+                                    <td class="text-center">@item.WorkOrden.BatchOrden</td>
+                                    <td class="text-center">@item.WorkOrden.quantityOrden</td>
+                                    <td class="text-center">@item.WorkOrden.dateRegistry</td>
+                                    @*<td><input type="button" id="btnIniciar" value="Iniciar" class="btn btn-sm btn-default" /></td>*@
+                                    <td class="text-center">@Ajax.ActionLink("Iniciar", "StartOrden", "ListOrdens", new { id = item.WorkOrden.WorkOrdenId, fromarea = item.Area.orden + 1 }, new AjaxOptions() { HttpMethod = "Post" }) <span class="glyphicon glyphicon-send"></span></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
             <div class="jumbotron">
                 <h1>No hay nuevas ordenes de trabajo.</h1>
                 <p>Puede existir un retraso en alguna área, o no se han dado de alta nuevas ordenes de trabajo.</p>
             </div>
+                }
             }
         }
 </div>

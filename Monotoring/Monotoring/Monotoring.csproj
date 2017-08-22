@@ -234,6 +234,7 @@
     <Compile Include="Controllers\DelayCodeController.cs" />
     <Compile Include="Controllers\DelayCommentController.cs" />
     <Compile Include="Controllers\DelayWorkController.cs" />
+    <Compile Include="Controllers\DeliveryOrderController.cs" />
     <Compile Include="Controllers\Employee_TypeController.cs" />
     <Compile Include="Controllers\FamilyProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -278,6 +279,10 @@
     <Compile Include="Migrations\201708101615555_migra.Designer.cs">
       <DependentUpon>201708101615555_migra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708181649577_migracionXX.cs" />
+    <Compile Include="Migrations\201708181649577_migracionXX.Designer.cs">
+      <DependentUpon>201708181649577_migracionXX.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Area.cs" />
@@ -289,6 +294,7 @@
     <Compile Include="Models\DelayCode.cs" />
     <Compile Include="Models\DelayComment.cs" />
     <Compile Include="Models\DelayWork.cs" />
+    <Compile Include="Models\DeliveryOrder.cs" />
     <Compile Include="Models\Employee_type.cs" />
     <Compile Include="Models\FamilyProduct.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -527,6 +533,8 @@
     <Content Include="Views\OrdenComment\Create.cshtml" />
     <Content Include="Views\DelayComment\_Comments.cshtml" />
     <Content Include="Views\Users\_modalAddArea.cshtml" />
+    <Content Include="Views\DeliveryOrder\_deliveryView.cshtml" />
+    <Content Include="Views\Area_Orden\_closeWork.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -559,6 +567,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708101615555_migra.resx">
       <DependentUpon>201708101615555_migra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708181649577_migracionXX.resx">
+      <DependentUpon>201708181649577_migracionXX.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

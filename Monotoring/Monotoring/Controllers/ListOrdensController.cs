@@ -176,6 +176,9 @@ namespace Monotoring.Controllers
                 {
                     wo.dateStart = DateTime.Now;
                 }
+                DeliveryOrder delivery = new DeliveryOrder();
+                delivery.WorkOrdenID = id;
+                context.DeliveryOrder.Add(delivery);
             }
             var ar = from a in context.Area
                      where a.orden == area
